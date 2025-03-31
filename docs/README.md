@@ -155,15 +155,27 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 | ID     | Descrição do Requisito                                   | Prioridade |
 | ------ | ---------------------------------------------------------- | ---------- |
-| RF-001 | Permitir que o usuário cadastre tarefas ⚠️ EXEMPLO ⚠️ | ALTA       |
-| RF-002 | Emitir um relatório de tarefas no mês ⚠️ EXEMPLO ⚠️ | MÉDIA     |
+| RF-001 | 	O sistema deve permitir que o usuário envie fotos e vídeos geolocalizados, informando endereço, data, horário e algum comentário se desejar. | ALTA |
+| RF-002 | 	O sistema deve disponibilizar que o usuário realize uma filtragem por tipo de problema, data e bairro.  | MÉDIA     |
+| RF-003 | 	O sistema deve fornecer à prefeitura acesso a dados por meio de tabelas e gráficos, destacando os bairros com maior incidência de problemas de infraestrutura e os tipos de ocorrências predominantes.| ALTA       |
+| RF-004 | 	O sistema deve receber fotos e informações dos usuários para que seja possível detectar as áreas alagadas em tempo real, a fim de informar no mapa quais são as áreas afetadas.   | ALTA     |
+| RF-005 | 	O sistema deve fazer uma integração com o Google Maps para que os usuários saibam com exatidão todas as áreas que estão intransitáveis da cidade e evite transitar por essas localidades. | ALTA       |
+| RF-006 | 	O sistema deve oferecer um fórum onde os usuários possam registrar denúncias e reclamações sobre enchentes e problemas de infraestrutura, permitindo que outros cidadãos comentem e apoiem as publicações.  | MÉDIA     |
+| RF-007 | 	O sistema deve permitir que o usuário adicione um comentário, assim como editá-lo ou apagá-lo | BAIXA       |
+| RF-008 | 	O sistema deve gerar relatórios simples para a prefeitura, destacando os problemas mais recorrentes com base na quantidade de denúncias recebidas e na localização das ocorrências.   | MÉDIA     |
+| RF-009 | 	O sistema deve possuir uma integração com uma API sobre os dados meteorológicos para que possa ter uma análise da probabilidade de ocorrer enchentes.  | ALTA     |
+| RF-010 | 	O sistema deve permitir o envio de notificações para o usuário em tempo real sobre a probabilidade de ocorrer enchentes durante determinado período.
+| MÉDIA       |
+| RF-011 | 	O sistema deve ter um delay baixo para que as notificações possam ser enviadas de forma rápida.  | MÉDIA     |
+| RF-012 | 	O sistema deve fornecer uma página para o usuário com conteúdo e dicas de como se preparar e agir durante situações de enchentes. Assim como, contatos relevantes como por exemplo da defesa civil, bombeiros, PM e prefeitura.   | BAIXA     |
+
 
 ### Requisitos não Funcionais
 
 | ID      | Descrição do Requisito                                                              | Prioridade |
 | ------- | ------------------------------------------------------------------------------------- | ---------- |
-| RNF-001 | O sistema deve ser responsivo para rodar em um dispositivos móvel ⚠️ EXEMPLO ⚠️ | MÉDIA     |
-| RNF-002 | Deve processar requisições do usuário em no máximo 3s ⚠️ EXEMPLO ⚠️          | BAIXA      |
+| RNF-001 | •	O sistema deve atualizar em cinco segundos com os dados que foram postados. | MÉDIA     |
+| RNF-002 | •	O sistema deve atualizar em cinco segundos, apresentando um alerta no mapa de qual área está alagada.         | BAIXA      |
 
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
 >
