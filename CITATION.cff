@@ -2,29 +2,31 @@ cff-version: 1.0.1
 message: Please cite this software using these metadata.
 title: 
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Costa Araujo
+    given-names: Fellipe Gabriel
+  - family-names: Saraiva Luz
+    given-names: Gustavo Henrique
+  - family-names: de Souza Xavier
+    given-names: Luis Gustavo
+  - family-names: Ferreira Silva
+    given-names: Larissa
+
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Hanne Soares de Andrade
+    given-names: Michelle
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Augusto de Faria Barros 
+    given-names: Diego
 keywords:
-  - 
-  - 
+  - Mobilidade Urbana
+  - Enchentes
+  - Gestão Urbana
+  - Soluções para Alagamentos
+  - Alertas de Enchentes
+
+
 repository-code: 
 license: CC-BY-4.0
 version: 1.0.0
