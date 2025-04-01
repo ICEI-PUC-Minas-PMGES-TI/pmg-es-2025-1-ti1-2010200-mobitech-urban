@@ -2,13 +2,14 @@
 
 Informações básicas do projeto.
 
-* **Projeto:** [NOME DO PROJETO]
-* **Repositório GitHub:** [LINK PARA O REPOSITÓRIO NO GITHUB]
+* **Projeto:** MoveWave
+* **Repositório GitHub:** https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti1-2010200-mobitech-urban.git
 * **Membros da equipe:**
 
-  * [Fulano](https://github.com/fulano) ⚠️ EXEMPLO ⚠️
-  * [Beltrano](https://github.com/beltrano) ⚠️ EXEMPLO ⚠️
-  * [Cicrano](https://github.com/cicrano) ⚠️ EXEMPLO ⚠️
+  * [Larissa](https://github.com/llarissasilva)
+  * [Luis](https://github.com/fulano)
+  * [Gustavo](https://github.com/beltrano) 
+  * [Fellipe](https://github.com/cicrano) 
 
 A documentação do projeto é estruturada da seguinte forma:
 
@@ -28,90 +29,60 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 ## Problema
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesse momento você deve apresentar o problema que a sua aplicação deve resolver. No entanto, não é a hora de comentar sobre a aplicação. Descreva também o contexto em que essa aplicação será usada, se houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
->
-> **Orientações**:
->
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Belo Horizonte sofre com enchentes recorrentes, afetando a mobilidade urbana e colocando a população em risco. Bueiros entupidos e ruas esburacadas agravam a situação, dificultando o escoamento da água e aumentando os alagamentos. Atualmente, não há uma forma eficiente para a população relatar esses problemas em tempo real, dificultando a resposta das autoridades e a adoção de medidas preventivas. Isso impacta moradores, órgãos públicos e o trânsito da cidade.
 
 ## Objetivos
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
->
-> **Orientações**:
->
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+O objetivo geral deste projeto é desenvolver um software para auxiliar na mitigação dos impactos das enchentes em Belo Horizonte, facilitando o monitoramento e a comunicação de problemas relacionados à mobilidade urbana e infraestrutura. Como objetivo específico pretende-se, criar uma plataforma onde usuários possam relatar enchentes e problemas urbanos em tempo real, incluindo o envio de fotos e vídeos; mapear os pontos críticos da cidade com base nos relatos da população, gerando alertas e informações úteis para os órgãos públicos; desenvolver um sistema de fórum para que os cidadãos possam discutir e compartilhar informações sobre os problemas urbanos.
 
 ## Justificativa
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
->
-> O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
->
-> **Orientações**:
->
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+As enchentes em Belo Horizonte impactam a mobilidade urbana, causam prejuízos e colocam a população em risco. A falta de um canal eficiente para relatar esses problemas dificulta a resposta das autoridades e a adoção de medidas preventivas. Nas entrevistas realizadas, foi possível observar o quanto as enchentes prejudicam os trabalhadores, como motoristas de Uber que são forçados a parar de trabalhar, e comerciantes que, além de não poderem retornar para seus lares, enfrentam grandes prejuízos devido à perda de materiais quando a água invade seus estabelecimentos. Dessa forma, este projeto busca suprir essa necessidade por meio de uma plataforma colaborativa, permitindo o envio de relatos em tempo real, o mapeamento de pontos críticos e a interação entre cidadãos.
 
 ## Público-Alvo
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Descreva quais são as pessoas que usarão a sua aplicação indicando os diferentes perfis. A ideia é, dentro do possível, conhecer um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc.
->
-> Adicione informações sobre o público-alvo por meio de uma descrição textual, ou diagramas de personas, mapa de stakeholders, ou como o grupo achar mais conveniente.
->
-> **Orientações**:
->
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+O público-alvo da plataforma é composto por diferentes perfis de usuários, com o objetivo de atender tanto à população em geral quanto às autoridades responsáveis pela gestão urbana.
+Cidadãos comuns, de diferentes idades e níveis de familiaridade com a tecnologia, que utilizam smartphones no seu dia a dia. Dentro desse grupo, incluem-se trabalhadores urbanos, como motoristas de aplicativos e comerciantes, que também fazem parte do público-alvo. Esses profissionais dependem da mobilidade e enfrentam impactos diretos nas suas atividades devido às enchentes, utilizando a plataforma para relatar interrupções nas vias e buscar soluções rápidas. A prefeitura e órgãos públicos, com profissionais responsáveis pela gestão de desastres e infraestrutura, formam outro grupo-alvo. Eles utilizarão a plataforma para analisar dados e tomar decisões em tempo real.
 
 # Product Discovery
 
 ## Etapa de Entendimento
 
-**✳️✳️✳️ APRESENTE OS ARTEFATOS DA ETAPA  ✳️✳️✳️**
+**Matriz CSD**: 
+![image](https://github.com/user-attachments/assets/7ce6ee63-cb9a-491f-94bc-cf1d2d19e1ae)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nessa etapa, vamos trabalhar com a metdologia de Design Thinking para compreender com maior profundidade o problema a ser tratado. Nesse processo, vamos elaborar:
->
-> * **Matriz CSD**: também conhecida por Matriz de Alinhamento, é uma ferramenta utilizada no Design Thinking para organizar informações e facilitar o processo de tomada de decisão e solução de problemas;
-> * **Mapa de stakeholders**: ferramenta que nos permite compreender o grupo de pessoas e entidades que devemos estudar e conversar para entender mais sobre o problema
-> * **Entrevistas qualitativas**: série de entrevistas qualitativas para validar suposições e solucionar as dúvidas com as principais pessoas envolvidas;
-> * **Highlights de pesquisa**: um compilado do levantamento realizado por meio das entrevistas.
+**Mapa de stakeholders**:
+![image](https://github.com/user-attachments/assets/e1edcda3-637f-4e1b-adc2-58cac8a50871)
+
+**Entrevistas qualitativas e Highlights de pesquisa**:
+
+![image](https://github.com/user-attachments/assets/cb0412b3-d19c-42b8-8829-e5fa3adbaf56)
+
+![image](https://github.com/user-attachments/assets/56cbcfdb-1197-4afa-917f-d3b8b280d1eb)
+
+![image](https://github.com/user-attachments/assets/3fb1a4cd-11cb-4ae2-9833-a06b8a18555f)
+
+![image](https://github.com/user-attachments/assets/d25d9b8d-513d-4251-affe-c5371ebb18fa)
+
+![image](https://github.com/user-attachments/assets/ca601fdc-4c57-4dde-9c8a-fac58ac5c8e4)
+
+![image](https://github.com/user-attachments/assets/8fdc60af-952c-4d14-86f3-2d6e7b4d4f8f)
+
 
 ## Etapa de Definição
 
 ### Personas
 
-**✳️✳️✳️ APRESENTE OS DIAGRAMAS DE PERSONAS ✳️✳️✳️**
+![image](https://github.com/user-attachments/assets/a16863ab-3dd0-4062-829f-7cc144a5c59e)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Relacione as personas identificadas no seu projeto e os respectivos mapas de empatia. Lembre-se que você deve ser enumerar e descrever precisamente e de forma personalizada todos os principais envolvidos com a solução almeja.
->
-> **Orientações**:
->
-> - [Persona x Público-alvo](https://flammo.com.br/blog/persona-e-publico-alvo-qual-a-diferenca/)
-> - [O que é persona?](https://resultadosdigitais.com.br/blog/persona-o-que-e/)
-> - [Rock Content](https://rockcontent.com/blog/personas/)
-> - [Criar personas (Hotmart)](https://blog.hotmart.com/pt-br/como-criar-persona-negocio/)
+![image](https://github.com/user-attachments/assets/e87a358a-de32-48e0-8b7d-824e110fd195)
+
+![image](https://github.com/user-attachments/assets/a9666c25-0144-4629-a85e-992876dd91ca)
+
+![image](https://github.com/user-attachments/assets/f81e4452-d8be-405b-a8e2-61f527df30c7)
+
+![image](https://github.com/user-attachments/assets/63426d22-9b26-43ec-9d77-6992219b07d3)
+
 
 # Product Design
 
@@ -123,29 +94,28 @@ Com base na análise das personas foram identificadas as seguintes histórias de
 
 | EU COMO...`PERSONA` | QUERO/PRECISO ...`FUNCIONALIDADE`        | PARA ...`MOTIVO/VALOR`               |
 | --------------------- | ------------------------------------------ | -------------------------------------- |
-| Usuário do sistema   | Registrar minhas tarefas ⚠️ EXEMPLO ⚠️ | Não esquecer de fazê-las             |
-| Administrador         | Alterar permissões ⚠️ EXEMPLO ⚠️      | Permitir que possam administrar contas |
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
->
-> **Orientações**:
->
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
+| Cidadão comum         | enviar fotos e vídeos geolocalizados relacionados aos problemas de infraestrutura no meu bairro | que a prefeitura possa agir de forma mais eficaz na prevenção de enchentes           |
+| Cidadão comum         | informar em tempo real as ruas que estão alagadas      | que a população possa evitar essas rotas, reduzindo riscos de acidentes e transtornos no trânsito. |
+| Cidadão comum         | Fórum de denúncias e reclamações a respeito das enchentes e da falta infraestrutura local | que haja eficiência na gestão pública,  auxiliando a prefeitura a identificar e priorizar os problemas mais críticos           |
+| Cidadão comum         | receber alertas antecipados sobre possíveis alagamentos       | que eu possa me preparar e tomar medidas preventivas contra enchentes |
 
 ## Proposta de Valor
 
-**✳️✳️✳️ APRESENTE O DIAGRAMA DA PROPOSTA DE VALOR PARA CADA PERSONA ✳️✳️✳️**
+##### Proposta para Persona José Rodriguez Santos: 
+![image](https://github.com/user-attachments/assets/c92591b8-8e03-4208-9140-8a7ee385a134)
 
-##### Proposta para Persona XPTO ⚠️ EXEMPLO ⚠️
 
-![Exemplo de proposta de valor](images/exemplo-proposta-valor.png)
+##### Proposta para Persona Maria Helena do Rosário: 
+![image](https://github.com/user-attachments/assets/42bcb634-23d8-49ec-a90d-2617ae6d46a5)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> O mapa da proposta de valor é uma ferramenta que nos ajuda a definir qual tipo de produto ou serviço melhor atende às personas definidas anteriormente.
+##### Proposta para Persona Letícia Ribeiro Alves:
+![image](https://github.com/user-attachments/assets/d8960cd4-265d-4239-bad0-214e4176bcc8)
+
+##### Proposta para Persona João Carlos Almeida:
+![image](https://github.com/user-attachments/assets/5bf7c732-5931-46b0-afc5-a9d0239cfa2f)
+
+##### Proposta para Persona Joelma Santos:
+![image](https://github.com/user-attachments/assets/eb43efc2-3c08-43fc-8023-f4d1946620fc)
 
 ## Requisitos
 
@@ -177,21 +147,6 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 | RNF-001 | •	O sistema deve atualizar em cinco segundos com os dados que foram postados. | MÉDIA     |
 | RNF-002 | •	O sistema deve atualizar em cinco segundos, apresentando um alerta no mapa de qual área está alagada.         | BAIXA      |
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Os requisitos de um projeto são classificados em dois grupos:
->
-> - [Requisitos Funcionais (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
->   correspondem a uma funcionalidade que deve estar presente na plataforma (ex: cadastro de usuário).
-> - [Requisitos Não Funcionais (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
->   correspondem a uma característica técnica, seja de usabilidade, desempenho, confiabilidade, segurança ou outro (ex: suporte a dispositivos iOS e Android).
->
-> Lembre-se que cada requisito deve corresponder à uma e somente uma característica alvo da sua solução. Além disso, certifique-se de que todos os aspectos capturados nas Histórias de Usuário foram cobertos.
->
-> **Orientações**:
->
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
 
 ## Projeto de Interface
 
