@@ -4,10 +4,7 @@ Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
 
 ## Alunos integrantes da equipe
 
-* Arthur Fellipe Ventura
 * Fillipe Gabriel
-* Gabriel Victor Ribeiro Dias
-* Gustavo Henrique Saraiva Luz
 * Gustavo Henrique Saraiva Luz
 * Luis Gustavo
 * Larissa Ferreira Silva
