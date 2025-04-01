@@ -7,9 +7,9 @@ Informações básicas do projeto.
 * **Membros da equipe:**
 
   * [Larissa](https://github.com/llarissasilva)
-  * [Luis](https://github.com/fulano)
-  * [Gustavo](https://github.com/beltrano) 
-  * [Fellipe](https://github.com/cicrano) 
+  * [Luis](https://github.com/luisgustavox12)
+  * [Gustavo](https://github.com/GustavoHS-Luz) 
+  * [Fellipe](https://github.com/FillipeG) 
 
 A documentação do projeto é estruturada da seguinte forma:
 
