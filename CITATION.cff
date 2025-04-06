@@ -1,6 +1,6 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: MoveWave 
 authors:
   - family-names: Costa Araujo
     given-names: Fillipe Gabriel
@@ -17,8 +17,8 @@ authors:
     given-names: Michelle
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: Augusto de Faria Barros 
-    given-names: Diego
+    family-names: de Faria Barros 
+    given-names: Diego Augusto
 keywords:
   - Mobilidade Urbana
   - Enchentes
