@@ -1,6 +1,6 @@
 # Introdução
 
-Informações básicas do projeto.
+Este documento apresenta as informações básicas do projeto MoveWave, uma plataforma voltada para melhorar a mobilidade urbana em Belo Horizonte por meio da participação ativa dos cidadãos.
 
 * **Projeto:** MoveWave
 * **Repositório GitHub:** https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti1-2010200-mobitech-urban.git
@@ -25,11 +25,11 @@ A documentação do projeto é estruturada da seguinte forma:
 
 # Contexto
 
-Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa e público-alvo.
+Belo Horizonte enfrenta sérios desafios relacionados à mobilidade urbana, especialmente durante o período de chuvas. As enchentes dificultam o deslocamento e colocam em risco a segurança de pedestres e motoristas. Além disso, a ausência de canais eficientes para que os cidadãos comuniquem esses problemas em tempo real dificulta a atuação rápida das autoridades. Sendo assim, o MoveWave surge como uma solução para esse cenário, com o objetivo de aproximar a população do poder público por meio de uma plataforma colaborativa de denúncias e mapeamento de ocorrências urbanas, a fim de tornar a gestão da cidade mais participativa, transparente e ágil. O público-alvo deste projeto abrange tanto os moradores da cidade, que convivem com esses desafios diariamente, quanto os órgãos públicos responsáveis pela manutenção e planejamento urbano.
 
 ## Problema
 
-Belo Horizonte sofre com enchentes recorrentes, afetando a mobilidade urbana e colocando a população em risco. Bueiros entupidos e ruas esburacadas agravam a situação, dificultando o escoamento da água e aumentando os alagamentos. Atualmente, não há uma forma eficiente para a população relatar esses problemas em tempo real, dificultando a resposta das autoridades e a adoção de medidas preventivas. Isso impacta moradores, órgãos públicos e o trânsito da cidade.
+A capital mineira sofre com enchentes recorrentes, afetando a mobilidade urbana e colocando a população em risco. Bueiros entupidos e ruas esburacadas agravam a situação, dificultando o escoamento da água e aumentando os alagamentos. A cidade ainda carece de uma forma eficiente e acessível para que os cidadãos relatem essas ocorrências em tempo real. A ausência de um canal direto de comunicação entre população e poder público atrasa as respostas às emergências e dificulta o planejamento de ações preventivas. Essa falta de integração agrava os impactos na mobilidade, na segurança e na qualidade de vida dos moradores.
 
 ## Objetivos
 
@@ -136,7 +136,6 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 | RF-009 | 	O sistema deve possuir uma integração com uma API sobre os dados meteorológicos para que possa ter uma análise da probabilidade de ocorrer enchentes.  | ALTA     |
 | RF-010 | 	O sistema deve permitir o envio de notificações para o usuário em tempo real sobre a probabilidade de ocorrer enchentes durante determinado período.
 | MÉDIA       |
-| RF-011 | 	O sistema deve ter um delay baixo para que as notificações possam ser enviadas de forma rápida.  | MÉDIA     |
 | RF-012 | 	O sistema deve fornecer uma página para o usuário com conteúdo e dicas de como se preparar e agir durante situações de enchentes. Assim como, contatos relevantes como por exemplo da defesa civil, bombeiros, PM e prefeitura.   | BAIXA     |
 
 
@@ -144,13 +143,16 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 | ID      | Descrição do Requisito                                                              | Prioridade |
 | ------- | ------------------------------------------------------------------------------------- | ---------- |
-| RNF-001 | •	O sistema deve atualizar em cinco segundos com os dados que foram postados. | MÉDIA     |
-| RNF-002 | •	O sistema deve atualizar em cinco segundos, apresentando um alerta no mapa de qual área está alagada.         | BAIXA      |
+| RNF-001 | 	O sistema deve processar e exibir novas postagens e alertas de áreas alagadas no mapa em até 5 segundos após o envio, garantindo atualização em tempo real. | MÉDIA     |
+| RNF-002 | 	O tempo de resposta do sistema para envio de notificações deve ser inferior a 2 segundos após a detecção de um evento relevante.  | MÉDIA     |
 
 
 ## Projeto de Interface
 
-Artefatos relacionados com a interface e a interacão do usuário na proposta de solução.
+![image](https://github.com/user-attachments/assets/07f774e4-b2be-4752-af21-4b895e5ad158)
+
+![image](https://github.com/user-attachments/assets/ffd2fde9-1423-48db-9d62-c47d36764dfb)
+
 
 ### Wireframes
 
