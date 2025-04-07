@@ -158,40 +158,39 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 Estes são os protótipos de telas do sistema.
 
-**✳️✳️✳️ COLOQUE AQUI OS PROTÓTIPOS DE TELAS COM TÍTULO E DESCRIÇÃO ✳️✳️✳️**
+![image](https://github.com/user-attachments/assets/e904efdf-264f-4778-bdc6-bf84aa63485f)
 
-##### TELA XPTO ⚠️ EXEMPLO ⚠️
+![image](https://github.com/user-attachments/assets/7e2e3a4d-86a0-477e-a949-001c4c02f432)
 
-Descrição para a tela XPTO
+![image](https://github.com/user-attachments/assets/38c28ff5-e679-4603-bb6a-19ddb34bf703)
 
-![Exemplo de wireframe](images/exemplo-wireframe.png)
+![image](https://github.com/user-attachments/assets/96c0261e-4821-4698-9f19-cf34f7e34f3c)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Wireframes são protótipos das telas da aplicação usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante ao layout de elementos fundamentais na interface.
->
-> **Orientações**:
->
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
+![image](https://github.com/user-attachments/assets/4cb3cd4c-fb13-4c7e-88a4-1933d4e63021)
+
+![image](https://github.com/user-attachments/assets/c2c2e643-2313-4caf-9d1b-382fab15ee26)
+
+![image](https://github.com/user-attachments/assets/c5860aed-57b7-462d-9e9c-4dc7063cff7a)
+
+![image](https://github.com/user-attachments/assets/479a5723-d107-474b-a453-762db4dfbfb6)
+
+![image](https://github.com/user-attachments/assets/fce05532-a744-4094-894e-0cf4f93ecb8a)
+
 
 ### User Flow
 
-**✳️✳️✳️ COLOQUE AQUI O DIAGRAMA DE FLUXO DE TELAS ✳️✳️✳️**
+![image](https://github.com/user-attachments/assets/d8e64e35-80cf-445d-ba98-44b42536feb3)
 
-![Exemplo de fluxo de telas](images/exemplo-userflow.png)
+![image](https://github.com/user-attachments/assets/e93e3bf8-a456-40fc-9cc3-594f388e16c7)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapear todo fluxo de telas do site ou app. Essa técnica funciona para alinhar os caminhos e as possíveis ações que o usuário pode fazer junto com os membros de sua equipe.
->
-> **Orientações**:
->
-> - [User Flow: O Quê É e Como Fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User Flow vs Site Maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 User Flow Tools &amp; Templates for Smooth](https://www.mockplus.com/blog/post/user-flow-tools)
+![image](https://github.com/user-attachments/assets/9e60c5f1-42d2-494e-b497-c86d323c9d55)
+
+![image](https://github.com/user-attachments/assets/2aa77319-18c1-4d70-b492-2a0e69b7d5fd)
+
+![image](https://github.com/user-attachments/assets/4fb4d453-997c-4b19-bc6f-d3e9ac26ad64)
+
+![image](https://github.com/user-attachments/assets/072d9960-85b1-4b64-b2fe-5d65296a0aa9)
+
 
 ### Protótipo Interativo
 
@@ -216,7 +215,7 @@ Relação de ferramentas empregadas pelo grupo durante o projeto.
 | Processo de Design Thinking | Miro       | (https://miro.com/app/board/uXjVIZ5HadY=/)     |
 | Repositório de código       | GitHub     | https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti1-2010200-mobitech-urban.git      |
 | Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️ |
-| Protótipo Interativo        | Figma  | https://marvelapp.com/XXXXXXX ⚠️ EXEMPLO ⚠️   |
+| Protótipo Interativo        | Figma      | https://www.figma.com/design/DPoDWFlNYK84nEhqEHVUfJ/Mobitech-Urban-interface?node-id=0-1&t=EmAaUGkfTv8bbX9t-0   |
 |                             |            |                                                    |
 
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
