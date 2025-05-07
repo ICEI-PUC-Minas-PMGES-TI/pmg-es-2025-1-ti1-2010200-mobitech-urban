@@ -1,0 +1,96 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.app-header {
+    background-color: #041237;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.app-header h1 {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.app-container {
+    display: flex;
+    flex: 1;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: white;
+    padding: 1.5rem;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.menu-list {
+    list-style: none;
+}
+
+.menu-item {
+    margin-bottom: 0.75rem;
+}
+
+.menu-checkbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+.menu-checkbox:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+
+.menu-label {
+    font-size: 1rem;
+    color: #000;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.main-content {
+    flex: 1;
+    padding: 1.5rem;
+}
+
+.content-section {
+    background-color: #041237;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.app-footer {
+    background-color: #041237;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    font-size: 0.875rem;
+    color: #fff;
+}
