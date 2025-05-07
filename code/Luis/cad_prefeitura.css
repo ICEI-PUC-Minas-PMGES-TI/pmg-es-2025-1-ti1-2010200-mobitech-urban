@@ -7,65 +7,42 @@
 }
 /*cabecalho*/
 .navbar{
-    background-color: #3f8ebf;
+    background: none;
     color: aliceblue;
-}
-
-.navbar-nav{
-    font-size: 1.3rem;
-    gap: 36px;
-    width:auto;
-}
-.navbar-brand img{
-    width: 150px;
 }
 
 /*corpo*/
 body{
     height: auto;
+    background-image: 
+    radial-gradient(rgba(63, 142, 191, 0.33), rgba(15, 14, 14, 0.137)),
+    linear-gradient(to right, #3586D2, #3B668C);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
 }
-main{
-    width: 100%;
+main.content{
+    height: auto;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cadastro{
+    width: 76vw;
     height: 100vh;
-    background-color: #3f8ebf;
+    margin: 4%;
+    border: #010A26 solid 2px;
+    border-radius: 2.5rem;
 }
 
 
 /*footer*/
 
 footer {
-    background-color:#DCE9EF;
-    color: #363F70;
+    background-color:#010A26;
+    color: #cbcedd;
     padding: 2rem;
     text-align: center;
     font-size: 1.2rem;
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.copyright, .address, .contact {
-    margin-bottom: 0.5rem;
-}
-
-.social-media {
-    margin-top: 1rem;
-}
-
-.social-media span {
-    margin-right: 1rem;
-}
-
-.social-media a {
-    color: white;
-    margin: 0 0.5rem;
-    font-size: 1.2rem;
-    transition: color 0.3s;
-}
-
-.social-media a:hover {
-    color: #66b3ff;
 }
