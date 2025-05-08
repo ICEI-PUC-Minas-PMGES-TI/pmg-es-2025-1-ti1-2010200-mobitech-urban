@@ -1,8 +1,8 @@
-/* Reset básico */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 body {
@@ -10,6 +10,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    background: #061E4C;
 }
 
 .app-header {
@@ -30,9 +31,10 @@ body {
 
 .sidebar {
     width: 250px;
-    background-color: white;
+    background-color: #061E4C;
     padding: 1.5rem;
     box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    color: #fff;
 }
 
 .menu-list {
@@ -40,7 +42,8 @@ body {
 }
 
 .menu-item {
-    margin-bottom: 0.75rem;
+    list-style-type: none;
+    margin-bottom: 40px;
 }
 
 .menu-checkbox {
@@ -56,15 +59,9 @@ body {
     margin-right: 0.5rem;
 }
 
-.menu-checkbox:checked {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
-}
-
-
 .menu-label {
     font-size: 1rem;
-    color: #000;
+    color: #fff;
     cursor: pointer;
     vertical-align: middle;
 }
@@ -93,4 +90,59 @@ body {
     box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
     font-size: 0.875rem;
     color: #fff;
+    position: relative;
+}
+
+/* Melhorias na navegação */
+.sidebar {
+    position: relative;
+    z-index: 10;
+}
+
+.menu-item {
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+    background-color: #0C1E3A;
+}
+
+
+/* Ícones dos itens do menu */
+.menu-item {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.menu-item::before {
+    content: "";
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: #999;
+    border-radius: 50%;
+}
+
+.content-section {
+    min-height: calc(100vh - 8rem);
+}
+
+
+.content-section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.content-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+img{
+    width: 200px;
+    height: 200px;
 }
