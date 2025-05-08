@@ -44,20 +44,62 @@
                         <div class="cad-infos">
                             <h1>SEJA BEM VINDO !</h1>
                             <div class="cad-textos">
-                                <p>Preencha o formulário ao lado com seu nome e código de acesso fornecido pela prefeitura</p>
+                                <p>Preencha o formulário ao lado com os dados necessarios para poder acessar a conta da prefeitura.</p>
                             </div>
                             <p id="info-botao">
                                 Não é da prefeitura? Clique no botão abaixo para prosseguir pro login normal
                              </p>
-                        </div>
-                        <div class="cad-bottom">
-                            <button class="btn-entrar">ENTRAR</button>
+                             <div class="cad-bottom">
+                                <button class="btn-voltar">VOLTAR</button>
+                            </div>
                         </div>
                        
                     </div>
                 </section>
                 <section class="cadastro" id="cadastro-area">
-
+                    <div class="form-container form-cad">
+                        <form class="form-prefeitura form-cad">
+                            <div class="form-dado form-cad ">
+                                <label for="prefeitura">NOME DA PREFEITURA</label>
+                                <input type="text" id="prefeitura" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="site">SITE DA PREFEITURA</label>
+                                <input type="url" id="site">
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="endereco">ENDEREÇO</label>
+                                <input type="text" id="endereco" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="email">E-MAIL DA PREFEITURA</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="nome-responsavel">NOME DO RESPONSÁVEL</label>
+                                <input type="text" id="nome-responsavel" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="telefone">TELEFONE</label>
+                                <input type="tel" id="telefone" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="email-responsavel">E-MAIL DO RESPONSÁVEL</label>
+                                <input type="email" id="email-responsavel" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="senha">SENHA</label>
+                                <input type="password" id="senha" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="senha-confirmar">CONFIRMAÇÂO DE SENHA</label>
+                                <input type="password" id="senha-confirmar" required>
+                            </div>
+                            <div class="cad-bottom">
+                                <button type="submit" id="btn-cadastro">CADASTRAR</button>
+                            </div>
+                        </form>
+                    </div>
                 </section>
             </div>
         </main>

@@ -8,7 +8,6 @@
 /*cabecalho*/
 .navbar{
     background: none;
-    color: aliceblue;
 }
 
 /*corpo*/
@@ -40,6 +39,7 @@ main.content{
       );
     border-radius: 2.5rem;
     color: aliceblue;
+    box-shadow: rgba(17, 12, 46, 0.233) 0px 48px 100px 0px;
 }
 .cadastro{
     width: 100%;
@@ -77,7 +77,7 @@ main.content{
     font-size: large;
     font-weight:bolder;
 }
-.btn-entrar{
+.btn-voltar{
     padding: 8%;
     width: 10rem;
     font-size: 1.5rem;
@@ -87,6 +87,42 @@ main.content{
     border: #cbcedd solid 3px;
     
 }
+/*formulario de cadastro*/
+.form-container{
+    width: 100%;
+}
+.form-prefeitura{
+    width: 100%;
+    gap: 16px;
+}
+
+#btn-cadastro{
+    padding: 6%;
+    width: 12rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    color: aliceblue;
+    background: #3F8EBF;
+    border: #cbcedd solid 3px;
+}
+.form-cad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form-dado{
+    gap: 12px;
+    margin: 2%;
+    font-size: large;
+    font-weight:bold;
+}
+.form-dado input{
+    width: 32vw;
+    border-radius: 2rem;
+    padding: 6px 12px;
+}
+
 /*grid-cadastro*/
 .cadastro-campo{
     display: grid;
