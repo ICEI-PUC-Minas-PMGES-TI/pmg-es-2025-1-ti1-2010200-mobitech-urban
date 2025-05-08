@@ -1,0 +1,148 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    border:0;
+    box-sizing: border-box;
+    
+}
+/*cabecalho*/
+.navbar{
+    background-color: #041237;
+    color: aliceblue;
+}
+
+.navbar-nav{
+    font-size: 1.3rem;
+    gap: 36px;
+    width:auto;
+}
+.navbar-brand img{
+    width: 150px;
+}
+
+footer {
+    background-color:#041237;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+}
+
+.copyright, .address, .contact {
+    margin-bottom: 0.5rem;
+}
+
+.social-media {
+    margin-top: 1rem;
+}
+
+.social-media span {
+    margin-right: 1rem;
+}
+
+.social-media a {
+    color: white;
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-media a:hover {
+    color: #66b3ff;
+}
+
+
+
+body{
+    height: auto;
+}
+main{
+    width: 70%;
+    height:600px;
+    background-color: #061E4C;
+    display: flex;
+    float: left;
+}
+
+/*Barra Lateral*/
+.sidebar{
+    display: flex;
+    flex-direction: column;   width: 30%;
+    background-color: #061E4C;
+    float: right;
+    height: 600px;
+    color: #fff;
+}
+h2{
+    padding: 40px;
+    text-align: center;
+}
+/*Fim da Barra Lateral*/
+
+/*Caixa de Publicação*/
+
+.top-bar {
+    background-color: #041237;
+    max-width: 730px;
+    margin: 40px ;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-left: 100px;
+    height: 350px;
+  }
+
+  .post-textarea {
+    width: 700px;
+    min-height: 100px;
+    border: none;
+    border-radius: 20px;
+    resize: none;
+    font-size: 18px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 10px;
+    outline: none;
+    background-color: #061e4c;
+    color: #fff;
+    height: 250px;
+}
+  .post-actions{
+    display: flex;
+    justify-content: right;
+    align-items: initial;
+    border-top: 1px solid #061E4C;
+    padding-top: 10px;
+    margin-top: 20px;
+  }
+  #box-icon{
+    color: #fff;
+    list-style: none;
+    padding-right: 40px;
+    font-size: 30px;
+    cursor: pointer;
+    display: flex;
+    gap: 15px;
+
+  }
+  .post-botton{
+    cursor: pointer;
+    display: flex;
+    background-color: #061E4C;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: bold;
+    margin-left: 460px;
+  }
+
+/*Fim Caixa de Publicação*/
