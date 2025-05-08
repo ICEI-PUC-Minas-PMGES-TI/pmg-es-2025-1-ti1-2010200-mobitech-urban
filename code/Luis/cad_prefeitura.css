@@ -15,8 +15,8 @@
 body{
     height: auto;
     background-image: 
-    radial-gradient(rgba(63, 142, 191, 0.33), rgba(15, 14, 14, 0.137)),
-    linear-gradient(to right, #3586D2, #3B668C);
+    radial-gradient(rgba(63, 142, 191, 0.24) 30%, rgba(15, 14, 14, 0.315) 100%),
+    linear-gradient(to bottom,#3586D2, #3b668c 60%);
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -28,12 +28,83 @@ main.content{
     align-items: center;
     justify-content: center;
 }
-.cadastro{
+.cadastro-campo{
     width: 76vw;
-    height: 100vh;
+    height: auto;
     margin: 4%;
-    border: #010A26 solid 2px;
+    background: radial-gradient(
+        circle at center,
+        #123e77 10%,
+        #0C223D 100%
+        
+      );
     border-radius: 2.5rem;
+    color: aliceblue;
+}
+.cadastro{
+    width: 100%;
+    height: auto;
+    border-radius: 2.5rem;
+    padding: 12%;
+}
+.cadastro-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100%;
+}
+.cad-infos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 34px;
+}
+.cad-infos h1{
+    font-weight:bolder;
+    font-size: 2rem;
+}
+.cad-textos{
+    height: 60vh;
+    font-size: x-large;
+    text-align: justify;
+    
+}
+
+#info-botao{
+    font-size: large;
+    font-weight:bolder;
+}
+.btn-entrar{
+    padding: 8%;
+    width: 10rem;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    color: aliceblue;
+    background: #0C223D;
+    border: #cbcedd solid 3px;
+    
+}
+/*grid-cadastro*/
+.cadastro-campo{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+#cadastro-info{
+    grid-column: 1/2;
+    grid-row:1/4 ;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: #2466BC;
+}
+#cadastro-area{
+    grid-column: 2/4;
+    grid-row:1/4 ;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    
 }
 
 
