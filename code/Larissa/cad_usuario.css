@@ -31,6 +31,70 @@ main{
     background-color: #3f8ebf;
 }
 
+/* === ESTILOS ESPECÍFICOS DA PÁGINA DE CADASTRO === */
+main {
+    background-color: #3f8ebf !important; /* Mantém a cor original */
+    padding: 2rem 0;
+}
+
+.btn-light {
+    background-color: white !important;
+    color: #3f8ebf !important;
+}
+
+.btn-primary {
+    background-color: #3f8ebf !important;
+    border: none;
+    padding: 0.8rem;
+}
+
+.form-control {
+    padding: 0.8rem;
+    border: 1px solid #dee2e6;
+}
+
+.text-primary {
+    color: #3f8ebf !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .text-md-start {
+        text-align: center !important;
+    }
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+.form-label {
+    color: #363F70 !important;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control {
+    margin-bottom: 1.5rem !important;
+    padding: 0.8rem !important;
+    border: 1px solid #ced4da !important;
+}
+
+.btn-light {
+    background-color: white !important;
+    color: #3f8ebf !important;
+    font-weight: bold !important;
+    padding: 0.6rem 1.5rem !important;
+}
+
+.btn-primary {
+    background-color: #3f8ebf !important;
+    border: none !important;
+    padding: 0.8rem !important;
+    font-weight: bold !important;
+}
+
+
 
 /*footer*/
 
