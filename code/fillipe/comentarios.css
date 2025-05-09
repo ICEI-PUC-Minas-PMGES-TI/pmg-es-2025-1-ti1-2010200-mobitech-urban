@@ -1,94 +1,71 @@
 * {
     margin: 0;
     padding: 0;
+    border:0;
     box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #051433;
-    color: white;
-  }
-  
-  .container {
-    display: flex;
+    
+}
+/*cabecalho*/
+.navbar{
+    background-color: #3f8ebf;
+    color: aliceblue;
+}
+
+.navbar-nav{
+    font-size: 1.3rem;
+    gap: 36px;
+    width:auto;
+}
+.navbar-brand img{
+    width: 150px;
+}
+
+/*corpo*/
+body{
+    height: auto;
+}
+main{
+    width: 100%;
     height: 100vh;
-  }
-  
-  /* cabeçalho lateral */
-  .sidebar {
-    width: 200px;
-    background-color: #061e4c;
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .logo img {
-    max-width: 120px; 
-    height: auto; 
-    margin-bottom: 1rem; 
-  }
-  
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 7rem; 
-    width: 100%;
-  }
-  
-  
-  .menu a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem;
-    border-radius: 10px;
-    transition: background 0.3s;
-    text-align: center;
-  }
-  
-  .menu a:hover,
-  .menu .postagem {
-    background-color: #ffffff22;
-  }
-  
-  /* main */
-  .content {
-    flex: 1;
+    background-color: #3f8ebf;
+}
+
+
+/*footer*/
+
+footer {
+    background-color:#DCE9EF;
+    color: #363F70;
     padding: 2rem;
-  }
-  
-  .top-bar {
-    background-color: #0c1e3a;
-    padding: 1rem;
-    border-radius: 12px;
-    box-shadow: 0 0 8px #00000040;
-  }
-  
-  .top-bar input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    background-color: #061e4c;
-    color: white;
-  }
-  
-  /* perfil */
-  .profile {
-    width: 200px;
-    background-color: #061e4c;
-    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.footer-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: start;
-  }
-  
-  .perfil-icon {
-    font-size: 2rem;
+    gap: 1rem;
+}
+
+.copyright, .address, .contact {
     margin-bottom: 0.5rem;
-  }
-  
+}
+
+.social-media {
+    margin-top: 1rem;
+}
+
+.social-media span {
+    margin-right: 1rem;
+}
+
+.social-media a {
+    color: white;
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-media a:hover {
+    color: #66b3ff;
+}
