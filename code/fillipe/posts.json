@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "title": "Reclamação sobre a falta de alerta de enchente",
+        "content": "Acho um absurdo que a prefeitura não tenha avisado a população sobre a enchente. Fui pego de surpresa e precisei evacuar minha casa. É urgente que a cidade tenha um sistema de alerta eficiente.",
+        "author": "Maria Souza",
+        "date": "2025-05-01",
+        "type": "reclamação"
+    },
+    {
+        "id": 2,
+        "title": "Agradecimento à defesa civil",
+        "content": "Gostaria de agradecer a Defesa Civil pelo ótimo trabalho que fizeram durante a enchente. Conseguimos evacuar em tempo e as equipes de resgate estavam muito preparadas.",
+        "author": "José da Silva",
+        "date": "2025-05-02",
+        "type": "agradecimento"
+    },
+    {
+        "id": 3,
+        "title": "Postagem sobre o sistema de drenagem",
+        "content": "O sistema de drenagem da cidade precisa de melhorias. Em alguns bairros, a água das chuvas demora muito para escoar, o que piora as enchentes.",
+        
+        "author": "Ana Pereira",
+        "date": "2025-05-03",
+        "type": "reclamação"
+    },
+    {
+        "id": 4,
+        "title": "Reclamação sobre a falta de apoio na zona rural",
+        "content": "Os moradores da zona rural não receberam apoio suficiente durante a última enchente. A prefeitura precisa prestar mais atenção na área rural e garantir um plano de evacuação eficiente.",
+        "author": "Carlos Lima",
+        "date": "2025-05-04",
+        "type": "reclamação"
+    },
+    {
+        "id": 5,
+        "title": "Agradecimento aos bombeiros",
+        "content": "Quero agradecer aos bombeiros que estiveram no meu bairro durante a enchente. Eles estavam bem organizados e conseguiram salvar muitas vidas.",
+        "author": "Roberta Costa",
+        "date": "2025-05-05",
+        "type": "agradecimento"
+    },
+    {
+        "id": 6,
+        "title": "Sugestões para melhorar o alerta de enchente",
+        "content": "Acho que a cidade poderia implementar um sistema de notificações via celular para alertar sobre enchentes. Isso ajudaria muita gente a se preparar a tempo.",
+        "author": "Juliana Almeida",
+        "date": "2025-05-06",
+        "type": "sugestão"
+    },
+    {
+        "id": 7,
+        "title": "Falta de informação sobre áreas de risco",
+        "content": "A prefeitura precisa divulgar melhor as áreas de risco de enchentes para a população. É impossível saber se minha casa está em uma área vulnerável.",
+        "author": "Fernanda Oliveira",
+        "date": "2025-05-07",
+        "type": "reclamação"
+    },
+    {
+        "id": 8,
+        "title": "Agradecimento à equipe de saúde",
+        "content": "Gostaria de agradecer à equipe de saúde que ajudou os afetados pela enchente. Muitos moradores foram atendidos rapidamente e receberam a ajuda necessária.",
+        "author": "Lucas Silva",
+        "date": "2025-05-08",
+        "type": "agradecimento"
+    },
+    {
+        "id": 9,
+        "title": "Apenas mais um dia de enchente",
+        "content": "Infelizmente, parece que estamos condenados a conviver com enchentes todo ano. A cidade precisa urgentemente de medidas para prevenir isso.",
+        "author": "Paulo Mendes",
+        "date": "2025-05-09",
+        "type": "reclamação"
+    },
+    {
+        "id": 10,
+        "title": "Melhoria na infraestrutura de drenagem",
+        "content": "Se a prefeitura melhorar a infraestrutura de drenagem, muitas enchentes poderão ser evitadas. Além disso, as ruas precisam de manutenção frequente para evitar acúmulo de água.",
+        "author": "Mariana Oliveira",
+        "date": "2025-05-10",
+        "type": "sugestão"
+    }
+]

@@ -1,44 +1,100 @@
+/* Reset e ajustes de margem e padding */
 * {
     margin: 0;
     padding: 0;
-    border:0;
+    border: 0;
     box-sizing: border-box;
-    
 }
-/*cabecalho*/
-.navbar{
+
+/* Configuração do body e html para ocupar toda a altura da tela */
+html, body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para o cabeçalho */
+.navbar {
     background-color: #3f8ebf;
     color: aliceblue;
 }
 
-.navbar-nav{
+.navbar-nav {
     font-size: 1.3rem;
     gap: 36px;
-    width:auto;
+    width: auto;
 }
-.navbar-brand img{
+
+.navbar-brand img {
     width: 150px;
 }
 
-/*corpo*/
-body{
-    height: auto;
+/* Novo estilo para o ícone de perfil com emoji */
+.navbar-profile {
+    position: absolute;
+    right: 20px;
+    top: 15px;
 }
-main{
+
+.navbar-profile .profile-icon {
+    font-size: 2rem;
+}
+
+/* Corpo da página */
+body {
+    display: flex;
+    flex-direction: column; /* Coloca o conteúdo na direção da coluna */
+    height: 100%; /* Garante que o body ocupe toda a altura */
+}
+
+main {
+    flex: 1; /* Faz com que o conteúdo ocupe o espaço disponível */
     width: 100%;
-    height: 100vh;
     background-color: #3f8ebf;
+    padding: 20px;
 }
 
+/* Estilos para as postagens */
+.posts-container {
+    margin: 20px;
+}
 
-/*footer*/
+.post {
+    background-color: #f4f4f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
 
+.post-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.post-date {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.post-content {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.post-author {
+    font-size: 1.1rem;
+    color: #3f8ebf;
+}
+
+/* Estilos do rodapé */
 footer {
-    background-color:#DCE9EF;
+    background-color: #DCE9EF;
     color: #363F70;
     padding: 2rem;
     text-align: center;
     font-size: 1.2rem;
+    margin-top: auto; /* Faz o rodapé ir para o fundo da página */
 }
 
 .footer-content {
@@ -69,3 +125,81 @@ footer {
 .social-media a:hover {
     color: #66b3ff;
 }
+
+
+
+
+
+
+
+/* Estilos para as postagens */
+.posts-container {
+    margin: 20px auto; /* Centraliza o container */
+    max-width: 900px; /* Limita a largura máxima das postagens */
+    padding: 0 20px; /* Adiciona um pouco de espaço nas laterais */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post {
+    background-color: #f4f4f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.post img {
+    width: 100%; /* Faz com que a imagem ocupe a largura da postagem */
+    max-width: 300px; /* Limita a largura máxima da imagem */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Espaço entre a imagem e o conteúdo */
+}
+
+.post-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.post-date {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.post-content {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.post-author {
+    font-size: 1.1rem;
+    color: #3f8ebf;
+}
+
+
+
+
+
+
+/* Estilo simplificado para o título "Feed de postagens" */
+.feed-title {
+    font-size: 2.5rem; /* Tamanho grande */
+    font-weight: bold; /* Deixa o texto em negrito */
+    color: #2a3d66; /* Cor escura, um tom mais profundo de azul */
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    text-transform: uppercase; /* Deixa o texto em maiúsculas */
+}
+
+.feed-title:hover {
+    color: #1d2a47; /* Cor mais escura no hover para dar um destaque */
+    cursor: pointer; /* Aplica o cursor de clique no hover */
+}
+
+
