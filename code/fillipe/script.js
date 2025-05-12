@@ -6,7 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Lista com 5 caminhos diferentes para imagens
             const imagens = [
-              
+                "/code/assets/img/post1.webp",
+                "/code/assets/img/post2.jpg",
+                "/code/assets/img/post3.jpg",
+                "/code/assets/img/post4.webp",
+                "/code/assets/img/post5.jpg"
             ];
 
             posts.forEach((post, index) => {
