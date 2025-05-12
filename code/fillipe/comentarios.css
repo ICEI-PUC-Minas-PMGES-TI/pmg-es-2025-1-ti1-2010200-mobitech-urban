@@ -56,7 +56,12 @@ main {
 
 /* Estilos para as postagens */
 .posts-container {
-    margin: 20px;
+    margin: 20px auto; /* Centraliza o container */
+    max-width: 900px; /* Limita a largura máxima das postagens */
+    padding: 0 20px; /* Adiciona um pouco de espaço nas laterais */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .post {
@@ -65,6 +70,18 @@ main {
     padding: 15px;
     margin-bottom: 20px;
     border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.post img {
+    width: 100%; /* Faz com que a imagem ocupe a largura da postagem */
+    max-width: 300px; /* Limita a largura máxima da imagem */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px; /* Espaço entre a imagem e o conteúdo */
 }
 
 .post-header h3 {
@@ -126,67 +143,6 @@ footer {
     color: #66b3ff;
 }
 
-
-
-
-
-
-
-/* Estilos para as postagens */
-.posts-container {
-    margin: 20px auto; /* Centraliza o container */
-    max-width: 900px; /* Limita a largura máxima das postagens */
-    padding: 0 20px; /* Adiciona um pouco de espaço nas laterais */
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.post {
-    background-color: #f4f4f9;
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.post img {
-    width: 100%; /* Faz com que a imagem ocupe a largura da postagem */
-    max-width: 300px; /* Limita a largura máxima da imagem */
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px; /* Espaço entre a imagem e o conteúdo */
-}
-
-.post-header h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
-
-.post-date {
-    font-size: 0.9rem;
-    color: #888;
-}
-
-.post-content {
-    font-size: 1rem;
-    margin: 10px 0;
-}
-
-.post-author {
-    font-size: 1.1rem;
-    color: #3f8ebf;
-}
-
-
-
-
-
-
 /* Estilo simplificado para o título "Feed de postagens" */
 .feed-title {
     font-size: 2.5rem; /* Tamanho grande */
@@ -202,8 +158,38 @@ footer {
     cursor: pointer; /* Aplica o cursor de clique no hover */
 }
 
-
 .post:hover {
     background-color: #cceeff; /* azul claro */
     transition: background-color 0.3s ease;
+}
+
+/* Estilos para os botões de reação */
+.reaction-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.reaction-buttons button {
+    background-color: #3f8ebf;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reaction-buttons button:hover {
+    background-color: #2e6f99;
+}
+
+.reaction-buttons button:active {
+    background-color: #1f4d6d;
+}
+
+.reaction-buttons .like-count, .reaction-buttons .dislike-count {
+    margin-left: 5px;
+    font-weight: bold;
 }

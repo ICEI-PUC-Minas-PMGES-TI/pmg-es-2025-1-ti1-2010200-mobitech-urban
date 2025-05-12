@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     imageHTML = `<img src="${imagens[index / 2]}" alt="Imagem do post">`;
                 }
 
+                // Contadores de Like/Dislike
+                let likeCount = 0;
+                let dislikeCount = 0;
+
                 postElement.innerHTML = `
                     ${imageHTML}
                     <div class="post-header">
@@ -31,9 +35,32 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <p class="post-content">${post.content}</p>
                     <p class="post-author">- ${post.author}</p>
+
+                    <!-- Botões de Reação -->
+                    <div class="reaction-buttons">
+                        <button class="like-btn" data-id="${index}">Like <span class="like-count">${likeCount}</span></button>
+                        <button class="dislike-btn" data-id="${index}">Dislike <span class="dislike-count">${dislikeCount}</span></button>
+                    </div>
                 `;
 
                 postsContainer.appendChild(postElement);
+            });
+
+            // Adicionar eventos para os botões de like e dislike
+            document.querySelectorAll('.like-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const postId = this.getAttribute('data-id');
+                    const likeCountElement = this.querySelector('.like-count');
+                    likeCountElement.textContent = parseInt(likeCountElement.textContent) + 1;
+                });
+            });
+
+            document.querySelectorAll('.dislike-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const postId = this.getAttribute('data-id');
+                    const dislikeCountElement = this.querySelector('.dislike-count');
+                    dislikeCountElement.textContent = parseInt(dislikeCountElement.textContent) + 1;
+                });
             });
         })
         .catch(error => {
