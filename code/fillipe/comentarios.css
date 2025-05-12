@@ -203,3 +203,7 @@ footer {
 }
 
 
+.post:hover {
+    background-color: #cceeff; /* azul claro */
+    transition: background-color 0.3s ease;
+}

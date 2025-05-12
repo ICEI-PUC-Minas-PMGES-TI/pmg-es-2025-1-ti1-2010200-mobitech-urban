@@ -3,11 +3,24 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(posts => {
             const postsContainer = document.getElementById('posts-container');
-            posts.forEach(post => {
+
+            // Lista com 5 caminhos diferentes para imagens
+            const imagens = [
+              
+            ];
+
+            posts.forEach((post, index) => {
                 const postElement = document.createElement('div');
                 postElement.classList.add('post');
 
+                // Se o índice for par, adiciona uma imagem correspondente da lista
+                let imageHTML = '';
+                if (index % 2 === 0 && index / 2 < imagens.length) {
+                    imageHTML = `<img src="${imagens[index / 2]}" alt="Imagem do post">`;
+                }
+
                 postElement.innerHTML = `
+                    ${imageHTML}
                     <div class="post-header">
                         <h3>${post.title}</h3>
                         <span class="post-date">${post.date}</span>
