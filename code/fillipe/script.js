@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch('/code/fillipe/posts.json')  // Caminho para o arquivo JSON
+    fetch('/code/fillipe/posts.json')  
         .then(response => response.json())
         .then(posts => {
             const postsContainer = document.getElementById('posts-container');
 
-            // Lista com 5 caminhos diferentes para imagens
+            // imagens
             const imagens = [
                 "/code/assets/img/post1.webp",
                 "/code/assets/img/post2.jpg",
