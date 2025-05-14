@@ -1,4 +1,3 @@
-/* === ESTILO PADRÃO DO SITE === */
 * {
     margin: 0;
     padding: 0;
@@ -8,135 +7,149 @@
 }
 /*cabecalho*/
 .navbar{
-    background-color: #3f8ebf;
-    color: aliceblue;
-}
-
-.navbar-nav{
-    font-size: 1.3rem;
-    gap: 36px;
-    width:auto;
-}
-.navbar-brand img{
-    width: 150px;
+    background: none;
 }
 
 /*corpo*/
 body{
     height: auto;
+    background-image: 
+    radial-gradient(rgba(63, 142, 191, 0.24) 30%, rgba(15, 14, 14, 0.315) 100%),
+    linear-gradient(to bottom,#3586D2, #3b668c 60%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    
 }
-main{
+main.content{
+    height: auto;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cadastro-campo{
+    width: 76vw;
+    height: auto;
+    margin: 4%;
+    background: radial-gradient(
+        circle at center,
+        #123e77 10%,
+        #0C223D 100%
+        
+      );
+    border-radius: 2.5rem;
+    color: aliceblue;
+    box-shadow: rgba(17, 12, 46, 0.233) 0px 48px 100px 0px;
+}
+.cadastro{
     width: 100%;
-    height: 100vh;
-    background-color: #3f8ebf;
+    height: auto;
+    border-radius: 2.5rem;
+    padding: 12%;
+}
+.cadastro-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100%;
+}
+.cad-infos{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    gap: 34px;
+}
+.cad-infos h1{
+    font-weight:bolder;
+    font-size: 2rem;
+}
+.cad-textos{
+    height: 60vh;
+    font-size: x-large;
+    text-align: justify;
+    
 }
 
-/* === ESTILOS ESPECÍFICOS DA PÁGINA DE CADASTRO === */
-main {
-    background-color: #3f8ebf !important; /* Mantém a cor original */
-    padding: 2rem 0;
+#info-botao{
+    font-size: large;
+    font-weight:bolder;
+}
+.btn-voltar{
+    padding: 8%;
+    width: 10rem;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    color: aliceblue;
+    background: #0C223D;
+    border: #cbcedd solid 3px;
+    
+}
+/*formulario de cadastro*/
+.form-container{
+    width: 100%;
+}
+.form-prefeitura{
+    width: 100%;
+    gap: 16px;
 }
 
-.btn-light {
-    background-color: white !important;
-    color: #3f8ebf !important;
+#btn-cadastro{
+    padding: 6%;
+    width: 12rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    color: aliceblue;
+    background: #3F8EBF;
+    border: #cbcedd solid 3px;
+}
+.form-cad{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.form-dado{
+    gap: 12px;
+    margin: 2%;
+    font-size: large;
+    font-weight:bold;
+}
+.form-dado input{
+    width: 32vw;
+    border-radius: 2rem;
+    padding: 6px 12px;
 }
 
-.btn-primary {
-    background-color: #3f8ebf !important;
-    border: none;
-    padding: 0.8rem;
+/*grid-cadastro*/
+.cadastro-campo{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
 }
-
-.form-control {
-    padding: 0.8rem;
-    border: 1px solid #dee2e6;
+#cadastro-info{
+    grid-column: 1/2;
+    grid-row:1/4 ;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: #2466BC;
 }
-
-.text-primary {
-    color: #3f8ebf !important;
+#cadastro-area{
+    grid-column: 2/4;
+    grid-row:1/4 ;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    
 }
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .text-md-start {
-        text-align: center !important;
-    }
-    .mb-4 {
-        margin-bottom: 1.5rem !important;
-    }
-}
-
-.form-label {
-    color: #363F70 !important;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.form-control {
-    margin-bottom: 1.5rem !important;
-    padding: 0.8rem !important;
-    border: 1px solid #ced4da !important;
-}
-
-.btn-light {
-    background-color: white !important;
-    color: #3f8ebf !important;
-    font-weight: bold !important;
-    padding: 0.6rem 1.5rem !important;
-}
-
-.btn-primary {
-    background-color: #3f8ebf !important;
-    border: none !important;
-    padding: 0.8rem !important;
-    font-weight: bold !important;
-}
-
 
 
 /*footer*/
 
 footer {
-    background-color:#DCE9EF;
-    color: #363F70;
+    background-color:#010A26;
+    color: #cbcedd;
     padding: 2rem;
     text-align: center;
     font-size: 1.2rem;
 }
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.copyright, .address, .contact {
-    margin-bottom: 0.5rem;
-}
-
-.social-media {
-    margin-top: 1rem;
-}
-
-.social-media span {
-    margin-right: 1rem;
-}
-
-.social-media a {
-    color: white;
-    margin: 0 0.5rem;
-    font-size: 1.2rem;
-    transition: color 0.3s;
-}
-
-.social-media a:hover {
-    color: #66b3ff;
-}
-
-
-
-
-
-

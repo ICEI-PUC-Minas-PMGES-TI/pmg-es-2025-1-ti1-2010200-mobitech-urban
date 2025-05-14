@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="cad_usuario.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <title>Home Page</title>
+    <title>Cadastro do Usuário</title>
 </head>
 <body>
     <div class="wrapper">
         <header>
             <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <img src="../assets/img/movewave-logo.png" alt="MoveWave Logo">
-                    </a>
+                  <a class="navbar-brand" href="#"><img src="../assets/img/movewave-logo.png" alt=""></a>
                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -38,54 +37,60 @@
                 </div>
               </nav>
         </header>
-        <main class="d-flex align-items-center">
-            <div class="container">
-                <div class="row justify-content-center">
-                    
-                    <div class="col-md-6 text-white text-center text-md-start">
-                        <h1 class="mb-4">SEJA BEM VINDO !</h1>
-                        <p class="mb-4">Preencha o formulário ao lado para realizar seu cadastro</p>
-                        <p class="mb-4">Já tem conta? Clique no botão abaixo!</p>
-                        <button class="btn btn-light text-primary fw-bold px-4">ENTRAR</button>
-                    </div>
-        
-                    <!--Formulário de Cadastro-->
-                    <div class="col-md-6">
-                        <div class="bg-white p-4 rounded shadow">
-                            <form>
-                                <div class="mb-3">
-                                    <label class="form-label">NOME</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">EMAIL</label>
-                                    <input type="email" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">TELEFONE</label>
-                                    <input type="tel" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">CEP</label>
-                                    <input type="text" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">SENHA</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">CONFIRMAÇÃO DE SENHA</label>
-                                    <input type="password" class="form-control" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary w-100">CADASTRAR</button>
-                            </form>
+        <main class="content">
+            <div class="cadastro-campo">
+                <section class="cadastro" id="cadastro-info">
+                    <div class="cadastro-content">
+                        <div class="cad-infos">
+                            <h1>SEJA BEM VINDO !</h1>
+                            <div class="cad-textos">
+                                <p>Preencha o formulário ao lado com os dados necessarios para poder acessar a conta como usuário.</p>
+                            </div>
+                            <p id="info-botao">
+                                Não é usuário? Clique no botão abaixo para prosseguir pro login para prefeitura.
+                             </p>
+                             <div class="cad-bottom">
+                                <button class="btn-voltar">VOLTAR</button>
+                            </div>
                         </div>
+                       
                     </div>
-                </div>
+                </section>
+                <section class="cadastro" id="cadastro-area">
+                    <div class="form-container form-cad">
+                        <form class="form-prefeitura form-cad">
+                            <div class="form-dado form-cad ">
+                                <label for="nome_usuario">NOME</label>
+                                <input type="text" id="nome_usuario" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="email">E-MAIL</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                            <label for="telefone">TELEFONE</label>
+                            <input type="tel" id="telefone" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="cep">CEP</label>
+                                <input type="cep" id="cep">
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="senha">SENHA</label>
+                                <input type="password" id="senha" required>
+                            </div>
+                            <div class="form-dado form-cad">
+                                <label for="senha-confirmar">CONFIRMAÇÃO DE SENHA</label>
+                                <input type="password" id="senha-confirmar" required>
+                            </div>
+                            <div class="cad-bottom">
+                                <button type="submit" id="btn-cadastro">CADASTRAR</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
             </div>
         </main>
-            
-
         <footer>
             <div class="footer-content">
                 <div class="copyright">
