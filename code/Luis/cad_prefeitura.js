@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const senha = document.querySelector("#senha");
     const senhaConfirmar = document.querySelector("#senha-confirmar");
     const form = document.querySelector("form.form-prefeitura");
-    const email = document.querySelector("email");
-    const emailResp = document.querySelector("email-responsavel");
+    const email = document.querySelector("#email");
+    const emailResp = document.querySelector("#email-responsavel");
 
     IMask(cep, cepMask);
     IMask(telefone, telefoneMask);
@@ -36,6 +36,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
    
+    function verificarEmail(email){
+        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,}$/;
+        return  regex.test(email);
+
+    }
 
 
     function verificarTelefone(){
@@ -110,9 +115,20 @@ document.addEventListener("DOMContentLoaded", function() {
         veriifcarCEP();
         const EmailPrefeitura = verificarEmail(email.value);
         if (!EmailPrefeitura){
-            mostrarErro(email);
+            mostrarErro(email,"Email inválido");
         }
-        
+        else{
+            removerErro(email);
+            console.log(email.value);
+        }
+        const EmailResponsalvel = verificarEmail(emailResp.value);
+         if (!EmailResponsalvel){
+            mostrarErro(emailResp,"Email inválido");
+        }
+        else{
+            removerErro(emailResp);
+            console.log(emailResp.value);
+        }
         
     });
 });
