@@ -11,39 +11,58 @@ document.addEventListener("DOMContentLoaded", function() {
     const senha = document.querySelector("#senha");
     const senhaConfirmar = document.querySelector("#senha-confirmar");
     const form = document.querySelector("form.form-prefeitura");
+    const email = document.querySelector("email");
+    const emailResp = document.querySelector("email-responsavel");
 
     IMask(cep, cepMask);
     IMask(telefone, telefoneMask);
 
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        verificarSenha();
-        verificarTelefone();
-        // console.log("SUCESSO: Evento submit capturado (versão simplificada)");
-        // alert("SUCESSO: Formulário está funcionando!");
-        
-    });
+    function veriifcarCEP(){
+        let count = 0;
+        const verificarCep = cep.value.replace(/\D/g, '');
+        if (verificarCep.length !== 8){
+            mostrarErro(cep,"CEP inválido");
+            count++
+        }
+        else{
+            removerErro(cep);
+        }
+        if (/^(\d)\1{7}$/.test(verificarCep)) {
+            mostrarErro(cep, "CEP inválido");
+            count++;
+        }
+        else if(count<1){
+            removerErro(cep);
+        }
+    }
+   
+
 
     function verificarTelefone(){
-    
-        const tel = telefone.value.replace(/\D/g, '').toString();
-        if (tel.length != 11){
-            mostrarErro(telefone,"Telefone inválido, são necessários 11 digitos")
+        let count = 0;
+        const tel = telefone.value.replace(/\D/g, '');
+        if (tel.length !==11){
+            mostrarErro(telefone,"Telefone inválido, são necessários 11 digitos");
+            count++;
         }
         else{
             removerErro(telefone);
         }
-        tel.toString();
-        const dddStr = tel.substring(0, 2);
+         verificarDDD(count);
+ 
+    }
+    function verificarDDD(count){
+        const telStr = telefone.value.replace(/\D/g, '');
+        const dddStr = telStr.substring(0, 2);
         const dddNum = parseInt(dddStr);
         console.log(dddNum);
         if(dddNum < 11 || dddNum > 99){
             mostrarErro(telefone,"Telefone inválido, não foi possível indentifcar o DDD");
+            count++;
         }
-        else{
-            removerErro(telefone);
+        else if(count<1){
+           removerErro(telefone);
         }
-        
     }
 
 
@@ -82,15 +101,19 @@ document.addEventListener("DOMContentLoaded", function() {
             mensagemErro.remove();
         }
     }
-
+    
      
-
-    const btn = document.getElementById("btn-cadastro");
-    if (btn) {
-        console.log("Botão encontrado. Tipo:", btn.type);
-        btn.addEventListener('click', function() {
-            console.log("Click no botão detectado");
-        });
-    }
+        form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        verificarSenha();
+        verificarTelefone();
+        veriifcarCEP();
+        const EmailPrefeitura = verificarEmail(email.value);
+        if (!EmailPrefeitura){
+            mostrarErro(email);
+        }
+        
+        
+    });
 });
 
