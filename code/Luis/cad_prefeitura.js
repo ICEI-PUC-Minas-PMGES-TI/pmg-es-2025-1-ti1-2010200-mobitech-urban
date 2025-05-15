@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector("form.form-prefeitura");
     const email = document.querySelector("#email");
     const emailResp = document.querySelector("#email-responsavel");
+    const btnvoltar = document.querySelector("#btn-voltar");
 
     IMask(cep, cepMask);
     IMask(telefone, telefoneMask);
@@ -109,27 +110,29 @@ document.addEventListener("DOMContentLoaded", function() {
     
      
         form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        verificarSenha();
-        verificarTelefone();
-        veriifcarCEP();
-        const EmailPrefeitura = verificarEmail(email.value);
-        if (!EmailPrefeitura){
-            mostrarErro(email,"Email inválido");
-        }
-        else{
-            removerErro(email);
-            console.log(email.value);
-        }
-        const EmailResponsalvel = verificarEmail(emailResp.value);
-         if (!EmailResponsalvel){
-            mostrarErro(emailResp,"Email inválido");
-        }
-        else{
-            removerErro(emailResp);
-            console.log(emailResp.value);
-        }
+            e.preventDefault();
+            verificarSenha();
+            verificarTelefone();
+            veriifcarCEP();
+            const EmailPrefeitura = verificarEmail(email.value);
+            if (!EmailPrefeitura){
+                mostrarErro(email,"Email inválido");
+            }
+            else{
+                removerErro(email);
+                console.log(email.value);
+            }
+            const EmailResponsalvel = verificarEmail(emailResp.value);
+            if (!EmailResponsalvel){
+                mostrarErro(emailResp,"Email inválido");
+            }
+            else{
+                removerErro(emailResp);
+                console.log(emailResp.value);
+            }
         
     });
+
+
 });
 

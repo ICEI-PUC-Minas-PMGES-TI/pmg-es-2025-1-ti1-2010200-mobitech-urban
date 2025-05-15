@@ -28,7 +28,7 @@ main.content{
     justify-content: center;
 }
 .cadastro-campo{
-    width: 76vw;
+    width: 80vw;
     height: auto;
     margin: 4%;
     background: radial-gradient(
@@ -37,15 +37,15 @@ main.content{
         #0C223D 100%
         
       );
-    border-radius: 2.5rem;
+    border-radius: 2rem;
     color: aliceblue;
     box-shadow: rgba(17, 12, 46, 0.233) 0px 48px 100px 0px;
 }
 .cadastro{
     width: 100%;
     height: auto;
-    border-radius: 2.5rem;
-    padding: 12%;
+    border-radius: 1.5rem;
+    padding: 10%;
 }
 .cadastro-content{
     display: flex;
@@ -60,27 +60,27 @@ main.content{
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    gap: 34px;
+    gap: 12px;
 }
 .cad-infos h1{
     font-weight:bolder;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 .cad-textos{
-    height: 60vh;
-    font-size: x-large;
+    height: 15vh;
+    font-size: large;
     text-align: justify;
     
 }
 
 #info-botao{
-    font-size: large;
+    font-size: small ;
     font-weight:bolder;
 }
 .btn-voltar{
     padding: 8%;
-    width: 10rem;
-    font-size: 1.5rem;
+    width: 6rem;
+    font-size: 1rem;
     border-radius: 1rem;
     color: aliceblue;
     background: #0C223D;
@@ -97,10 +97,10 @@ main.content{
 }
 
 #btn-cadastro{
-    padding: 6%;
-    width: 12rem;
+    padding: 8%;
+    width: 8rem;
     font-size: 1rem;
-    border-radius: 2rem;
+    border-radius: 1.2rem;
     color: aliceblue;
     background: #3F8EBF;
     border: #cbcedd solid 3px;
@@ -118,9 +118,9 @@ main.content{
     font-weight:bold;
 }
 .info-input{
-    width: 32vw;
+    width: 62vw;
     border-radius: 2rem;
-    padding: 6px 12px;
+    padding: 4px 10px;
 }
 
 
@@ -131,9 +131,9 @@ main.content{
     margin-top: 0.25rem;
     color: #ff6b6b;
     padding: 0.25rem 0.5rem;
-    background-color: rgba(255, 107, 107, 0.1);
+    background-color: rgba(255, 107, 107, 0.2);
     border-radius: 0.5rem;
-    width: 100%;
+    width: 200px;
     text-align:justify;
     border: 1px solid #ff6b6b41 !important;
     animation: fadeIn 0.3s ease-in-out;
@@ -161,7 +161,7 @@ main.content{
 
 
 #cadastro-area .mensagem-erro {
-    width: 32vw;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -171,8 +171,102 @@ main.content{
     background-color: rgba(255, 107, 107, 0.15);
 }
 
+/*organização-cadastro*/
+#cadastro-info{
+    background: #2466BC;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
 
 
+/*grid-cadastro*/
+/* .cadastro-campo{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+#cadastro-info{
+    grid-column: 1/2;
+    grid-row:1/4 ;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: #2466BC;
+}
+#cadastro-area{
+    grid-column: 2/4;
+    grid-row:1/4 ;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    
+} */
+
+
+/*footer*/
+
+footer {
+    background-color:#010A26;
+    color: #cbcedd;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+@media (max-width:1023px) {
+/*organização-cadastro*/
+.cadastro-campo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+}
+
+
+@media (min-width:1024px) {
+.cad-textos{
+    height: 60vh;
+    font-size: x-large;
+    text-align: justify;
+    
+}
+#info-botao{
+    font-size: large;
+    font-weight:bolder;
+}
+.btn-voltar{
+    padding: 8%;
+    width: 10rem;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    
+}
+.cad-infos{
+    gap:34px;
+}
+.cad-infos h1{
+    font-size:1.8rem;
+}
+.cadastro{
+    padding: 12%;
+    border-radius: 2.3rem;
+
+}
+.info-input{
+    width: 32vw;
+    border-radius: 2rem;
+    padding: 6px 12px;
+}
+.cadastro-campo{
+    width: 76vw;
+    border-radius: 2.5rem;
+}
+#btn-cadastro{
+    padding: 6%;
+    width: 12rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+}
+#cadastro-area .mensagem-erro {
+    width: 32vw;
+}
 
 
 /*grid-cadastro*/
@@ -195,13 +289,4 @@ main.content{
     
 }
 
-
-/*footer*/
-
-footer {
-    background-color:#010A26;
-    color: #cbcedd;
-    padding: 2rem;
-    text-align: center;
-    font-size: 1.2rem;
 }
