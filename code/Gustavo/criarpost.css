@@ -159,4 +159,38 @@ h2{
     margin-right: 10px;
 }
 
+/* Estilos para o preview de imagem */
+.img-preview {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.container-imagem {
+    position: relative;
+    display: inline-block;
+}
+
+.btn-remover-imagem {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-remover-imagem:hover {
+    background: rgba(255,0,0,0.7);
+}
+
 /*Fim Caixa de Publicação*/

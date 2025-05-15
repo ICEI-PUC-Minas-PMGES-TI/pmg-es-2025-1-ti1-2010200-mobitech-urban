@@ -1,0 +1,15 @@
+{
+  "postagens": [
+    {
+      "id-postagem": 1,
+      "nome_usuario": "Lucas Alves",
+      "texto": "Toda vez que chove forte, minha rua alaga porque os bueiros estão entupidos.",
+      "imagem_url": "https://exemplo.com/imagens/alagamento.jpg",
+      "localizacao": {
+        "latitude": -19.9191,
+        "longitude": -43.9386
+      },
+      "data": "2023-11-25T14:30:00-03:00"
+    }
+  ]
+}
