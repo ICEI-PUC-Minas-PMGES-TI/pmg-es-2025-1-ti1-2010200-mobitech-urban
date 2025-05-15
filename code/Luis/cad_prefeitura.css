@@ -123,12 +123,56 @@ main.content{
     padding: 6px 12px;
 }
 
-.info-input.error{
-    border: rgb(252, 42, 42) double 3px;
-    width: 32vw;
-    border-radius: 2rem;
-    padding: 6px 12px;
+
+
+.mensagem-erro {
+    display: block;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    color: #ff6b6b;
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(255, 107, 107, 0.1);
+    border-radius: 0.5rem;
+    width: 100%;
+    text-align:justify;
+    border: 1px solid #ff6b6b41 !important;
+    animation: fadeIn 0.3s ease-in-out;
 }
+
+
+.info-input.error {
+    border: 2px solid #ff6b6b !important;
+    color: #cbcedd;
+    background-color: rgba(192, 109, 109, 0.384);
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+    transition: all 0.3s ease;
+}
+
+
+.info-input.error:focus {
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.3);
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+#cadastro-area .mensagem-erro {
+    width: 32vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+#cadastro-area .mensagem-erro {
+    background-color: rgba(255, 107, 107, 0.15);
+}
+
+
+
 
 
 /*grid-cadastro*/
