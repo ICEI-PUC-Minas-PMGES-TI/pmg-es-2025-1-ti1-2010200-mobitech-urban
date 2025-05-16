@@ -1,16 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch('/code/fillipe/posts.json')  
+    fetch("./posts.json")  
         .then(response => response.json())
         .then(posts => {
             const postsContainer = document.getElementById('posts-container');
 
             // imagens
             const imagens = [
-                "/code/assets/img/post1.webp",
-                "/code/assets/img/post2.jpg",
-                "/code/assets/img/post3.jpg",
-                "/code/assets/img/post4.webp",
-                "/code/assets/img/post5.jpg"
+                "../assets/img/post1.webp",
+                "../assets/img/post2.jpg",
+                "../assets/img/post3.jpg",
+                "../assets/img/post4.webp",
+                "../assets/img/post5.jpg"
             ];
 
             posts.forEach((post, index) => {
