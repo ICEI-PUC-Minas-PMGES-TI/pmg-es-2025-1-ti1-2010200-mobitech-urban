@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".form-prefeitura");
+    const nome = document.getElementById("nome_usuario")
     const email = document.getElementById("email");
     const telefone = document.getElementById("telefone");
     const cep = document.getElementById("cep");
     const senha = document.getElementById("senha");
     const senhaConfirmar = document.getElementById("senha-confirmar");
+
+    var perfis = JSON.parse(localStorage.getItem('usuarios')) || []
 
     // Máscara para telefone com correção de apagamento
     telefone.addEventListener("input", function (e) {
@@ -103,7 +106,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (senhaOK && telOK && cepOK && emailOK) {
             console.log("Formulário validado com sucesso");
-            form.submit(); // só envia se tudo estiver OK
+            // só envia se tudo estiver OK
         }
+
+        
+        let idNovo = calcularId();
+        let user = {
+            id: idNovo, 
+            nome: nome.value,
+            email: email.value,
+            cep: cep.value,
+            telefone: telefone.value,
+            senha: senha.value
+        }
+
+        perfis.push(user);
+        localStorage.setItem('usuarios', JSON.stringify(perfis))
+
+        alert("Usuário cadastrado com sucesso!")
+         form.submit();
     });
+
+   function calcularId() {
+    return perfis.length ? perfis[perfis.length - 1].id + 1 : 1;
+}
+
 });
