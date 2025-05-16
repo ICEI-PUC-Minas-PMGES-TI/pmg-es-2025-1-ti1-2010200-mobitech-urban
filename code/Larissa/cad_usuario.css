@@ -87,6 +87,8 @@ main.content{
     border: #cbcedd solid 3px;
     
 }
+
+
 /*formulario de cadastro*/
 .form-container{
     width: 100%;
@@ -157,5 +159,5 @@ footer {
 #cep {
     font-size: 16px;
     letter-spacing: 1px;
-    font-variant-numeric: tabular-nums; /* Mantém largura uniforme dos números */
+    font-variant-numeric: tabular-nums; 
 }

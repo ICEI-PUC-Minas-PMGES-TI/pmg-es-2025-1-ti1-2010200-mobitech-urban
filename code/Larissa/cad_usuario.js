@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var perfis = JSON.parse(localStorage.getItem('usuarios')) || []
 
-    // Máscara para telefone com correção de apagamento
+    // Máscara para telefone 
     telefone.addEventListener("input", function (e) {
         let value = telefone.value.replace(/\D/g, "").slice(0, 11);
         if (value.length <= 10) {
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Máscara para CEP com ajuste para manter o tamanho da fonte estável
+    // Máscara para CEP 
     cep.addEventListener("input", function () {
         let value = cep.value.replace(/\D/g, "").slice(0, 8);
         if (value.length > 5) {
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrarErro(input, mensagem) {
         input.classList.add("erro");
-        alert(mensagem); // você pode trocar por inserção de mensagem na interface
+        alert(mensagem); 
     }
 
     function removerErro(input) {
@@ -91,29 +91,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Submissão do formulário
     form.addEventListener("submit", function (e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        const senhaOK = verificarSenha();
-        const telOK = verificarTelefone();
-        const cepOK = verificarCEP();
-        const emailOK = verificarEmail(email.value);
+    const senhaOK = verificarSenha();
+    const telOK = verificarTelefone();
+    const cepOK = verificarCEP();
+    const emailOK = verificarEmail(email.value);
 
-        if (!emailOK) {
-            mostrarErro(email, "E-mail inválido.");
-        } else {
-            removerErro(email);
-        }
+    if (!emailOK) {
+        mostrarErro(email, "E-mail inválido.");
+    } else {
+        removerErro(email);
+    }
 
-        if (senhaOK && telOK && cepOK && emailOK) {
-            console.log("Formulário validado com sucesso");
-            // só envia se tudo estiver OK
-        }
+    if (senhaOK && telOK && cepOK && emailOK) {
+        console.log("Formulário validado com sucesso");
 
-        
         let idNovo = calcularId();
         let user = {
             id: idNovo, 
-            nome: nome.value,
+            nome: nome.value.trim(),
             email: email.value,
             cep: cep.value,
             telefone: telefone.value,
@@ -121,11 +118,15 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         perfis.push(user);
-        localStorage.setItem('usuarios', JSON.stringify(perfis))
+        localStorage.setItem('usuarios', JSON.stringify(perfis));
 
-        alert("Usuário cadastrado com sucesso!")
-         form.submit();
-    });
+        alert("Usuário cadastrado com sucesso!");
+        form.submit(); // se quiser enviar de verdade, senão pode remover
+    } else {
+        console.log("Erro na validação. Cadastro não realizado.");
+    }
+});
+
 
    function calcularId() {
     return perfis.length ? perfis[perfis.length - 1].id + 1 : 1;
