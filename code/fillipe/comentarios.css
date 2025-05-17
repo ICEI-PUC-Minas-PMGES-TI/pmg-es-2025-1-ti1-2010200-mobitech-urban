@@ -193,3 +193,18 @@ footer {
     margin-left: 5px;
     font-weight: bold;
 }
+
+
+
+
+
+/* Estilo do botão de like */
+.like-btn.liked {
+    background-color: #4CAF50; /* Verde quando curtido */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+.reaction-buttons {
+    justify-content: center; /* Centraliza o botão */
+    gap: 0; /* Remove o espaço entre botões */
+}
