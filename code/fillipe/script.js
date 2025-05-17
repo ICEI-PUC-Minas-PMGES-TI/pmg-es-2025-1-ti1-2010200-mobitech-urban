@@ -1,16 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Elementos do DOM
+    // elementos do DOM
     const postsContainer = document.getElementById('posts-container');
     let posts = [];
 
-    // Carrega posts do JSON
+    // carrega posts do json
     fetch('./posts.json')
         .then(response => {
             if (!response.ok) throw new Error(`Erro HTTP! Status: ${response.status}`);
             return response.json();
         })
         .then(loadedPosts => {
-            posts = loadedPosts;
+            // Garante que likes são números
+            posts = loadedPosts.map(post => ({
+                ...post,
+                likes: Number(post.likes) || 0
+            }));
             renderPosts();
         })
         .catch(error => {
@@ -18,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
             postsContainer.innerHTML = `<p class="error">Erro ao carregar postagens. Recarregue a página.</p>`;
         });
 
-    // Renderiza todos os posts
+    // renderiza os posts
     function renderPosts() {
         postsContainer.innerHTML = '';
         
@@ -26,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const postElement = document.createElement('div');
             postElement.className = 'post';
 
-            // Imagem do post (com fallback)
+            // imagem do post 
             const imageHTML = post.image ? `
                 <img src="${post.image}" 
                      alt="Imagem: ${post.title}"
@@ -53,11 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
             postsContainer.appendChild(postElement);
         });
 
-        // Eventos para os botões de like
+        // eventos para os botoes de like
         document.querySelectorAll('.like-btn').forEach(button => {
             button.addEventListener('click', function() {
-                const postId = this.getAttribute('data-id');
-                const post = posts.find(p => p.id == postId);
+                const postId = parseInt(this.getAttribute('data-id'));
+                const post = posts.find(p => p.id === postId);
                 const likeCountElement = this.querySelector('.like-count');
                 
                 if (!post) return;
@@ -66,8 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 const isLiked = localStorage.getItem(`like_${postId}`);
                 
                 if (isLiked) {
-                    // Remove like
-                    post.likes--;
+                    // Remove like (garantindo que não vá para negativo)
+                    post.likes = Math.max(0, post.likes - 1);
                     localStorage.removeItem(`like_${postId}`);
                     this.classList.remove('liked');
                 } else {
@@ -80,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 likeCountElement.textContent = post.likes;
                 
                 // DEBUG: Mostra no console a alteração
-                console.log(`Post ${postId}: Likes = ${post.likes}`);
+                console.log(`Post ${postId}: Likes = ${post.likes}`, typeof post.likes);
             });
         });
     }

@@ -1,4 +1,4 @@
-/* Reset e ajustes de margem e padding */
+/* reset e ajustes de margem e padding */
 * {
     margin: 0;
     padding: 0;
@@ -6,14 +6,14 @@
     box-sizing: border-box;
 }
 
-/* Configuração do body e html para ocupar toda a altura da tela */
+/* configuraçao body e html para ocupar toda a altura da tela */
 html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-/* Estilos para o cabeçalho */
+/* estilos para o cabeçalho */
 .navbar {
     background-color: #3f8ebf;
     color: aliceblue;
@@ -29,7 +29,7 @@ html, body {
     width: 150px;
 }
 
-/* Novo estilo para o ícone de perfil com emoji */
+/* novo estilo para o icone de perfil com emoji */
 .navbar-profile {
     position: absolute;
     right: 20px;
@@ -40,15 +40,15 @@ html, body {
     font-size: 2rem;
 }
 
-/* Corpo da página */
+
 body {
     display: flex;
-    flex-direction: column; /* Coloca o conteúdo na direção da coluna */
-    height: 100%; /* Garante que o body ocupe toda a altura */
+    flex-direction: column; 
+    height: 100%; 
 }
 
 main {
-    flex: 1; /* Faz com que o conteúdo ocupe o espaço disponível */
+    flex: 1; 
     width: 100%;
     background-color: #3f8ebf;
     padding: 20px;
@@ -56,9 +56,9 @@ main {
 
 /* Estilos para as postagens */
 .posts-container {
-    margin: 20px auto; /* Centraliza o container */
-    max-width: 900px; /* Limita a largura máxima das postagens */
-    padding: 0 20px; /* Adiciona um pouco de espaço nas laterais */
+    margin: 20px auto; 
+    max-width: 900px; 
+    padding: 0 20px; 
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -77,11 +77,11 @@ main {
 }
 
 .post img {
-    width: 100%; /* Faz com que a imagem ocupe a largura da postagem */
-    max-width: 300px; /* Limita a largura máxima da imagem */
+    width: 100%; 
+    max-width: 300px; 
     height: auto;
     border-radius: 8px;
-    margin-bottom: 15px; /* Espaço entre a imagem e o conteúdo */
+    margin-bottom: 15px; 
 }
 
 .post-header h3 {
@@ -104,14 +104,14 @@ main {
     color: #3f8ebf;
 }
 
-/* Estilos do rodapé */
+/* estilos do rodape */
 footer {
     background-color: #DCE9EF;
     color: #363F70;
     padding: 2rem;
     text-align: center;
     font-size: 1.2rem;
-    margin-top: auto; /* Faz o rodapé ir para o fundo da página */
+    margin-top: auto; 
 }
 
 .footer-content {
@@ -143,27 +143,27 @@ footer {
     color: #66b3ff;
 }
 
-/* Estilo simplificado para o título "Feed de postagens" */
+/* titulo feed de postagens */
 .feed-title {
-    font-size: 2.5rem; /* Tamanho grande */
-    font-weight: bold; /* Deixa o texto em negrito */
-    color: #2a3d66; /* Cor escura, um tom mais profundo de azul */
-    text-align: center; /* Centraliza o título */
-    margin-bottom: 20px; /* Espaço abaixo do título */
-    text-transform: uppercase; /* Deixa o texto em maiúsculas */
+    font-size: 2.5rem; 
+    font-weight: bold; 
+    color: #2a3d66; 
+    text-align: center; 
+    margin-bottom: 20px; 
+    text-transform: uppercase; 
 }
 
 .feed-title:hover {
-    color: #1d2a47; /* Cor mais escura no hover para dar um destaque */
-    cursor: pointer; /* Aplica o cursor de clique no hover */
+    color: #1d2a47; 
+    cursor: pointer; 
 }
 
 .post:hover {
-    background-color: #cceeff; /* azul claro */
+    background-color: #cceeff; 
     transition: background-color 0.3s ease;
 }
 
-/* Estilos para os botões de reação */
+/* botões de reação */
 .reaction-buttons {
     display: flex;
     gap: 15px;
@@ -198,13 +198,13 @@ footer {
 
 
 
-/* Estilo do botão de like */
+/* botão de like */
 .like-btn.liked {
-    background-color: #4CAF50; /* Verde quando curtido */
+    background-color: #4CAF50; 
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
 .reaction-buttons {
-    justify-content: center; /* Centraliza o botão */
-    gap: 0; /* Remove o espaço entre botões */
+    justify-content: center; 
+    gap: 0; 
 }
