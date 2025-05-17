@@ -39,19 +39,24 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             cep.value = value;
         }
-        cep.style.fontSize = "16px"; // Ajuste visual fixo
+        cep.style.fontSize = "16px"; 
     });
 
     // Funções auxiliares
     function verificarSenha() {
-        if (senha.value !== senhaConfirmar.value) {
-            mostrarErro(senhaConfirmar, "As senhas não coincidem.");
-            return false;
-        } else {
-            removerErro(senhaConfirmar);
-            return true;
-        }
+    if (senha.value.length < 6) {
+        mostrarErro(senha, "A senha deve ter pelo menos 6 caracteres.");
+        return false;
     }
+    
+    if (senha.value !== senhaConfirmar.value) {
+        mostrarErro(senhaConfirmar, "As senhas não coincidem.");
+        return false;
+    }
+    
+    removerErro(senhaConfirmar);
+    return true;
+}
 
     function verificarTelefone() {
         const regex = /^\(\d{2}\)\s?\d{4,5}-\d{4}$/;
@@ -89,43 +94,52 @@ document.addEventListener("DOMContentLoaded", function () {
         input.classList.remove("erro");
     }
 
-    // Submissão do formulário
+   function emailJaCadastrado(email) {
+    return perfis.some(user => user.email === email);
+   }
+
+
     form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const senhaOK = verificarSenha();
-    const telOK = verificarTelefone();
-    const cepOK = verificarCEP();
-    const emailOK = verificarEmail(email.value);
-
-    if (!emailOK) {
-        mostrarErro(email, "E-mail inválido.");
-    } else {
-        removerErro(email);
+    // Validação das senhas
+    if (!verificarSenha()) {
+        return;
     }
 
-    if (senhaOK && telOK && cepOK && emailOK) {
-        console.log("Formulário validado com sucesso");
-
-        let idNovo = calcularId();
-        let user = {
-            id: idNovo, 
-            nome: nome.value.trim(),
-            email: email.value,
-            cep: cep.value,
-            telefone: telefone.value,
-            senha: senha.value
-        }
-
-        perfis.push(user);
-        localStorage.setItem('usuarios', JSON.stringify(perfis));
-
-        alert("Usuário cadastrado com sucesso!");
-        form.submit(); // se quiser enviar de verdade, senão pode remover
-    } else {
-        console.log("Erro na validação. Cadastro não realizado.");
+    // Validação de e-mail duplicado
+    if (emailJaCadastrado(email.value)) {
+        mostrarErro(email, "Este e-mail já está cadastrado. Use outro.");
+        return;
     }
+
+    // Validações individuais (telefone, CEP, e-mail)
+    const telValido = verificarTelefone();
+    const cepValido = verificarCEP();
+    const emailValido = verificarEmail(email.value);
+
+    if (!telValido || !cepValido || !emailValido) {
+        
+        return;
+    }
+
+    // CADASTRO 
+    let idNovo = calcularId();
+    let user = {
+        id: idNovo, 
+        nome: nome.value.trim(),
+        email: email.value,
+        cep: cep.value,
+        telefone: telefone.value,
+        senha: senha.value
+    };
+
+    perfis.push(user);
+    localStorage.setItem('usuarios', JSON.stringify(perfis));
+    alert("Usuário cadastrado com sucesso!");
+    form.reset();
 });
+
 
 
    function calcularId() {
