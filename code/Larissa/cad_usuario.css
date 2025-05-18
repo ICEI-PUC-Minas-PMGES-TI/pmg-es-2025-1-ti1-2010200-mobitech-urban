@@ -161,3 +161,22 @@ footer {
     letter-spacing: 1px;
     font-variant-numeric: tabular-nums; 
 }
+
+@media (max-width:1023px) {
+/*organização-cadastro*/
+.cadastro-campo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+}
+}
+
+
+@media (min-width:1024px) {
+.cad-textos{
+    height: 60vh;
+    font-size: x-large;
+    text-align: justify;
+    
+}
