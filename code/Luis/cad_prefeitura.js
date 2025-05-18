@@ -13,17 +13,53 @@ document.addEventListener("DOMContentLoaded", function() {
     const form = document.querySelector("form.form-prefeitura");
     const email = document.querySelector("#email");
     const emailResp = document.querySelector("#email-responsavel");
-    const btnvoltar = document.querySelector("#btn-voltar");
-
+    const prefeitura = document.querySelector("#prefeitura");
+    const nomeResponsavel = document.querySelector("#nome-responsavel");
+    const site = document.querySelector("#site");
+    const inputPrefeitura = {
+         prefeitura: prefeitura.value,
+         site: site.value,
+         cep: cep.value,
+         email: email.value,
+         nomeResponsavel: nomeResponsavel.value,
+         telefone: telefone.value,
+         emailResposavel: emailResp.value,
+         senha: senha.value
+     }
+    let cadastrosPrefeitura = JSON.parse(localStorage.getItem('cadastrosPrefeitura')) || [];
     IMask(cep, cepMask);
     IMask(telefone, telefoneMask);
+
+     function gerarId() {
+        return Date.now().toString(36) + Math.random().toString(36).substring(2);
+    }
+
+    function salvarDadosLocalStorage(){
+            const userPrefeitura = {
+                id: gerarId(),
+                prefeitura: prefeitura.value,
+                site: site.value,
+                cep: cep.value,
+                email: email.value,
+                nomeResponsavel: nomeResponsavel.value,
+                telefone: telefone.value,
+                emailResposavel: emailResp.value,
+                senha: senha.value,
+                dataCadastro: new Date().toISOString()
+         }
+         cadastrosPrefeitura.push(userPrefeitura);
+         localStorage.setItem('cadastrosPrefeitura', JSON.stringify(cadastrosPrefeitura));
+         alert(`Cadastro salvo com sucesso!`);
+        console.log("Cadastros atualizados:", cadastrosPrefeitura);
+    }
 
     function veriifcarCEP(){
         let count = 0;
         const verificarCep = cep.value.replace(/\D/g, '');
         if (verificarCep.length !== 8){
             mostrarErro(cep,"CEP inválido");
-            count++
+            count++;
+            return false;
         }
         else{
             removerErro(cep);
@@ -31,9 +67,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (/^(\d)\1{7}$/.test(verificarCep)) {
             mostrarErro(cep, "CEP inválido");
             count++;
+            return false;
         }
         else if(count<1){
             removerErro(cep);
+            return true;
         }
     }
    
@@ -50,9 +88,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if (tel.length !==11){
             mostrarErro(telefone,"Telefone inválido, são necessários 11 digitos");
             count++;
+            return false;
         }
         else{
             removerErro(telefone);
+            return true;
         }
          verificarDDD(count);
  
@@ -65,9 +105,11 @@ document.addEventListener("DOMContentLoaded", function() {
         if(dddNum < 11 || dddNum > 99){
             mostrarErro(telefone,"Telefone inválido, não foi possível indentifcar o DDD");
             count++;
+            return false;
         }
         else if(count<1){
            removerErro(telefone);
+           return true;
         }
     }
 
@@ -78,12 +120,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (ConfirmarSenharValor != senhaValor){
             mostrarErro(senhaConfirmar,"Senha Incorreta");
+            return false;
         }
         else{
-            const formItem = senhaConfirmar;
-            formItem.classList = "info-input"
             removerErro(senhaConfirmar);
         }
+            
+        if(senhaValor.length<8){
+            mostrarErro(senha,"Senha deve ter pelo menos 8 caracteres");
+            return false;
+        }
+        else{
+             removerErro(senha);
+        }
+    
+        return true;
+        
     }
 
     function mostrarErro(input, mensagem) {
@@ -111,8 +163,6 @@ document.addEventListener("DOMContentLoaded", function() {
      
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            verificarSenha();
-            verificarTelefone();
             veriifcarCEP();
             const EmailPrefeitura = verificarEmail(email.value);
             if (!EmailPrefeitura){
@@ -120,7 +170,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             else{
                 removerErro(email);
-                console.log(email.value);
             }
             const EmailResponsalvel = verificarEmail(emailResp.value);
             if (!EmailResponsalvel){
@@ -128,8 +177,18 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             else{
                 removerErro(emailResp);
-                console.log(emailResp.value);
             }
+            let valido = verificarSenha() && verificarTelefone() && veriifcarCEP() && EmailResponsalvel && EmailPrefeitura;
+            console.log(valido);
+            if (valido == true){
+                salvarDadosLocalStorage();
+                form.reset();
+            }
+            else{
+                alert('Cadastro Invalido!');
+                console.log("Invalido");
+            }
+            
         
     });
 
