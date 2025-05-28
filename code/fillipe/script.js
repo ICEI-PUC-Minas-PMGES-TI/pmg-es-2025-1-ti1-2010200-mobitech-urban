@@ -98,3 +98,95 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Após a renderização dos posts, adicionar interatividade dos comentários
+function setupCommentEvents() {
+    // Alternar a exibição da caixa de comentários
+    document.querySelectorAll('.comment-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const commentBox = btn.nextElementSibling;
+            commentBox.style.display = commentBox.style.display === 'none' ? 'block' : 'none';
+        });
+    });
+
+    // Configurar envio de comentários e exibição
+    document.querySelectorAll('.comment-section').forEach(section => {
+        const postId = section.getAttribute('data-id');
+        const submitBtn = section.querySelector('.submit-comment-btn');
+        const commentInput = section.querySelector('.comment-input');
+        const commentList = section.querySelector('.comment-list');
+
+        // Carregar comentários do localStorage para esse post
+        const savedComments = JSON.parse(localStorage.getItem(`comments_${postId}`)) || [];
+        savedComments.forEach(comment => {
+            addCommentToList(commentList, comment);
+        });
+
+        submitBtn.addEventListener('click', () => {
+            const commentText = commentInput.value.trim();
+            if (commentText === '') return;
+
+            const commentObj = {
+                id: Date.now(), // id único timestamp
+                text: commentText
+            };
+
+            // Salvar no localStorage
+            savedComments.push(commentObj);
+            localStorage.setItem(`comments_${postId}`, JSON.stringify(savedComments));
+
+            // Adicionar no DOM
+            addCommentToList(commentList, commentObj);
+
+            // Limpar textarea
+            commentInput.value = '';
+        });
+    });
+}
+
+// Função para adicionar comentário no DOM com botão excluir
+function addCommentToList(commentList, commentObj) {
+    const li = document.createElement('li');
+    li.textContent = commentObj.text;
+    li.setAttribute('data-id', commentObj.id);
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '❌';
+    deleteBtn.className = 'delete-comment-btn';
+    deleteBtn.style.marginLeft = '10px';
+
+    deleteBtn.addEventListener('click', () => {
+        // Remover do DOM
+        li.remove();
+
+        // Remover do localStorage
+        const postId = commentList.closest('.comment-section').getAttribute('data-id');
+        let comments = JSON.parse(localStorage.getItem(`comments_${postId}`)) || [];
+        comments = comments.filter(c => c.id !== commentObj.id);
+        localStorage.setItem(`comments_${postId}`, JSON.stringify(comments));
+    });
+
+    li.appendChild(deleteBtn);
+    commentList.appendChild(li);
+}
+
+// Chama setup após renderizar os posts
+document.addEventListener('DOMContentLoaded', () => {
+    // Espera um pouco para garantir renderPosts() já ter rodado e posts criado
+    setTimeout(setupCommentEvents, 100);
+});
