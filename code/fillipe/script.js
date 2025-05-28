@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // renderiza os posts
     function renderPosts() {
         postsContainer.innerHTML = '';
-        
+
         posts.forEach(post => {
             const postElement = document.createElement('div');
             postElement.className = 'post';
@@ -53,14 +53,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     </button>
                 </div>
                 <div class="comment-section" data-id="${post.id}">
-    <button class="comment-toggle-btn">💬 Comentar</button>
-    <div class="comment-box" style="display:none;">
-        <textarea class="comment-input" placeholder="Digite seu comentário"></textarea>
-        <button class="submit-comment-btn">Enviar</button>
-        <ul class="comment-list"></ul>
-    </div>
-</div>
-
+                    <button class="comment-toggle-btn">💬 Comentar</button>
+                    <div class="comment-box" style="display:none;">
+                        <textarea class="comment-input" placeholder="Digite seu comentário"></textarea>
+                        <button class="submit-comment-btn">Enviar</button>
+                        <ul class="comment-list"></ul>
+                    </div>
+                </div>
             `;
 
             postsContainer.appendChild(postElement);
@@ -72,12 +71,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 const postId = parseInt(this.getAttribute('data-id'));
                 const post = posts.find(p => p.id === postId);
                 const likeCountElement = this.querySelector('.like-count');
-                
+
                 if (!post) return;
 
                 // Verifica se já está curtido
                 const isLiked = localStorage.getItem(`like_${postId}`);
-                
+
                 if (isLiked) {
                     // Remove like (garantindo que não vá para negativo)
                     post.likes = Math.max(0, post.likes - 1);
@@ -91,28 +90,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 likeCountElement.textContent = post.likes;
-                
+
                 // DEBUG: Mostra no console a alteração
                 console.log(`Post ${postId}: Likes = ${post.likes}`, typeof post.likes);
             });
         });
+
+        // Chama setup dos comentários aqui, depois de renderizar posts e likes
+        setupCommentEvents();
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Após a renderização dos posts, adicionar interatividade dos comentários
 function setupCommentEvents() {
@@ -185,8 +172,4 @@ function addCommentToList(commentList, commentObj) {
     commentList.appendChild(li);
 }
 
-// Chama setup após renderizar os posts
-document.addEventListener('DOMContentLoaded', () => {
-    // Espera um pouco para garantir renderPosts() já ter rodado e posts criado
-    setTimeout(setupCommentEvents, 100);
-});
+
