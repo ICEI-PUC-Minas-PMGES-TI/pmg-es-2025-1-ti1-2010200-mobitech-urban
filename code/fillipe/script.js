@@ -52,6 +52,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         👍 <span class="like-count">${post.likes}</span>
                     </button>
                 </div>
+                <div class="comment-section" data-id="${post.id}">
+    <button class="comment-toggle-btn">💬 Comentar</button>
+    <div class="comment-box" style="display:none;">
+        <textarea class="comment-input" placeholder="Digite seu comentário"></textarea>
+        <button class="submit-comment-btn">Enviar</button>
+        <ul class="comment-list"></ul>
+    </div>
+</div>
+
             `;
 
             postsContainer.appendChild(postElement);
