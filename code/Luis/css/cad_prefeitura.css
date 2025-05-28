@@ -179,27 +179,6 @@ main.content{
 }
 
 
-/*grid-cadastro*/
-/* .cadastro-campo{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-}
-#cadastro-info{
-    grid-column: 1/2;
-    grid-row:1/4 ;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    background: #2466BC;
-}
-#cadastro-area{
-    grid-column: 2/4;
-    grid-row:1/4 ;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    
-} */
-
-
 /*footer*/
 
 footer {
