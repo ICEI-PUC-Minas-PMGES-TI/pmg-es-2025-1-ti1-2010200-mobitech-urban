@@ -47,6 +47,9 @@ main,.navbar{
 .mapa-infos{
     width: 100%;
     height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: #DCE9EF;
 }
 .mapa-container{
@@ -54,6 +57,63 @@ main,.navbar{
     display: flex;
     justify-content:center ;
     align-items: center;
+}
+/*info-mapa*/
+
+.infos-container{
+    width: 100%;
+    display: flex;
+    align-items: end;
+    justify-content:space-around;
+}
+.info-wrapper{
+    width: 28vw;
+    height: 19vh;
+   
+}
+#info-01{
+    border-right:#3586D2 solid 2px ;
+    display: flex;
+    justify-content:center ;
+    flex-direction: column;
+    gap: 32px;
+    
+}
+.location{
+   width: 100%;
+   text-align: left;
+}
+#info-02{
+    border-right: #3586D2 solid 2px;
+    border-left:#3586D2 solid 2px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-info{
+    width: 100%;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+}
+.fa-solid{
+    font-size: 2rem;
+    color:#3B668C;
+}
+#info-03{
+    border-left: #3586D2 solid 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.estats{
+    border: #b1b1b1 solid 1px;
+    background: #3586d277;
+    width: calc(100% - 4%);
+    height: 10vh;
+    margin: 2%;
+    border-radius: 8px;
 }
 /*popup*/
 .popup-overlay {

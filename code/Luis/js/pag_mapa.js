@@ -16,11 +16,11 @@ let pontoCount = 1;
 
 
 function mostrarPopup(coordenadas) {
-    const overlay = document.getElementById('popupOverlay');
+    const overlay = document.querySelector('#popupOverlay');
     overlay.style.display = 'flex';
     
     if(coordenadas) {
-        document.getElementById('popupCoords').textContent = 
+        document.querySelector('#popupCoords').textContent = 
             `Localização: ${coordenadas.lat.toFixed(6)}, ${coordenadas.lng.toFixed(6)}`;
     }
      return new Promise((resolve) => {
@@ -36,23 +36,34 @@ function mostrarPopup(coordenadas) {
     });
 }
 function ocultarPopup() {
-    const overlay = document.getElementById('popupOverlay');
+    const overlay = document.querySelector('#popupOverlay');
     overlay.style.display = 'none';
 }
 
+function proximoPonto(){
+    return new Promise((resolve) => {
+        map.once('click', function(ev){
+            resolve(ev.latlng);
+        });
+    })
+}
 async function definirTrajeto(ev){
     let latlng = ev.latlng;
     let confirmacao = false;
+    markers.ponto2.setOpacity(0);
     if (pontoCount === 1) {
-        alert('a')
          marcarMapa('ponto1', latlng);
+        pontoCount = 2;
         confirmacao = await mostrarPopup(latlng);
+
+        if (confirmacao==true){
+          
+           const segundoPonto = await proximoPonto();
+           pontoCount=1;
+           marcarMapa('ponto2',segundoPonto);
+           
+        } 
     }
-    if (confirmacao==true){
-        await map.on('click', function(ev){
-            marcarMapa('ponto2',ev.latlng);
-        });
-    } 
 
     
 }
