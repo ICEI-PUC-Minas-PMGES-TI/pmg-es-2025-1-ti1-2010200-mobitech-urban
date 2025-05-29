@@ -1,0 +1,62 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    border:0;
+    box-sizing: border-box;
+    
+}
+/*cabecalho*/
+.navbar{
+    background-color: #041237;
+    color: aliceblue;
+}
+
+.navbar-nav{
+    font-size: 1.3rem;
+    gap: 36px;
+    width:auto;
+}
+.navbar-brand img{
+    width: 150px;
+}
+
+footer {
+    background-color: #dceaf2;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    width: 100%;
+}
+
+.copyright, .address, .contact {
+    margin-bottom: 0.5rem;
+}
+
+.social-media {
+    margin-top: 1rem;
+}
+
+.social-media span {
+    margin-right: 1rem;
+}
+
+.social-media a {
+    color: white;
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-media a:hover {
+    color: #66b3ff;
+}
+
