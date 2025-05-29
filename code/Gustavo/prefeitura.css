@@ -22,7 +22,7 @@
 }
 
 footer {
-    background-color: #dceaf2;
+    background-color: #041237;
     color: #fff;
     padding: 2rem;
     text-align: center;
@@ -60,3 +60,182 @@ footer {
     color: #66b3ff;
 }
 
+/*Fim do cabeçalho*/
+
+body{
+    background: #dceaf2;
+}
+
+/*Contento  do Main */
+.main-content {
+    grid-area: main;
+    padding: 2rem;
+}
+
+.flood-data {
+    background-color: #dceaf2;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.year {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 1.6rem;
+    color: #7f8c8d;
+    font-weight: 300;
+}
+
+/* Seções */
+.section-title {
+    text-align: center;
+    margin: 2rem 0;
+    font-size: 1.8rem;
+    color: #2c3e50;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: #e74c3c;
+    margin: 0.5rem auto 0;
+}
+
+/* Bairros */
+.neighborhoods {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.neighborhood {
+    background-color: #3498db;
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: none;
+    font-size: 1rem;
+}
+
+.neighborhood:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+.neighborhood.active {
+    background-color: #e74c3c;
+    transform: scale(1.05);
+}
+/* Gráficos */
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.chart-wrapper {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.chart-wrapper:hover {
+    transform: translateY(-5px);
+}
+
+.chart-wrapper figcaption {
+    text-align: center;
+    margin-top: 1rem;
+    font-style: italic;
+    color: #7f8c8d;
+}
+
+/* Estatísticas */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin: 2rem 0;
+}
+
+.stat-item {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 220px;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 0.5rem;
+}
+
+.stat-description {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* Sidebar */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #ecf0f1;
+    padding: 2rem 1.5rem;
+    border-left: 1px solid #ddd;
+}
+
+.sidebar h3 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    border-bottom: 2px solid #bdc3c7;
+    padding-bottom: 0.5rem;
+}
+
+.reports-list {
+    list-style-type: none;
+}
+
+.reports-list li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.reports-list li:hover {
+    color: #e74c3c;
+    padding-left: 0.5rem;
+}
