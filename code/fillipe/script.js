@@ -178,3 +178,21 @@ function addCommentToList(commentList, commentObj) {
 
 // Larissa //
 
+// Elementos de busca
+const searchInput = document.getElementById('search-input');
+const searchButton = document.getElementById('search-button');
+
+// Função de pesquisa
+function handleSearch() {
+    const term = searchInput.value.toLowerCase();
+    document.querySelectorAll('.post').forEach(post => {
+        const matches = post.textContent.toLowerCase().includes(term);
+        post.style.display = matches ? 'block' : 'none';
+    });
+}
+
+// Event listeners (adicionados após o DOM estar pronto)
+if (searchButton && searchInput) {
+    searchButton.addEventListener('click', handleSearch);
+    searchInput.addEventListener('keyup', (e) => e.key === 'Enter' && handleSearch());
+}
