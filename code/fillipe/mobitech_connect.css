@@ -360,3 +360,48 @@ footer {
 #search-input:focus {
     background-color: #f8fafc;
 }
+
+
+
+
+
+/* Estilos para o cabeçalho do feed */
+.feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative; /* Para posicionamento absoluto do botão */
+}
+
+/* Estilo do título (centralizado) */
+.feed-title {
+    text-align: center;
+    flex-grow: 1; /* Ocupa todo o espaço disponível */
+    margin: 0 100px; /* Dá espaço para o botão */
+}
+
+/* Estilo do botão Criar Post (à esquerda e maior) */
+#createPostBtn {
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #3f8ebf;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute; /* Posicionamento absoluto */
+    left: 20px; /* Distância da esquerda */
+    white-space: nowrap; /* Evita quebra de linha */
+}
+
+#createPostBtn:hover {
+    background-color: #2a6a8f;
+    transform: scale(1.05);
+}
+
+#createPostBtn:active {
+    transform: scale(0.98);
+}
