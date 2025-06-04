@@ -8,6 +8,11 @@ const btnCriar = document.querySelector("#criarRota");
 const btnSair = document.querySelector("#sairPopup");
 const enderocoIncial = document.querySelector("#endInicial");
 const enderecoFinal = document.querySelector("#endFinal");
+const motoInfo = document.querySelector("#infoMoto");
+const carroInfo = document.querySelector("#infoCarro");
+const onibusInfo = document.querySelector("#infoOnibus");
+const andarInfo = document.querySelector("#infoAndar");
+const infoMap = document.querySelector(".mapa-infos");
 let markers = {
     ponto1: L.marker([-19.924475, -43.991426],{
         opacity: 0
@@ -92,10 +97,18 @@ function criarRota(marker1,marker2){
             L.latLng(markers[marker2].getLatLng())
         ],
         routeWhileDragging: true,
-        show:true
+        show:false
         }).addTo(map);
         infoRota()
 
+}
+function adicionarMapaInfos() {
+    const mapInfos = infoMap;
+    mapInfos.classList.toggle('visible');
+}
+function removerMapaInfos(){
+    const mapInfos = infoMap;
+    mapInfos.classList.remove('visible');
 }
 async function getInfoRota(){
      let rota = null;
@@ -120,22 +133,35 @@ async function infoRota(){
     let tempo = 0;
     let enderoco = null
     for (let index = 0; index < infos.length; index++) {
-            if (index == 0){
-                tempo = infos[0];
-            }
-            if (index==1){
-                enderoco = infos[1].split(", ");
-            }
+        if (index == 0){
+            tempo = infos[0];
+        }
+        if (index==1){
+            enderoco = infos[1].split(", ");
+        }
         
     }
-    console.log(tempo);
-    console.log(enderoco[0]);
-    console.log(enderoco[1]);
-
+    
+    let tempoMin = Math.round(tempo/60)
+    
+    const endInicial = enderocoIncial
+    endInicial.textContent = `${enderoco[0]}`
+    const endFinal = enderecoFinal
+    endFinal.textContent = `${enderoco[1]}`
+    const infoMoto = motoInfo
+    infoMoto.textContent = `${Math.round(tempoMin*0.8)} min`
+    const infoCarro = carroInfo
+    infoCarro.textContent = `${Math.round(tempoMin)} min`
+    const infoOnibus = onibusInfo
+    infoOnibus.textContent = `${Math.round(tempoMin*1.4)} min`
+    const infoAndar = andarInfo
+    infoAndar.textContent = `${Math.round(tempoMin*5.5)} min`
+    adicionarMapaInfos();
 }
 
 
 map.on('click', function(ev){
+    removerMapaInfos();
     definirTrajeto(ev);
 });
 

@@ -13,7 +13,7 @@ main,.navbar{
     background: none;
 }
 .content{
-    height: auto;
+    height: 100vh;
 }
 .container{
     width: 100%;
@@ -23,9 +23,8 @@ main,.navbar{
 
 .area-mapa{
     width: calc(100% - 8%);
-    height: 100vh;
+    height: auto;
     margin: 2% 4%;
-    border: #cbcedd solid 2px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,6 +42,7 @@ main,.navbar{
 #mapa{
     height: 80vh;
     width: 100%;
+    border: #3B668C solid 4px;
 }
 .mapa-infos{
     width: 100%;
@@ -51,6 +51,7 @@ main,.navbar{
     align-items: center;
     justify-content: center;
     background: #DCE9EF;
+     border: #3B668C solid 4px;
 }
 .mapa-container{
     position: relative;
@@ -59,7 +60,20 @@ main,.navbar{
     align-items: center;
 }
 /*info-mapa*/
+.mapa-infos {
+     max-height: 0;
+     opacity: 0;
+     overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
 
+.mapa-infos.visible {
+    max-height: 500px;
+    transition: max-height 0.3s ease;
+    opacity: 1;
+    height: auto;
+    margin-bottom: 20px; 
+}
 .infos-container{
     width: 100%;
     display: flex;
@@ -88,8 +102,10 @@ main,.navbar{
    align-items:center;
    gap:12px
 }
-.location p {
+.location p,.icon-content p {
     margin: 0;
+    font-weight: 500;
+   
 }
 #info-02{
     border-right: #3586D2 solid 2px;
@@ -122,6 +138,12 @@ main,.navbar{
     height: 10vh;
     margin: 2%;
     border-radius: 8px;
+}
+.icon-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 /*popup*/
 .popup-overlay {
