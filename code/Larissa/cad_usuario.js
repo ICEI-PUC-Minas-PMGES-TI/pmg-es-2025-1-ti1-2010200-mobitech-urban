@@ -1,15 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector(".form-prefeitura");
-    const nome = document.getElementById("nome_usuario")
+    const nome = document.getElementById("nome_usuario");
     const email = document.getElementById("email");
     const telefone = document.getElementById("telefone");
     const cep = document.getElementById("cep");
+    const bairro = document.getElementById("bairro");
     const senha = document.getElementById("senha");
     const senhaConfirmar = document.getElementById("senha-confirmar");
 
-    var perfis = JSON.parse(localStorage.getItem('usuarios')) || []
+    var perfis = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-    // Máscara para telefone 
+    // Máscara para telefone
     telefone.addEventListener("input", function (e) {
         let value = telefone.value.replace(/\D/g, "").slice(0, 11);
         if (value.length <= 10) {
@@ -31,32 +32,69 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Máscara para CEP 
-    cep.addEventListener("input", function () {
-        let value = cep.value.replace(/\D/g, "").slice(0, 8);
-        if (value.length > 5) {
-            cep.value = value.replace(/^(\d{5})(\d{0,3})$/, "$1-$2");
+    // Máscara para CEP e busca automática do bairro 
+cep.addEventListener("input", function () {
+    let value = cep.value.replace(/\D/g, "").slice(0, 8);
+    if (value.length > 5) {
+        cep.value = value.replace(/^(\d{5})(\d{0,3})$/, "$1-$2");
+    } else {
+        cep.value = value;
+    }
+    cep.style.fontSize = "16px";
+
+    // Busca automática quando o CEP estiver completo 
+    if (value.length === 8) {
+        buscarBairroPorCEP(value);
+    }
+});
+
+// Função separada para buscar o bairro 
+async function buscarBairroPorCEP(cepValue) {
+    try {
+        // Mostrar loading 
+        bairro.placeholder = "Buscando...";
+        bairro.disabled = true;
+
+        const response = await fetch(`https://viacep.com.br/ws/${cepValue}/json/`);
+        const data = await response.json();
+
+        if (data.erro) {
+            mostrarErro(cep, "CEP não encontrado.");
+            bairro.value = "";
+        } else if (data.localidade.toUpperCase() !== "BELO HORIZONTE") {
+            // Validação para CEP de BH
+            mostrarErro(cep, "Este CEP não pertence a Belo Horizonte. Insira um CEP válido para BH.");
+            bairro.value = "";
         } else {
-            cep.value = value;
+            // CEP válido (de BH)
+            bairro.value = data.bairro || "(Bairro não especificado)";
+            removerErro(cep);
         }
-        cep.style.fontSize = "16px"; 
-    });
+    } catch (error) {
+        mostrarErro(cep, "Erro ao buscar CEP. Tente novamente.");
+        console.error("Erro na API ViaCEP:", error);
+    } finally {
+        // Resetar estado do campo
+        bairro.placeholder = "";
+        bairro.disabled = false;
+    }
+}
 
     // Funções auxiliares
     function verificarSenha() {
-    if (senha.value.length < 6) {
-        mostrarErro(senha, "A senha deve ter pelo menos 6 caracteres.");
-        return false;
+        if (senha.value.length < 6) {
+            mostrarErro(senha, "A senha deve ter pelo menos 6 caracteres.");
+            return false;
+        }
+        
+        if (senha.value !== senhaConfirmar.value) {
+            mostrarErro(senhaConfirmar, "As senhas não coincidem.");
+            return false;
+        }
+        
+        removerErro(senhaConfirmar);
+        return true;
     }
-    
-    if (senha.value !== senhaConfirmar.value) {
-        mostrarErro(senhaConfirmar, "As senhas não coincidem.");
-        return false;
-    }
-    
-    removerErro(senhaConfirmar);
-    return true;
-}
 
     function verificarTelefone() {
         const regex = /^\(\d{2}\)\s?\d{4,5}-\d{4}$/;
@@ -87,63 +125,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrarErro(input, mensagem) {
         input.classList.add("erro");
-        alert(mensagem); 
+        alert(mensagem);
     }
 
     function removerErro(input) {
         input.classList.remove("erro");
     }
 
-   function emailJaCadastrado(email) {
-    return perfis.some(user => user.email === email);
-   }
-
+    function emailJaCadastrado(email) {
+        return perfis.some(user => user.email === email);
+    }
 
     form.addEventListener("submit", function (e) {
-    e.preventDefault();
+        e.preventDefault();
 
-    // Validação das senhas
-    if (!verificarSenha()) {
-        return;
+        // Validações
+        if (!verificarSenha() || !verificarTelefone() || !verificarCEP()) {
+            return;
+        }
+
+        if (!verificarEmail(email.value)) {
+            mostrarErro(email, "E-mail inválido.");
+            return;
+        }
+
+        if (emailJaCadastrado(email.value)) {
+            mostrarErro(email, "Este e-mail já está cadastrado.");
+            return;
+        }
+
+        // Cadastro do usuário
+        let idNovo = calcularId();
+        let user = {
+            id: idNovo,
+            nome: nome.value.trim(),
+            email: email.value,
+            telefone: telefone.value,
+            cep: cep.value,
+            bairro: bairro.value,
+            senha: senha.value
+        };
+
+        perfis.push(user);
+        localStorage.setItem('usuarios', JSON.stringify(perfis));
+        alert("Usuário cadastrado com sucesso!");
+        form.reset();
+    });
+
+    function calcularId() {
+        return perfis.length ? perfis[perfis.length - 1].id + 1 : 1;
     }
-
-    // Validação de e-mail duplicado
-    if (emailJaCadastrado(email.value)) {
-        mostrarErro(email, "Este e-mail já está cadastrado. Use outro.");
-        return;
-    }
-
-    // Validações individuais (telefone, CEP, e-mail)
-    const telValido = verificarTelefone();
-    const cepValido = verificarCEP();
-    const emailValido = verificarEmail(email.value);
-
-    if (!telValido || !cepValido || !emailValido) {
-        
-        return;
-    }
-
-    // CADASTRO 
-    let idNovo = calcularId();
-    let user = {
-        id: idNovo, 
-        nome: nome.value.trim(),
-        email: email.value,
-        cep: cep.value,
-        telefone: telefone.value,
-        senha: senha.value
-    };
-
-    perfis.push(user);
-    localStorage.setItem('usuarios', JSON.stringify(perfis));
-    alert("Usuário cadastrado com sucesso!");
-    form.reset();
-});
-
-
-
-   function calcularId() {
-    return perfis.length ? perfis[perfis.length - 1].id + 1 : 1;
-}
-
 });
