@@ -31,11 +31,7 @@
                         <a class="nav-link active" aria-current="page" href="../Larissa/informações.html">Informações</a>
                       </li>
                     </ul>
-                    <!-- perfil -->
                     <div class="navbar-profile">
-
-                 
-                    
                         <a href="#" class="profile-icon">👤</a>
                     </div>
                   </div>
@@ -43,20 +39,14 @@
             </nav>
         </header>
         <main>
-<main>
-
-
-<!-- Larissa -->
-
-<body>
-    <div class="wrapper">
-        <header>...</header>
-        <main>
             <div class="main-content-container">
                 <div class="feed-content">
-                    <h1 class="feed-title">Feed de postagens</h1>
+                    <div class="feed-header">
+                        <h1 class="feed-title">Feed de postagens</h1>
+                        <button id="createPostBtn" class="btn btn-primary">+ Criar Post</button>
+                    </div>
                     <div id="posts-container" class="posts-container">
-                        <!-- posts -->
+                        <!-- posts serão renderizados aqui -->
                     </div>
                 </div>
                 <div class="search-sidebar">
@@ -66,19 +56,44 @@
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
-</body>
 
-
- 
-
-
-
-
-
-</main>
-
+            <!-- Modal de Criação de Post -->
+            <div id="postModal" class="modal fade" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Criar Nova Postagem</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="postForm">
+                                <div class="mb-3">
+                                    <label for="postTitle" class="form-label">Título</label>
+                                    <input type="text" class="form-control" id="postTitle" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="postContent" class="form-label">Conteúdo</label>
+                                    <textarea class="form-control" id="postContent" rows="3" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="postImage" class="form-label">Imagem (opcional)</label>
+                                    <input class="form-control" type="file" id="postImage" accept="image/*">
+                                    <div id="imagePreview" class="mt-2"></div>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="includeLocation">
+                                    <label class="form-check-label" for="includeLocation">Incluir minha localização</label>
+                                </div>
+                                <div id="locationInfo" class="alert alert-info d-none"></div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" id="submitPostBtn" class="btn btn-primary">Publicar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <footer>
             <div class="footer-content">
@@ -100,10 +115,8 @@
             </div>
         </footer>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-<script src="./script.js"></script>
-
-
-
+    <script src="./script.js"></script>
 </body>
 </html>
