@@ -51,22 +51,6 @@ main.home-content {
     margin-top: -8px; /* Compensa espaçamento residual */
 }
 
-/*icone:*/
-/* Opção 1: Ajuste direto no ícone */
-
-
-/* Opção 2: Melhor - ajuste no link pai */
-.navbar .d-flex .nav-link {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 2rem; /* Espaçamento vertical e horizontal */
-}
-
-.navbar .d-flex .nav-link i {
-    font-size: 2.0rem;
-}
-
-
 footer {
     background-color: #010A26;
     color: #cbcedd;

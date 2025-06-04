@@ -52,7 +52,7 @@ main.home-content {
 }
 
 /*icone:*/
-/* Opção 1: Ajuste direto no ícone */
+
 
 
 /* Opção 2: Melhor - ajuste no link pai */
@@ -65,6 +65,7 @@ main.home-content {
 .navbar .d-flex .nav-link i {
     font-size: 2.0rem;
 }
+
 
 
 footer {
