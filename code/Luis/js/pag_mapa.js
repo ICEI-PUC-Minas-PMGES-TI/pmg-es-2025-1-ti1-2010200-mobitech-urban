@@ -3,6 +3,11 @@ const map = L.map('mapa').setView([-19.924475, -43.991426], 18);
 const layer = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 	maxZoom: 19,
 }).addTo(map);
+const mapa = document.querySelector("#mapa");
+const btnCriar = document.querySelector("#criarRota");
+const btnSair = document.querySelector("#sairPopup");
+const enderocoIncial = document.querySelector("#endInicial");
+const enderecoFinal = document.querySelector("#endFinal");
 let markers = {
     ponto1: L.marker([-19.924475, -43.991426],{
         opacity: 0
@@ -11,9 +16,6 @@ let markers = {
         opacity: 0
     }).addTo(map)
 };
-const mapa = document.querySelector("#mapa");
-const btnCriar = document.querySelector("#criarRota");
-const btnSair = document.querySelector("#sairPopup");
 let trajeto = null;
 let pontoCount = 1;
 
@@ -50,6 +52,8 @@ function proximoPonto(){
         });
     })
 }
+
+/*Precisa de ser melhorado*/
 async function definirTrajeto(ev){
   
     let latlng = ev.latlng;
@@ -88,9 +92,48 @@ function criarRota(marker1,marker2){
             L.latLng(markers[marker2].getLatLng())
         ],
         routeWhileDragging: true,
+        show:true
         }).addTo(map);
+        infoRota()
 
 }
+async function getInfoRota(){
+     let rota = null;
+     let info = null;
+     let nomeRota = null;
+     let tempoTrajeto = null;
+     await new Promise((resolve) => {
+        trajeto.addEventListener('routesfound', function(event){
+                 rota = event.routes;
+                 info = rota[0].summary;
+                 nomeRota = rota[0].name;   
+                tempoTrajeto = info.totalTime;
+                 resolve();
+        });
+    })
+    return [tempoTrajeto,nomeRota];
+}
+
+async function infoRota(){
+    let infos = await getInfoRota();
+    console.log(infos)
+    let tempo = 0;
+    let enderoco = null
+    for (let index = 0; index < infos.length; index++) {
+            if (index == 0){
+                tempo = infos[0];
+            }
+            if (index==1){
+                enderoco = infos[1].split(", ");
+            }
+        
+    }
+    console.log(tempo);
+    console.log(enderoco[0]);
+    console.log(enderoco[1]);
+
+}
+
 
 map.on('click', function(ev){
     definirTrajeto(ev);
@@ -99,3 +142,5 @@ map.on('click', function(ev){
 document.querySelector('.popup').addEventListener('click', function(e) {
     e.stopPropagation();
 });
+
+

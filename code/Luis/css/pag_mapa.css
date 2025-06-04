@@ -81,7 +81,15 @@ main,.navbar{
 }
 .location{
    width: 100%;
+   height: auto;
    text-align: left;
+   display: flex;
+   justify-content: left;
+   align-items:center;
+   gap:12px
+}
+.location p {
+    margin: 0;
 }
 #info-02{
     border-right: #3586D2 solid 2px;
