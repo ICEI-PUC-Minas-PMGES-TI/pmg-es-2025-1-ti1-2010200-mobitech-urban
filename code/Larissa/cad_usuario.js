@@ -32,28 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Máscara para CEP e busca automática do bairro 
-cep.addEventListener("input", function () {
-    let value = cep.value.replace(/\D/g, "").slice(0, 8);
-    if (value.length > 5) {
-        cep.value = value.replace(/^(\d{5})(\d{0,3})$/, "$1-$2");
-    } else {
-        cep.value = value;
-    }
-    cep.style.fontSize = "16px";
-
-    // Busca automática quando o CEP estiver completo 
-    if (value.length === 8) {
-        buscarBairroPorCEP(value);
-    }
-});
-
-// Função separada para buscar o bairro 
+  // Função para buscar o bairro pelo CEP 
 async function buscarBairroPorCEP(cepValue) {
     try {
-        // Mostrar loading 
+        // Mostrar loading
         bairro.placeholder = "Buscando...";
         bairro.disabled = true;
+        cep.disabled = true;
 
         const response = await fetch(`https://viacep.com.br/ws/${cepValue}/json/`);
         const data = await response.json();
@@ -62,7 +47,6 @@ async function buscarBairroPorCEP(cepValue) {
             mostrarErro(cep, "CEP não encontrado.");
             bairro.value = "";
         } else if (data.localidade.toUpperCase() !== "BELO HORIZONTE") {
-            // Validação para CEP de BH
             mostrarErro(cep, "Este CEP não pertence a Belo Horizonte. Insira um CEP válido para BH.");
             bairro.value = "";
         } else {
@@ -74,11 +58,45 @@ async function buscarBairroPorCEP(cepValue) {
         mostrarErro(cep, "Erro ao buscar CEP. Tente novamente.");
         console.error("Erro na API ViaCEP:", error);
     } finally {
-        // Resetar estado do campo
+        // Resetar estado dos campos
         bairro.placeholder = "";
         bairro.disabled = false;
+        cep.disabled = false;
     }
 }
+
+// Máscara para CEP e busca automática 
+cep.addEventListener("input", function() {
+    let value = cep.value.replace(/\D/g, "").slice(0, 8);
+    if (value.length > 5) {
+        cep.value = value.replace(/^(\d{5})(\d{0,3})$/, "$1-$2");
+    } else {
+        cep.value = value;
+    }
+    
+    // Busca automática quando o CEP estiver completo
+    if (value.length === 8) {
+        buscarBairroPorCEP(value);
+    }
+});
+
+// Função de verificação do CEP para o submit
+function verificarCEP() {
+    const cepValue = cep.value.replace(/\D/g, '');
+    if (cepValue.length !== 8) {
+        mostrarErro(cep, "CEP inválido (8 dígitos necessários)");
+        return false;
+    }
+    
+    // Verifica se o bairro foi preenchido (indica que o CEP é válido)
+    if (!bairro.value || bairro.value === "(Bairro não especificado)") {
+        mostrarErro(cep, "CEP inválido ou não pertence a BH");
+        return false;
+    }
+    
+    return true;
+}
+
 
     // Funções auxiliares
     function verificarSenha() {
