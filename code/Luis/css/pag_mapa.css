@@ -13,7 +13,7 @@ main,.navbar{
     background: none;
 }
 .content{
-    height: 100vh;
+    height: auto;
 }
 .container{
     width: 100%;

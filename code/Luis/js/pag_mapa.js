@@ -1,3 +1,5 @@
+import { cepService } from "../services/cep-service.js";
+import { findCoords } from "../services/openStreet-service.js";
 
 const map = L.map('mapa').setView([-19.924475, -43.991426], 18);
 const layer = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -13,6 +15,8 @@ const carroInfo = document.querySelector("#infoCarro");
 const onibusInfo = document.querySelector("#infoOnibus");
 const andarInfo = document.querySelector("#infoAndar");
 const infoMap = document.querySelector(".mapa-infos");
+const servieCep = new cepService();
+const coordsCep = new findCoords();
 let markers = {
     ponto1: L.marker([-19.924475, -43.991426],{
         opacity: 0
@@ -71,7 +75,7 @@ async function definirTrajeto(ev){
          marcarMapa('ponto1', latlng);
         pontoCount = 2;
         confirmacao = await mostrarPopup(latlng);
-        console.log(markers['ponto1'].getLatLng())
+        
         if (confirmacao==true){
            
            const segundoPonto = await proximoPonto();
@@ -97,7 +101,7 @@ function criarRota(marker1,marker2){
             L.latLng(markers[marker2].getLatLng())
         ],
         routeWhileDragging: true,
-        show:false
+        show:false,
         }).addTo(map);
         infoRota()
 
@@ -158,11 +162,45 @@ async function infoRota(){
     infoAndar.textContent = `${Math.round(tempoMin*5.5)} min`
     adicionarMapaInfos();
 }
+function carregarAreas(){
+    /*implementar*/
+    
+}
+async function rastrearCep(cep){
 
+    let cepInfo = await servieCep.getALL(cep);
+    let bairro = cepInfo.bairro;
+    let cidade = cepInfo.cidade;
+    let uf = cepInfo.uf;
+
+    console.log(cepInfo);
+    coordenadasCep(bairro,cidade,uf);
+}
+async function coordenadasCep(bairro,cidade,uf) {
+    let coordInfos = await coordsCep.getCord(bairro,cidade,uf);
+    console.log(coordInfos);
+    let bairroCord = coordInfos[0];
+    console.log("lat: " + parseFloat(bairroCord.lat));
+    console.log("lon: " +parseFloat(bairroCord.lon));
+
+    marcarArea([parseFloat(bairroCord.lat),parseFloat(bairroCord.lon)])
+}
+
+function marcarArea(latlng){
+    let latlon = latlng;
+    console.log(latlon);
+
+    L.circle([latlon[0], latlon[1]], {
+        radius: 500,
+        color:'blue'
+    
+    }).addTo(map);
+}
 
 map.on('click', function(ev){
     removerMapaInfos();
     definirTrajeto(ev);
+   
 });
 
 document.querySelector('.popup').addEventListener('click', function(e) {
