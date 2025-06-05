@@ -102,6 +102,14 @@ function criarRota(marker1,marker2){
         ],
         routeWhileDragging: true,
         show:false,
+        lineOptions: {
+            styles: [
+                {
+                    className: 'rota'            
+                        
+                }
+            ]
+        }
         }).addTo(map);
         infoRota()
 
@@ -191,7 +199,7 @@ function marcarArea(latlng){
     console.log(latlon);
 
     L.circle([latlon[0], latlon[1]], {
-        radius: 500,
+        radius: 1000,
         color:'blue'
     
     }).addTo(map);

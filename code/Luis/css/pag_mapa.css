@@ -9,16 +9,28 @@ body{
      background-repeat: no-repeat;
      background-size: cover;
 }
-main,.navbar{
+.navbar{
     background: none;
+    margin-top: 0;
+    padding-top: 0;
+    position: relative;
+    top: 0;
 }
+
 .content{
     height: auto;
+    background: none;
 }
 .container{
     width: 100%;
     height: auto;
    
+}
+header {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: -20px; 
 }
 
 .area-mapa{
@@ -58,6 +70,11 @@ main,.navbar{
     display: flex;
     justify-content:center ;
     align-items: center;
+}
+.rota {
+    stroke:#6178fd;       
+    stroke-width: 8px;     
+    paint-order: stroke;  
 }
 /*info-mapa*/
 .mapa-infos {
@@ -102,8 +119,9 @@ main,.navbar{
    align-items:center;
    gap:12px
 }
-.location p,.icon-content p {
+.info-text{
     margin: 0;
+    color: #010A26;
     font-weight: 500;
    
 }
@@ -138,6 +156,15 @@ main,.navbar{
     height: 10vh;
     margin: 2%;
     border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items:baseline;
+    flex-direction: column;
+    text-align: left;
+    padding: 8px;
+}
+.estats .info-text{
+    font-size: 0.9rem;
 }
 .icon-content{
     display: flex;
