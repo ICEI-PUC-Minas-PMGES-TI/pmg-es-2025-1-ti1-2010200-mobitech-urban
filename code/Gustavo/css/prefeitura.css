@@ -1,11 +1,10 @@
 * {
     margin: 0;
     padding: 0;
-    border:0;
+    border: 0;
     box-sizing: border-box;
-    
 }
-/*cabecalho*/
+/* Cabeçalho e rodapé mantidos conforme original */
 .navbar{
     background-color: #3f8ebf;
     color: aliceblue;
@@ -19,19 +18,6 @@
 .navbar-brand img{
     width: 150px;
 }
-
-/*corpo*/
-body{
-    height: auto;
-}
-main{
-    width: 100%;
-    height: 100vh;
-    background-color: #3f8ebf;
-}
-
-
-/*footer*/
 
 footer {
     background-color:#DCE9EF;
@@ -70,15 +56,22 @@ footer {
     color: #66b3ff;
 }
 
-/*Fim do cabeçalho*/
-
-body{
-    background: #dceaf2;
+/* Layout */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/*Contento  do Main */
+.content-wrapper {
+    display: flex;
+    flex: 1;
+    background-color: #3f8ebf;
+}
+
+/* Corpo principal */
 .main-content {
-    grid-area: main;
+    flex: 1;
     padding: 2rem;
 }
 
@@ -155,6 +148,7 @@ body{
     background-color: #e74c3c;
     transform: scale(1.05);
 }
+
 /* Gráficos */
 .charts-container {
     display: grid;
@@ -221,7 +215,7 @@ body{
 
 /* Sidebar */
 .sidebar {
-    grid-area: sidebar;
+    width: 300px;
     background-color: #ecf0f1;
     padding: 2rem 1.5rem;
     border-left: 1px solid #ddd;
