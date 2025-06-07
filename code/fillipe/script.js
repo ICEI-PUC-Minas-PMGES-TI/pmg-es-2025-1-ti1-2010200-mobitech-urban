@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Configura o sistema de comentários
+    // Configura o sistema de comentários (atualizado para incluir edição)
     function setupCommentEvents() {
         // Alternar a exibição da caixa de comentários
         document.querySelectorAll('.comment-toggle-btn').forEach(btn => {
@@ -213,12 +213,21 @@ document.addEventListener("DOMContentLoaded", function () {
         addCommentToList(commentListElement, commentObj);
     }
 
-    // Adiciona comentário na lista do DOM
+    // Adiciona comentário na lista do DOM (atualizada para edição)
     function addCommentToList(commentListElement, commentObj) {
         const li = document.createElement('li');
+        li.dataset.commentId = commentObj.id;
         li.innerHTML = `
-            <span>${commentObj.text}</span>
-            <button class="delete-comment-btn" data-comment-id="${commentObj.id}">❌</button>
+            <span class="comment-text">${commentObj.text}</span>
+            <div class="comment-actions">
+                <button class="edit-comment-btn" data-comment-id="${commentObj.id}">✏️</button>
+                <button class="delete-comment-btn" data-comment-id="${commentObj.id}">❌</button>
+            </div>
+            <div class="edit-comment-container" style="display:none;">
+                <textarea class="edit-comment-input">${commentObj.text}</textarea>
+                <button class="save-edit-btn" data-comment-id="${commentObj.id}">Salvar</button>
+                <button class="cancel-edit-btn">Cancelar</button>
+            </div>
         `;
         
         // Configura o botão de exclusão
@@ -229,7 +238,66 @@ document.addEventListener("DOMContentLoaded", function () {
             deleteComment(postId, commentId, commentListElement);
         });
         
+        // Configura o botão de edição (novo)
+        const editBtn = li.querySelector('.edit-comment-btn');
+        editBtn.addEventListener('click', function() {
+            const commentItem = this.closest('li');
+            const editContainer = commentItem.querySelector('.edit-comment-container');
+            const commentText = commentItem.querySelector('.comment-text');
+            
+            // Mostra o editor e esconde o texto
+            commentText.style.display = 'none';
+            editContainer.style.display = 'block';
+        });
+        
+        // Configura o botão de cancelar edição (novo)
+        const cancelBtn = li.querySelector('.cancel-edit-btn');
+        cancelBtn.addEventListener('click', function() {
+            const commentItem = this.closest('li');
+            const editContainer = commentItem.querySelector('.edit-comment-container');
+            const commentText = commentItem.querySelector('.comment-text');
+            
+            // Esconde o editor e mostra o texto original
+            editContainer.style.display = 'none';
+            commentText.style.display = 'inline';
+        });
+        
+        // Configura o botão de salvar edição (novo)
+        const saveBtn = li.querySelector('.save-edit-btn');
+        saveBtn.addEventListener('click', function() {
+            const commentId = parseInt(this.getAttribute('data-comment-id'));
+            const postId = commentListElement.closest('.comment-section').getAttribute('data-id');
+            const commentItem = this.closest('li');
+            const editInput = commentItem.querySelector('.edit-comment-input');
+            const newText = editInput.value.trim();
+            
+            if (newText === '') {
+                alert('O comentário não pode estar vazio');
+                return;
+            }
+            
+            updateComment(postId, commentId, newText, commentListElement);
+        });
+        
         commentListElement.appendChild(li);
+    }
+
+    // Função para atualizar um comentário (nova)
+    function updateComment(postId, commentId, newText, commentListElement) {
+        let savedComments = JSON.parse(localStorage.getItem(`comments_${postId}`)) || [];
+        const commentIndex = savedComments.findIndex(c => c.id === commentId);
+        
+        if (commentIndex !== -1) {
+            // Atualiza o texto e o timestamp
+            savedComments[commentIndex].text = newText;
+            savedComments[commentIndex].timestamp = new Date().toISOString();
+            
+            // Atualiza o localStorage
+            localStorage.setItem(`comments_${postId}`, JSON.stringify(savedComments));
+            
+            // Recarrega os comentários
+            loadComments(postId, commentListElement);
+        }
     }
 
     // Exclui um comentário
