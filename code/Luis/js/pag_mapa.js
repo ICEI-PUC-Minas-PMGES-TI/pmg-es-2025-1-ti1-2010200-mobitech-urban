@@ -1,7 +1,7 @@
 import { cepService } from "../services/cep-service.js";
 import { findCoords } from "../services/openStreet-service.js";
 
-const map = L.map('mapa').setView([-19.924475, -43.991426], 18);
+const map = L.map('mapa').setView([-19.924475, -43.991426], 16);
 const layer = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 	maxZoom: 19,
 }).addTo(map);
@@ -28,7 +28,9 @@ let markers = {
 let trajeto = null;
 let pontoCount = 1;
 
-
+function handlePopupClick(e) {
+    e.stopPropagation();
+}
 function mostrarPopup(coordenadas) {
     const overlay = document.querySelector('#popupOverlay');
     overlay.style.display = 'flex';
@@ -49,9 +51,13 @@ function mostrarPopup(coordenadas) {
         };
     });
 }
+function mostrarInfo(){
+    
+}
 function ocultarPopup() {
-    const overlay = document.querySelector('#popupOverlay');
-    overlay.style.display = 'none';
+    document.querySelectorAll('.popup-overlay').forEach(overlay => {
+        overlay.style.display = 'none';
+    });
 }
 
 function proximoPonto(){
@@ -83,6 +89,11 @@ async function definirTrajeto(ev){
            marcarMapa('ponto2',segundoPonto);
            criarRota('ponto1','ponto2');
         } 
+        if (confirmacao==false){
+            document.querySelector('.popup').removeEventListener('click', handlePopupClick);
+            pontoCount = 1; 
+            markers.ponto1.setOpacity(0); 
+        }
     }
 
     
