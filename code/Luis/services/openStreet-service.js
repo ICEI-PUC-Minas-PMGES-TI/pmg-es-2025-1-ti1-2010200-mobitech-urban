@@ -1,4 +1,4 @@
-export class findCoords{
+export class openStreet{
 
     constructor(){
         this.urlBase =  "https://nominatim.openstreetmap.org";

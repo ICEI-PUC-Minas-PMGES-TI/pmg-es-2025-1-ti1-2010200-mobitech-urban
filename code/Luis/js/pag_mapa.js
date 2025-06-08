@@ -1,5 +1,5 @@
 import { cepService } from "../services/cep-service.js";
-import { findCoords } from "../services/openStreet-service.js";
+import { openStreet } from "../services/openStreet-service.js";
 
 const map = L.map('mapa').setView([-19.924475, -43.991426], 16);
 const layer = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -15,8 +15,9 @@ const carroInfo = document.querySelector("#infoCarro");
 const onibusInfo = document.querySelector("#infoOnibus");
 const andarInfo = document.querySelector("#infoAndar");
 const infoMap = document.querySelector(".mapa-infos");
+const btnOk = document.querySelector("#btnOk");
 const servieCep = new cepService();
-const coordsCep = new findCoords();
+const coordsCep = new openStreet();
 let markers = {
     ponto1: L.marker([-19.924475, -43.991426],{
         opacity: 0
@@ -52,10 +53,14 @@ function mostrarPopup(coordenadas) {
     });
 }
 function mostrarInfo(){
+      const show = document.querySelector('#infoOverlay');
+      show.style.display = 'flex'
+
     
+      
 }
 function ocultarPopup() {
-    document.querySelectorAll('.popup-overlay').forEach(overlay => {
+    document.querySelectorAll('.overlay').forEach(overlay => {
         overlay.style.display = 'none';
     });
 }
@@ -152,7 +157,7 @@ async function getInfoRota(){
 
 async function infoRota(){
     let infos = await getInfoRota();
-    console.log(infos)
+    
     let tempo = 0;
     let enderoco = null
     for (let index = 0; index < infos.length; index++) {
@@ -192,22 +197,21 @@ async function rastrearCep(cep){
     let cidade = cepInfo.cidade;
     let uf = cepInfo.uf;
 
-    console.log(cepInfo);
+    
     coordenadasCep(bairro,cidade,uf);
 }
 async function coordenadasCep(bairro,cidade,uf) {
     let coordInfos = await coordsCep.getCord(bairro,cidade,uf);
-    console.log(coordInfos);
+   
     let bairroCord = coordInfos[0];
-    console.log("lat: " + parseFloat(bairroCord.lat));
-    console.log("lon: " +parseFloat(bairroCord.lon));
+    
 
     marcarArea([parseFloat(bairroCord.lat),parseFloat(bairroCord.lon)])
 }
 
 function marcarArea(latlng){
     let latlon = latlng;
-    console.log(latlon);
+    
 
     L.circle([latlon[0], latlon[1]], {
         radius: 1000,
@@ -221,9 +225,17 @@ map.on('click', function(ev){
     definirTrajeto(ev);
    
 });
-
+window.addEventListener('load', function(){
+    mostrarInfo();
+})
 document.querySelector('.popup').addEventListener('click', function(e) {
     e.stopPropagation();
 });
-
+document.querySelector('.infoPopupOverlay').addEventListener('click', function(e) {
+    e.stopPropagation();
+});
+btnOk.addEventListener('click', function(){
+     document.querySelector('.infoPopupOverlay').removeEventListener('click', handlePopupClick);
+    ocultarPopup();
+})
 

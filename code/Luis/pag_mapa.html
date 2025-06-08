@@ -45,8 +45,24 @@
         <main class="content">
            <section class="area-mapa">
              <div id="mapa" class="mapa-container">
-               
-               <div id="popupOverlay" class="popup-overlay">
+               <div class="infoPopupOverlay overlay" id="infoOverlay">
+                    <div class="infoPopup" id="infoPopup">
+                        <h1>Bem Vindo à página do Mapa</h1>
+                        <p>Aqui é possivel visulizar as áreas possivelmentes afetadas e os trajetos desejados.</p>
+                        <h2>Como criar o trajeto</h2>
+                        <ol>
+                          <li><strong>Clique</strong> no mapa para marcar a partida</li>
+                          <li><strong>Confirme</strong> no pop-up</li>
+                          <li><strong>Clique</strong> novamente para marcar a <strong>chegada</strong></li>
+                        </ol>
+                        <p>Assim uma linha azul mostrará seu trajeto com a distância.</p>
+                        <p><i>Para recomeçar, clique em qualquer lugar</i>.</p>
+                        <div class="btnOK" id="okPopup">
+                            <button id="btnOk">Ok</button>
+                        </div>
+                    </div>
+               </div>
+               <div id="popupOverlay" class="popup-overlay overlay">
                  <div class="popup">
                    <p><strong>Pergunta: Deseja criar rota?</strong></p>
                    <p id="popupCoords">Localzação: </p>
