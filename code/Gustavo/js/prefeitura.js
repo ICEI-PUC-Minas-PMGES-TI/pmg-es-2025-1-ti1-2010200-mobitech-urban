@@ -1,53 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Gráfico de enchentes por mês
+    // Gráfico de enchentes por mês (barras)
     const floodsCtx = document.getElementById('floodsChart').getContext('2d');
     const floodsChart = new Chart(floodsCtx, {
         type: 'bar',
         data: {
             labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
             datasets: [{
-                label: 'Número de Enchentes',
+                label: 'Enchentes',
                 data: [3, 5, 7, 9, 12, 15, 18, 14, 10, 7, 4, 2],
-                backgroundColor: [
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)',
-                    'rgba(231, 76, 60, 0.7)'
-                ],
-                borderColor: [
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)',
-                    'rgba(231, 76, 60, 1)'
-                ],
+                backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                borderColor: 'rgba(231, 76, 60, 1)',
                 borderWidth: 1
             }]
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    position: 'top',
+                    display: false
                 },
                 title: {
                     display: true,
-                    text: 'Enchentes por Mês em 2025'
+                    text: 'Enchentes por Mês',
+                    font: {
+                        size: 16
+                    }
                 }
             },
             scales: {
@@ -68,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Gráfico de distribuição de problemas
+    // Gráfico de distribuição de problemas (rosquinha)
     const problemsCtx = document.getElementById('problemsChart').getContext('2d');
     const problemsChart = new Chart(problemsCtx, {
-        type: 'pie',
+        type: 'doughnut',
         data: {
             labels: ['Bueiros Entupidos', 'Lixo nas Ruas', 'Drenagem Insuficiente', 'Desmatamento', 'Outros'],
             datasets: [{
@@ -95,58 +73,62 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     position: 'right',
                 },
                 title: {
                     display: true,
-                    text: 'Distribuição de Problemas Reportados'
+                    text: 'Distribuição de Problemas',
+                    font: {
+                        size: 16
+                    }
                 }
-            }
+            },
+            cutout: '70%'
         }
     });
 
-    // Interatividade com os bairros
-    const neighborhoodButtons = document.querySelectorAll('.neighborhood');
-    neighborhoodButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove a classe active de todos os botões
-            neighborhoodButtons.forEach(btn => btn.classList.remove('active'));
-            // Adiciona a classe active apenas ao botão clicado
-            this.classList.add('active');
-            
-            // Aqui você pode adicionar lógica para atualizar os gráficos
-            // conforme o bairro selecionado
-            const neighborhood = this.getAttribute('data-neighborhood');
-            updateCharts(neighborhood);
-        });
-    });
+const neighborhoodSelect = document.getElementById('neighborhoodSelect');
 
-    function updateCharts(neighborhood) {
-        // Simulação de dados diferentes para cada bairro
-        const floodsData = {
-            'A': [2, 4, 6, 8, 10, 12, 15, 12, 8, 5, 3, 1],
-            'B': [1, 3, 5, 7, 9, 11, 14, 11, 7, 4, 2, 1],
-            'C': [4, 6, 8, 10, 13, 16, 19, 15, 11, 8, 5, 3],
-            'D': [3, 5, 7, 9, 11, 14, 17, 13, 9, 6, 3, 2],
-            'E': [5, 7, 9, 11, 14, 17, 20, 16, 12, 9, 6, 4]
-        };
+neighborhoodSelect.addEventListener('change', function() {
+    const selectedNeighborhood = this.value;
+    updateCharts(selectedNeighborhood);
+});
 
-        const problemsData = {
-            'A': [40, 30, 15, 10, 5],
-            'B': [50, 20, 10, 15, 5],
-            'C': [35, 35, 20, 5, 5],
-            'D': [45, 25, 10, 15, 5],
-            'E': [30, 40, 15, 10, 5]
-        };
+function updateCharts(neighborhood) {
+    const floodsData = {
+        'Centro': [2, 4, 6, 8, 10, 12, 15, 12, 8, 5, 3, 1],
+        'Lagoinha': [1, 3, 5, 7, 9, 11, 14, 11, 7, 4, 2, 1],
+        'Caiçara': [4, 6, 8, 10, 13, 16, 19, 15, 11, 8, 5, 3],
+        'Barreiro': [3, 5, 7, 9, 11, 14, 17, 13, 9, 6, 3, 2],
+        'Venda Nova': [5, 7, 9, 11, 14, 17, 20, 16, 12, 9, 6, 4],
+        'Santa Efigênia': [2, 4, 6, 8, 10, 12, 15, 12, 8, 5, 3, 1],
+        'São Cristóvão': [1, 3, 5, 7, 9, 11, 14, 11, 7, 4, 2, 1],
+        'Padre Eustáquio': [4, 6, 8, 10, 13, 16, 19, 15, 11, 8, 5, 3],
+        'Carlos Prates': [3, 5, 7, 9, 11, 14, 17, 13, 9, 6, 3, 2],
+        'Gutierrez': [5, 7, 9, 11, 14, 17, 20, 16, 12, 9, 6, 4]
+    };
 
-        // Atualiza o gráfico de enchentes
-        floodsChart.data.datasets[0].data = floodsData[neighborhood];
-        floodsChart.update();
+    const problemsData = {
+        'Centro': [40, 30, 15, 10, 5],
+        'Lagoinha': [50, 20, 10, 15, 5],
+        'Caiçara': [35, 35, 20, 5, 5],
+        'Barreiro': [45, 25, 10, 15, 5],
+        'Venda Nova': [30, 40, 15, 10, 5],
+        'Santa Efigênia': [40, 30, 15, 10, 5],
+        'São Cristóvão': [50, 20, 10, 15, 5],
+        'Padre Eustáquio': [35, 35, 20, 5, 5],
+        'Carlos Prates': [45, 25, 10, 15, 5],
+        'Gutierrez': [30, 40, 15, 10, 5]
+    };
 
-        // Atualiza o gráfico de problemas
-        problemsChart.data.datasets[0].data = problemsData[neighborhood];
-        problemsChart.update();
-    }
+    floodsChart.data.datasets[0].data = floodsData[neighborhood];
+    floodsChart.update();
+
+    problemsChart.data.datasets[0].data = problemsData[neighborhood];
+    problemsChart.update();
+}
+updateCharts(neighborhoodSelect.value);
 });
