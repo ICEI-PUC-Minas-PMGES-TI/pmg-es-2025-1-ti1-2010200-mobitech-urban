@@ -75,3 +75,17 @@ footer {
     text-align: center;
     font-size: 1.2rem;
 }
+
+.form-dado {
+    align-items: flex-start !important;
+    text-align: left !important;
+    width: 100%;
+}
+
+.form-dado label {
+    text-align: left !important;
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
