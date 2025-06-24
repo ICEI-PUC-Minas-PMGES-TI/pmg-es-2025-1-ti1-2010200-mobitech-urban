@@ -220,14 +220,31 @@ function marcarArea(latlng){
     }).addTo(map);
 }
 
+function localizacaoUsuario(){
+L.control.locate({
+    drawCircle: false,     
+    drawMarker: false,    
+    showPopup: false,     
+    setView: 'once',       
+    keepCurrentZoomLevel: true 
+}).addTo(map);
+    map.locate({
+        setView: true,
+        watch: false, 
+        maxZoom: 16
+    });
+}
+
 map.on('click', function(ev){
     removerMapaInfos();
     definirTrajeto(ev);
-   
 });
+
+
 window.addEventListener('load', function(){
     mostrarInfo();
-})
+    localizacaoUsuario();
+});
 document.querySelector('.popup').addEventListener('click', function(e) {
     e.stopPropagation();
 });
