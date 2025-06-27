@@ -43,12 +43,9 @@ header {
 }
 
 main.home-content {
-    height: 75vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background: none;
-    margin-top: -8px; /* Compensa espaçamento residual */
+    margin-top: 0;
+    display: block;
 }
 
 /*icone:*/
@@ -70,7 +67,216 @@ main.home-content {
 footer {
     background-color: #010A26;
     color: #cbcedd;
-    padding: 2rem;
+    padding: 0.05rem 0 0.05rem 0;
     text-align: center;
+    font-size: 1.05rem;
+}
+
+.footer-content > div {
+    margin-bottom: 0.1rem;
+}
+.footer-content > div:last-child {
+    margin-bottom: 0;
+}
+
+/* HERO SECTION */
+.home-hero {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    height: 50vh;
+    max-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #5a9bd6;
+    border-bottom: 4px solid #3b668c;
+    margin-bottom: 2rem;
+}
+.img-hero {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    display: block;
+}
+.home-hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30, 60, 100, 0.55); /* filtro escuro translúcido mais forte */
+    z-index: 2;
+}
+.hero-text {
+    position: relative;
+    z-index: 3;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 8px #123e77;
+    width: 100%;
+    padding: 1rem 0;
+}
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 0.7rem;
+}
+.hero-text h2 {
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+/* PROJETO SECTION */
+.projeto-section {
+    width: 100vw;
+    max-width: none;
+    margin: 0;
+    border-radius: 0 0 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.5rem;
+    background: #f4f8fc;
+    padding: 2.5rem 3vw;
+    box-shadow: 0 2px 16px #b3c6e0;
+    padding-bottom: 4.5rem;
+}
+.projeto-texto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 2;
+    text-align: left;
+    min-width: 300px;
+}
+.projeto-texto h2 {
+    color: #3b4a7e;
+    font-size: 2.6rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.projeto-texto p {
+    font-size: 1.1rem;
+    color: #222;
+    line-height: 1.6;
+}
+.projeto-img-legenda {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    min-width: 220px;
+}
+.img-projeto {
+    width: 100%;
+    max-width: 220px;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px #b3c6e0;
+}
+.projeto-legenda {
+    font-size: 1rem;
+    color: #444;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .home-hero {
+        height: 200px;
+    }
+    .hero-text h1 {
+        font-size: 1.5rem;
+    }
+    .hero-text h2 {
+        font-size: 1rem;
+    }
+    .projeto-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 2vw 2.5rem 2vw;
+        gap: 1.5rem;
+        width: 100vw;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .projeto-texto {
+        width: 100%;
+        max-width: 98vw;
+        min-width: 0;
+        text-align: center;
+    }
+    .projeto-texto h2 {
+        font-size: 1.5rem;
+    }
+    .projeto-texto p, .publico-alvo, .prevencao p {
+        font-size: 1rem;
+    }
+    .prevencao {
+        max-width: 98vw;
+        padding: 1rem 0.5rem;
+    }
+    .saiba-mais-container {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+    .hero-text h2 {
+        font-size: 1.1rem;
+    }
+    .projeto-section {
+        padding: 1rem 0.5rem 1.5rem 0.5rem;
+    }
+    .btn-saiba-mais {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+    }
+}
+
+.publico-alvo {
+    text-align: left;
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 2rem;
+    font-style: italic;
+    margin-left: 0;
+}
+
+.saiba-mais-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 0 0;
+}
+
+.btn-saiba-mais {
+    margin-bottom: 0;
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    background: #2466BC;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 2rem;
+    box-shadow: 0 2px 8px #b3c6e0;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.2s, transform 0.2s;
+}
+.btn-saiba-mais:hover {
+    background: #174a8c;
+    transform: scale(1.04);
+    color: #fff;
+}
+
+.prevencao h3 {
+    color: #3b4a7e;
     font-size: 1.2rem;
+    margin-bottom: 0.7rem;
 }
