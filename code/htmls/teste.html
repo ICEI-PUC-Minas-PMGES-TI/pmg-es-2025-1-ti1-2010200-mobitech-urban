@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Caminhos</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-item { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>Teste de Caminhos dos Arquivos</h1>
+    
+    <div class="test-item">
+        <h3>Teste de CSS:</h3>
+        <p>Verificando se os arquivos CSS carregam corretamente...</p>
+        <div id="css-test"></div>
+    </div>
+    
+    <div class="test-item">
+        <h3>Teste de JS:</h3>
+        <p>Verificando se os arquivos JS carregam corretamente...</p>
+        <div id="js-test"></div>
+    </div>
+    
+    <div class="test-item">
+        <h3>Teste de Imagens:</h3>
+        <p>Verificando se as imagens carregam corretamente...</p>
+        <div id="img-test"></div>
+    </div>
+
+    <script>
+        // Teste de carregamento de CSS
+        function testCSS() {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = '../assets/css/style.css';
+            link.onload = () => {
+                document.getElementById('css-test').innerHTML = '<span class="success">✅ CSS carregado com sucesso!</span>';
+            };
+            link.onerror = () => {
+                document.getElementById('css-test').innerHTML = '<span class="error">❌ Erro ao carregar CSS</span>';
+            };
+            document.head.appendChild(link);
+        }
+
+        // Teste de carregamento de JS
+        function testJS() {
+            const script = document.createElement('script');
+            script.src = '../assets/js/script.js';
+            script.onload = () => {
+                document.getElementById('js-test').innerHTML = '<span class="success">✅ JS carregado com sucesso!</span>';
+            };
+            script.onerror = () => {
+                document.getElementById('js-test').innerHTML = '<span class="error">❌ Erro ao carregar JS</span>';
+            };
+            document.head.appendChild(script);
+        }
+
+        // Teste de carregamento de imagem
+        function testImage() {
+            const img = new Image();
+            img.src = '../assets/img/movewave-logo.png';
+            img.onload = () => {
+                document.getElementById('img-test').innerHTML = '<span class="success">✅ Imagem carregada com sucesso!</span>';
+            };
+            img.onerror = () => {
+                document.getElementById('img-test').innerHTML = '<span class="error">❌ Erro ao carregar imagem</span>';
+            };
+        }
+
+        // Executar testes
+        testCSS();
+        testJS();
+        testImage();
+    </script>
+</body>
+</html> 

@@ -18,9 +18,9 @@ document.addEventListener("DOMContentLoaded", function () {
         const savedPosts = localStorage.getItem('userPosts');
         if (savedPosts) {
             posts = JSON.parse(savedPosts);
+            renderPosts();
         } else {
-            // Carrega posts iniciais do JSON
-            fetch('./posts.json')
+            fetch('../assets/js/posts.json')
                 .then(response => {
                     if (!response.ok) throw new Error(`Erro HTTP! Status: ${response.status}`);
                     return response.json();
@@ -35,10 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .catch(error => {
                     console.error('Erro ao carregar posts:', error);
-                    postsContainer.innerHTML = `<p class="error">Erro ao carregar postagens. Recarregue a página.</p>`;
+                    postsContainer.innerHTML = `<p class="error">Erro ao carregar postagens. Tente recarregar a página ou verifique se o servidor está rodando.<br><small>${error.message}</small></p>`;
                 });
         }
-        renderPosts();
     }
 
     // Renderiza os posts na tela

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="cad_usuario.css">
+    <link rel="stylesheet" href="../assets/css/cad_usuario.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <title>Cadastro do Usuário</title>
 </head>
@@ -20,16 +21,16 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="home.html">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Mobitech Connect</a>
+                        <a class="nav-link active" aria-current="page" href="comentarios.html">Mobitech Connect</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Mapa</a>
+                        <a class="nav-link active" aria-current="page" href="pag_mapa.html">Mapa</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Informações</a>
+                        <a class="nav-link active" aria-current="page" href="informações.html">Informações</a>
                       </li>
                   
                     </ul>
@@ -46,49 +47,26 @@
                             <div class="cad-textos">
                                 <p>Preencha o formulário ao lado com os dados necessarios para poder acessar a conta como usuário.</p>
                             </div>
-                            <p id="info-botao">
-                                Não é usuário? Clique no botão abaixo para prosseguir pro login para prefeitura.
-                             </p>
-                             <div class="cad-bottom">
-                                <button class="btn-voltar">VOLTAR</button>
-                            </div>
                         </div>
-                       
                     </div>
                 </section>
                 <section class="cadastro" id="cadastro-area">
                     <div class="form-container form-cad">
-                        <form class="form-prefeitura form-cad">
-                            <div class="form-dado form-cad ">
-                                <label for="nome_usuario">NOME</label>
-                                <input type="text" id="nome_usuario" required>
-                            </div>
+                        <form class="form-prefeitura form-cad" id="loginForm">
+                          
                             <div class="form-dado form-cad">
                                 <label for="email">E-MAIL</label>
                                 <input type="email" id="email" required>
                             </div>
-                            <div class="form-dado form-cad">
-                            <label for="telefone">TELEFONE</label>
-                            <input type="tel" id="telefone" required>
-                            </div>
-                            <div class="form-dado form-cad">
-                                <label for="cep">CEP</label>
-                                <input type="cep" id="cep">
-                            </div>
-                             <div class="form-dado form-cad">
-                                <label for="bairro">BAIRRO</label>
-                                <input type="bairro" id="bairro">
-                            </div>
+                          
                             <div class="form-dado form-cad">
                                 <label for="senha">SENHA</label>
                                 <input type="password" id="senha" required>
                             </div>
-                            <div class="form-dado form-cad">
-                                <label for="senha-confirmar">CONFIRMAÇÃO DE SENHA</label>
-                                <input type="password" id="senha-confirmar" required>
-                            </div>
+                            
                             <div class="cad-bottom">
-                                <button type="submit" id="btn-cadastro">CADASTRAR</button>
+                                <button type="submit" id="btn-login">ENTRAR</button>
+                                <button type="button" id="btn-cadastro" onclick="window.location.href='cad_usuario.html'">CADASTRAR</button>
                             </div>
                         </form>
                     </div>
@@ -115,8 +93,7 @@
             </div>
         </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
-
-    <script src="../Larissa/cad_usuario.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous"></script>
+    <script src="../assets/js/login.js"></script>
 </body>
 </html>

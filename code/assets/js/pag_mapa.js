@@ -1,5 +1,5 @@
-import { cepService } from "../services/cep-service.js";
-import { openStreet } from "../services/openStreet-service.js";
+import { cepService } from "./cep-service.js";
+import { openStreet } from "./openStreet-service.js";
 
 const map = L.map('mapa').setView([-19.924475, -43.991426], 16);
 const layer = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
