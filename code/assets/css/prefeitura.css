@@ -6,7 +6,7 @@
 }
 /*Cabeçalho Padrão*/
 .navbar{
-    background-color: #3f8ebf;
+    background-color: #3471A6;
     color: aliceblue;
 }
 
@@ -24,7 +24,7 @@ footer {
     color: #363F70;
     padding: 2rem;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .footer-content {
@@ -46,7 +46,7 @@ footer {
 }
 
 .social-media a {
-    color: white;
+    color: #363F70;
     margin: 0 0.5rem;
     font-size: 1.2rem;
     transition: color 0.3s;
@@ -71,6 +71,7 @@ footer {
 }
 
 /* Main Content */
+
 .main-content {
     flex: 1;
     padding: 20px;
@@ -86,13 +87,13 @@ footer {
 
 .page-title {
     font-size: 2rem;
-    color: #2c3e50;
+    color: #f5f7fa;
     margin-bottom: 5px;
 }
 
 .year {
     font-size: 1.2rem;
-    color: #7f8c8d;
+    color: #f5f7fa;
 }
 
 /* Metrics */
