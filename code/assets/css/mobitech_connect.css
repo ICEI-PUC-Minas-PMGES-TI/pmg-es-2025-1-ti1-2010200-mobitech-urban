@@ -619,3 +619,48 @@ footer {
 .like-btn:hover {
   color: #c0392b;
 }
+
+#imagePreview img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+/* Estilos para os tipos de problema */
+.problem-types {
+    margin: 10px 0;
+    text-align: left;
+    width: 100%;
+}
+
+.problem-types strong {
+    color: #3f8ebf;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.problem-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.problem-tag {
+    background-color: #3f8ebf;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: inline-block;
+    margin: 2px;
+    white-space: nowrap;
+}
+
+.problem-tag:hover {
+    background-color: #2e6f99;
+    transition: background-color 0.3s ease;
+}

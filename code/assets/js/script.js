@@ -71,6 +71,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     ${post.location ? `<span class="post-location">📍 ${post.location}</span>` : ''}
                 </div>
                 <p class="post-content">${post.content}</p>
+                ${post.problemTypes ? `
+                    <div class="problem-types">
+                        <strong>Tipos de Problema:</strong>
+                        <div class="problem-tags">
+                            ${post.problemTypes.map(type => `<span class="problem-tag">${type}</span>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
                 <p class="post-author">- ${post.author || 'Usuário'}</p>
                 <div class="reaction-buttons">
                     <button class="like-btn ${localStorage.getItem(`like_${post.id}`) ? 'liked' : ''}" 
@@ -369,24 +377,66 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Submeter novo post
-    submitPostBtn.addEventListener('click', function() {
+    postForm.addEventListener('submit', function(e) {
+        e.preventDefault();
         const title = document.getElementById('postTitle').value.trim();
         const content = document.getElementById('postContent').value.trim();
+        
+        // Capturar tipos de problema selecionados
+        const selectedProblemTypes = [];
+        const problemTypeCheckboxes = document.querySelectorAll('input[type="checkbox"][id^="problemType"]');
+        
+        problemTypeCheckboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                let problemType = checkbox.value;
+                
+                // Tratar casos especiais
+                if (problemType === 'Outros') {
+                    const otherInput = document.getElementById('otherProblemInput');
+                    if (otherInput && otherInput.value.trim()) {
+                        problemType = otherInput.value.trim();
+                    }
+                } else if (problemType === 'Enchente') {
+                    const floodAddress = document.getElementById('floodAddressInput');
+                    if (floodAddress && floodAddress.value.trim()) {
+                        problemType = `Enchente - ${floodAddress.value.trim()}`;
+                    }
+                }
+                
+                selectedProblemTypes.push(problemType);
+            }
+        });
+        
+        // Recupera o nome do usuário logado
+        let authorName = 'Usuário';
+        const userEmail = localStorage.getItem('userEmail');
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        if (userEmail) {
+            const user = usuarios.find(u => u.email === userEmail);
+            if (user && user.nome) authorName = user.nome;
+        }
         
         if (!title || !content) {
             alert('Por favor, preencha pelo menos o título e o conteúdo');
             return;
         }
-
+        
+        if (selectedProblemTypes.length === 0) {
+            alert('Por favor, selecione pelo menos um tipo de problema');
+            return;
+        }
+        
         const newPost = {
             id: Date.now(),
             title,
             content,
             date: new Date().toISOString(),
             likes: 0,
-            userCreated: true
+            userCreated: true,
+            author: authorName,
+            problemTypes: selectedProblemTypes
         };
-
+        
         // Adicionar imagem se existir
         if (postImage.files[0]) {
             const reader = new FileReader();
@@ -408,8 +458,44 @@ document.addEventListener("DOMContentLoaded", function () {
 
         posts.unshift(post); // Adiciona no início do array
         savePosts();
+        
+        // Salvar estatísticas dos problemas para a prefeitura
+        saveProblemStatistics(post.problemTypes);
+        
         renderPosts();
         postModal.hide();
+    }
+
+    // Função para salvar estatísticas dos problemas
+    function saveProblemStatistics(problemTypes) {
+        // Usar o sistema de estatísticas global se disponível
+        if (typeof window.problemStatistics !== 'undefined') {
+            window.problemStatistics.addProblems(problemTypes, post.author || 'Usuário', post.location || null);
+        } else {
+            // Fallback para o sistema antigo
+            let problemStats = JSON.parse(localStorage.getItem('problemStatistics')) || {};
+            
+            problemTypes.forEach(problemType => {
+                if (problemStats[problemType]) {
+                    problemStats[problemType]++;
+                } else {
+                    problemStats[problemType] = 1;
+                }
+            });
+            
+            localStorage.setItem('problemStatistics', JSON.stringify(problemStats));
+            
+            let problemHistory = JSON.parse(localStorage.getItem('problemHistory')) || [];
+            const problemRecord = {
+                id: Date.now(),
+                date: new Date().toISOString(),
+                problemTypes: problemTypes,
+                author: post.author || 'Usuário',
+                location: post.location || null
+            };
+            problemHistory.push(problemRecord);
+            localStorage.setItem('problemHistory', JSON.stringify(problemHistory));
+        }
     }
 
     // Função de busca
