@@ -65,18 +65,17 @@ main.home-content {
 
 
 footer {
-    background-color: #010A26;
-    color: #cbcedd;
-    padding: 0.05rem 0 0.05rem 0;
+    background-color: #DCE9EF;
+    color: #363F70;
+    padding: 2px 0;
     text-align: center;
     font-size: 1.05rem;
 }
-
 .footer-content > div {
-    margin-bottom: 0.1rem;
-}
-.footer-content > div:last-child {
     margin-bottom: 0;
+}
+.footer-content .social-media a {
+    font-size: 1rem;
 }
 
 /* HERO SECTION */
