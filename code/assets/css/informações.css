@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -178,7 +177,97 @@ footer {
     color: #212529;
 }
 
+/* --- Comentários estilo rede social (Instagram/Twitter) --- */
+.comment-list {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
 
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.comment-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #dce9ef;
+  margin-top: 2px;
+}
+
+.comment-content {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.comment-user {
+  font-weight: bold;
+  color: #222;
+  margin-right: 6px;
+  font-size: 1rem;
+}
+
+.comment-text {
+  color: #222;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.comment-time {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+.comment-like {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  transition: color 0.2s;
+}
+
+.comment-like:hover {
+  color: #c0392b;
+}
+
+.comment-reply {
+  background: none;
+  border: none;
+  color: #2466BC;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0;
+}
+
+.view-all-comments {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-left: 48px;
+  margin-top: 2px;
+  text-align: left;
+}
 
 /* Responsivo */
 @media (max-width: 768px) {
@@ -195,4 +284,8 @@ footer {
     .page-title {
         font-size: 1.5rem;
     }
+}
+
+.navbar .d-flex .nav-link i {
+    font-size: 2.0rem !important;
 }

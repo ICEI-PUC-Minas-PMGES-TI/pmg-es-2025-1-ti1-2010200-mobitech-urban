@@ -21,7 +21,7 @@
     width: 150px;
 }
 .navbar .d-flex .nav-link i {
-    font-size: 2.0rem;
+    font-size: 2.0rem !important;
 }
 .navbar .d-flex .nav-link {
     display: flex;
@@ -77,4 +77,56 @@ footer {
 
 .social-media a:hover {
     color: #66b3ff;
+}
+
+/* Pop-up de Configurações do Usuário */
+.user-popup {
+  position: absolute;
+  top: 48px;
+  right: 24px;
+  background: #fff;
+  color: #222;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px #0002;
+  z-index: 9999;
+  min-width: 220px;
+  padding: 1rem;
+  display: none;
+}
+.user-popup-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  align-items: flex-start;
+}
+.user-popup-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2466BC;
+  margin-bottom: 0.5rem;
+}
+.user-popup .user-email {
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 0.5rem;
+  word-break: break-all;
+}
+.user-popup button {
+  background: #3471A6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.2s;
+}
+.user-popup button.user-logout {
+  background: #e74c3c;
+}
+.user-popup button:hover {
+  background: #174a8c;
+}
+.user-popup button.user-logout:hover {
+  background: #c0392b;
 }

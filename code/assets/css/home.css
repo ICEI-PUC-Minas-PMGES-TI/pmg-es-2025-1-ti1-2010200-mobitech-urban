@@ -48,7 +48,7 @@ html, body {
 }
 
 .navbar .d-flex .nav-link i {
-    font-size: 1.5rem;
+    font-size: 2.0rem !important;
 }
 
 /* Conteúdo Principal */

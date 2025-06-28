@@ -38,10 +38,21 @@
                         <a href="pag_login.html" class="nav-link text-light">
                             <i class="fas fa-user"></i>
                         </a>
+                        <a href="#" class="nav-link text-light" id="settings-icon-link" style="display:none;">
+                            <i class="fas fa-cog"></i>
+                        </a>
                     </div>
                 </div>
             </nav>
         </header>
+        <div id="user-popup" class="user-popup" style="display:none;">
+          <div class="user-popup-content">
+            <div class="user-popup-title">Configurações do Usuário</div>
+            <div class="user-email">usuário@exemplo.com</div>
+            <button class="user-change-password">Alterar Senha</button>
+            <button class="user-logout">Sair</button>
+          </div>
+        </div>
         <main class="content">
             <div class="main-content-container">
                 <div class="feed-aside">

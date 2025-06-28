@@ -118,8 +118,19 @@
                     alert('Por favor, preencha todos os campos!');
                     return;
                 }
-                
-                // Simula login bem-sucedido (você pode integrar com o login.js depois)
+                // Busca usuário no localStorage
+                let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+                let user = usuarios.find(u => u.email === email);
+                if (!user) {
+                    alert('Usuário não encontrado!');
+                    return;
+                }
+                if (user.senha !== senha) {
+                    alert('Senha incorreta!');
+                    return;
+                }
+                localStorage.setItem('userLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
                 alert('Login realizado com sucesso!');
                 window.location.href = 'home.html';
             });

@@ -1,13 +1,8 @@
-
-
 /*corpo*/
 body{
      height: auto;
-     background-image: 
-     radial-gradient( #010A26 30%, #011640 100%),
-     linear-gradient(to bottom,#3586D2, #3b668c 60%);
-     background-repeat: no-repeat;
-     background-size: cover;
+     background: #3471A6 !important;
+     background-image: none !important;
 }
 .navbar{
     background: none;

@@ -100,14 +100,17 @@ document.addEventListener("DOMContentLoaded", function () {
         // Likes
         document.querySelectorAll('.like-btn').forEach(button => {
             button.addEventListener('click', function() {
+                // Permitir like só para usuário logado
+                const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+                if (!isLoggedIn) {
+                    alert('Você precisa estar logado para curtir posts!');
+                    return;
+                }
                 const postId = this.getAttribute('data-id');
                 const post = posts.find(p => p.id == postId);
-                
                 if (!post) return;
-
                 const isLiked = localStorage.getItem(`like_${postId}`);
                 const likeCountElement = this.querySelector('.like-count');
-
                 if (isLiked) {
                     post.likes = Math.max(0, post.likes - 1);
                     localStorage.removeItem(`like_${postId}`);
@@ -117,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     localStorage.setItem(`like_${postId}`, 'true');
                     this.classList.add('liked');
                 }
-
                 likeCountElement.textContent = post.likes;
                 savePosts();
             });
@@ -153,8 +155,13 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll('.comment-toggle-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const commentBox = this.nextElementSibling;
+                // Checa login
+                const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+                if (!isLoggedIn) {
+                    alert('Você precisa estar logado para comentar!');
+                    return;
+                }
                 commentBox.style.display = commentBox.style.display === 'none' ? 'block' : 'none';
-                
                 // Carrega comentários quando aberto
                 if (commentBox.style.display === 'block') {
                     const postId = this.closest('.comment-section').getAttribute('data-id');
@@ -166,17 +173,20 @@ document.addEventListener("DOMContentLoaded", function () {
         // Envio de comentários
         document.querySelectorAll('.submit-comment-btn').forEach(btn => {
             btn.addEventListener('click', function() {
+                // Checa login
+                const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+                if (!isLoggedIn) {
+                    alert('Você precisa estar logado para comentar!');
+                    return;
+                }
                 const commentSection = this.closest('.comment-section');
                 const postId = commentSection.getAttribute('data-id');
                 const commentInput = commentSection.querySelector('.comment-input');
                 const commentList = commentSection.querySelector('.comment-list');
                 const commentText = commentInput.value.trim();
-                
                 if (commentText === '') return;
-
                 // Adiciona o novo comentário
                 addComment(postId, commentText, commentList);
-                
                 // Limpa o campo de input
                 commentInput.value = '';
             });
@@ -195,90 +205,75 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Adiciona um novo comentário
     function addComment(postId, commentText, commentListElement) {
+        // Recupera o nome do usuário logado
+        let userName = 'Usuário';
+        const userEmail = localStorage.getItem('userEmail');
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        if (userEmail) {
+            const user = usuarios.find(u => u.email === userEmail);
+            if (user && user.nome) userName = user.nome;
+        }
         const commentObj = {
             id: Date.now(),
             text: commentText,
-            timestamp: new Date().toISOString()
+            timestamp: new Date().toISOString(),
+            user: userName
         };
-        
         // Carrega comentários existentes
         const savedComments = JSON.parse(localStorage.getItem(`comments_${postId}`)) || [];
         savedComments.push(commentObj);
-        
         // Salva no localStorage
         localStorage.setItem(`comments_${postId}`, JSON.stringify(savedComments));
-        
         // Adiciona ao DOM
         addCommentToList(commentListElement, commentObj);
     }
 
-    // Adiciona comentário na lista do DOM (atualizada para edição)
+    // Adiciona comentário na lista do DOM (layout tradicional, sem ponto, sem coração)
     function addCommentToList(commentListElement, commentObj) {
-        const li = document.createElement('li');
-        li.dataset.commentId = commentObj.id;
-        li.innerHTML = `
-            <span class="comment-text">${commentObj.text}</span>
+        function timeAgo(dateString) {
+            const now = new Date();
+            const commentDate = new Date(dateString);
+            const diffMs = now - commentDate;
+            const diffMin = Math.floor(diffMs / 60000);
+            if (diffMin < 1) return 'agora';
+            if (diffMin < 60) return `${diffMin}m`;
+            const diffH = Math.floor(diffMin / 60);
+            if (diffH < 24) return `${diffH}h`;
+            const diffD = Math.floor(diffH / 24);
+            return `${diffD}d`;
+        }
+        const userName = commentObj.user || 'Usuário';
+        const timeString = timeAgo(commentObj.timestamp);
+        // Cria o elemento do comentário (sem ponto, sem coração)
+        const div = document.createElement('div');
+        div.className = 'comment-list-item';
+        div.innerHTML = `
+            <div class="comment-header"><strong>${userName}</strong> <span class="comment-time">${timeString}</span></div>
+            <div class="comment-body">${commentObj.text}</div>
             <div class="comment-actions">
                 <button class="edit-comment-btn" data-comment-id="${commentObj.id}">✏️</button>
                 <button class="delete-comment-btn" data-comment-id="${commentObj.id}">❌</button>
             </div>
-            <div class="edit-comment-container" style="display:none;">
-                <textarea class="edit-comment-input">${commentObj.text}</textarea>
-                <button class="save-edit-btn" data-comment-id="${commentObj.id}">Salvar</button>
-                <button class="cancel-edit-btn">Cancelar</button>
-            </div>
         `;
-        
         // Configura o botão de exclusão
-        const deleteBtn = li.querySelector('.delete-comment-btn');
+        const deleteBtn = div.querySelector('.delete-comment-btn');
         deleteBtn.addEventListener('click', function() {
             const commentId = parseInt(this.getAttribute('data-comment-id'));
             const postId = commentListElement.closest('.comment-section').getAttribute('data-id');
             deleteComment(postId, commentId, commentListElement);
         });
-        
-        // Configura o botão de edição (novo)
-        const editBtn = li.querySelector('.edit-comment-btn');
+        // Configura o botão de edição
+        const editBtn = div.querySelector('.edit-comment-btn');
         editBtn.addEventListener('click', function() {
-            const commentItem = this.closest('li');
-            const editContainer = commentItem.querySelector('.edit-comment-container');
-            const commentText = commentItem.querySelector('.comment-text');
-            
-            // Mostra o editor e esconde o texto
-            commentText.style.display = 'none';
-            editContainer.style.display = 'block';
-        });
-        
-        // Configura o botão de cancelar edição (novo)
-        const cancelBtn = li.querySelector('.cancel-edit-btn');
-        cancelBtn.addEventListener('click', function() {
-            const commentItem = this.closest('li');
-            const editContainer = commentItem.querySelector('.edit-comment-container');
-            const commentText = commentItem.querySelector('.comment-text');
-            
-            // Esconde o editor e mostra o texto original
-            editContainer.style.display = 'none';
-            commentText.style.display = 'inline';
-        });
-        
-        // Configura o botão de salvar edição (novo)
-        const saveBtn = li.querySelector('.save-edit-btn');
-        saveBtn.addEventListener('click', function() {
             const commentId = parseInt(this.getAttribute('data-comment-id'));
             const postId = commentListElement.closest('.comment-section').getAttribute('data-id');
-            const commentItem = this.closest('li');
-            const editInput = commentItem.querySelector('.edit-comment-input');
-            const newText = editInput.value.trim();
-            
-            if (newText === '') {
-                alert('O comentário não pode estar vazio');
-                return;
+            const comment = JSON.parse(localStorage.getItem(`comments_${postId}`)).find(c => c.id === commentId);
+            const newText = prompt('Editar comentário:', comment.text);
+            if (newText !== null && newText.trim() !== '') {
+                updateComment(postId, commentId, newText, commentListElement);
             }
-            
-            updateComment(postId, commentId, newText, commentListElement);
         });
-        
-        commentListElement.appendChild(li);
+        commentListElement.appendChild(div);
     }
 
     // Função para atualizar um comentário (nova)
@@ -318,6 +313,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Evento para abrir o modal de criação de post
     createPostBtn.addEventListener('click', () => {
+        // Permitir criar post só para usuário logado
+        const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+        if (!isLoggedIn) {
+            alert('Você precisa estar logado para criar um post!');
+            return;
+        }
         postForm.reset();
         imagePreview.innerHTML = '';
         locationInfo.classList.add('d-none');
@@ -430,4 +431,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Inicializa a aplicação
     loadPosts();
+
+    const settingsIcon = document.getElementById('settings-icon-link');
+    const userPopup = document.getElementById('user-popup');
+
+    // Exibe o ícone de configurações só se estiver logado
+    if (settingsIcon) {
+        if (localStorage.getItem('userLoggedIn') === 'true') {
+            settingsIcon.style.display = 'flex';
+        } else {
+            settingsIcon.style.display = 'none';
+        }
+    }
+
+    // Mostra o pop-up ao clicar no ícone de configurações
+    if (settingsIcon && userPopup) {
+        settingsIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = localStorage.getItem('userEmail') || 'usuário@exemplo.com';
+            userPopup.querySelector('.user-email').textContent = email;
+            userPopup.style.display = userPopup.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Fecha popup ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!userPopup.contains(e.target) && !settingsIcon.contains(e.target)) {
+                userPopup.style.display = 'none';
+            }
+        });
+
+        // Botão de logout
+        userPopup.querySelector('.user-logout').addEventListener('click', function() {
+            localStorage.removeItem('userLoggedIn');
+            localStorage.removeItem('userEmail');
+            window.location.href = 'pag_login.html';
+        });
+
+        // Botão de alterar senha
+        userPopup.querySelector('.user-change-password').addEventListener('click', function() {
+            window.location.href = 'alterar_senha.html';
+        });
+    }
 });

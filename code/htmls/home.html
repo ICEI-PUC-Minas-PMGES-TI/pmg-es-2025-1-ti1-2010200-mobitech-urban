@@ -35,8 +35,11 @@
                         </ul>
                         <!-- Ícone de login no canto direito -->
                         <div class="d-flex">
-                            <a href="pag_login.html" class="nav-link text-light">
+                            <a href="pag_login.html" class="nav-link text-light" id="user-icon-link">
                                 <i class="fas fa-user"></i>
+                            </a>
+                            <a href="#" class="nav-link text-light" id="settings-icon-link" style="display:none;">
+                                <i class="fas fa-cog"></i>
                             </a>
                         </div>
                     </div>
@@ -89,7 +92,17 @@
         </footer>
     </div>
 
+    <div id="user-popup" class="user-popup" style="display:none;">
+      <div class="user-popup-content">
+        <div class="user-popup-title">Configurações do Usuário</div>
+        <div class="user-email">usuário@exemplo.com</div>
+        <button class="user-change-password">Alterar Senha</button>
+        <button class="user-logout">Sair</button>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous"></script>
+    <script src="../assets/js/script.js"></script>
 </body>
 </html>
 
