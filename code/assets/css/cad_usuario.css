@@ -149,11 +149,11 @@ main.content{
 /*footer*/
 
 footer {
-    background-color:#010A26;
-    color: #cbcedd;
+    background-color:#DCE9EF;
+    color: #363F70;
     padding: 2rem;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 #cep {
@@ -179,4 +179,4 @@ footer {
     font-size: x-large;
     text-align: justify;
     
-}
+}}

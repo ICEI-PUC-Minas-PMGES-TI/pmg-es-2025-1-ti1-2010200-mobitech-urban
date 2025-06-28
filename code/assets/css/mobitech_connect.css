@@ -15,7 +15,7 @@ html, body {
 
 /* estilos para o cabeçalho */
 .navbar {
-    background-color: #3f8ebf;
+    background-color: #3471A6;
     color: aliceblue;
 }
 
@@ -50,7 +50,7 @@ body {
 main {
     flex: 1; 
     width: 100%;
-    background-color: #3f8ebf;
+    background-color: #3471A6;
     padding: 20px;
 }
 
@@ -110,7 +110,7 @@ footer {
     color: #363F70;
     padding: 2rem;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: auto; 
 }
 
@@ -133,7 +133,7 @@ footer {
 }
 
 .social-media a {
-    color: white;
+    color: #363F70;
     margin: 0 0.5rem;
     font-size: 1.2rem;
     transition: color 0.3s;
@@ -147,7 +147,7 @@ footer {
 .feed-title {
     font-size: 2.5rem; 
     font-weight: bold; 
-    color: #2a3d66; 
+    color: white; 
     text-align: center; 
     margin-bottom: 20px; 
     text-transform: uppercase; 
@@ -386,7 +386,7 @@ footer {
     padding: 10px 25px;
     font-size: 1.1rem;
     font-weight: bold;
-    background-color: #3f8ebf;
+    background-color: #3471A6;
     border: none;
     border-radius: 8px;
     color: white;
