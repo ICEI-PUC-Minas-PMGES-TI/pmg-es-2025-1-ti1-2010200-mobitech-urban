@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnVoltar = document.getElementById('btn-voltar');
     if (btnVoltar) {
         btnVoltar.addEventListener('click', function() {
-            window.location.href = '#'; 
+            window.location.href = 'cad_usuario.html'; 
         });
     }
 });

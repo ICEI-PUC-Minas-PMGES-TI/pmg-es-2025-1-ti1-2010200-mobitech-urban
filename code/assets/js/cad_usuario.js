@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var perfis = JSON.parse(localStorage.getItem('usuarios')) || [];
 
+    // Configuração do botão voltar
+    const btnVoltar = document.getElementById('btn-voltar');
+    if (btnVoltar) {
+        btnVoltar.addEventListener('click', function() {
+            window.location.href = 'pag_login.html'; 
+        });
+    }
+
     // Máscara para telefone
     telefone.addEventListener("input", function (e) {
         let value = telefone.value.replace(/\D/g, "").slice(0, 11);
