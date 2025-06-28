@@ -13,21 +13,8 @@ html, body {
     flex-direction: column;
 }
 
-/* estilos para o cabeçalho */
-.navbar {
-    background-color: #3f8ebf;
-    color: aliceblue;
-}
 
-.navbar-nav {
-    font-size: 1.3rem;
-    gap: 36px;
-    width: auto;
-}
 
-.navbar-brand img {
-    width: 150px;
-}
 
 /* novo estilo para o icone de perfil com emoji */
 .navbar-profile {
@@ -36,24 +23,34 @@ html, body {
     top: 15px;
 }
 
-.navbar-profile .profile-icon {
-    font-size: 2rem;
-}
 
 
 body {
     display: flex;
     flex-direction: column; 
     height: 100%; 
+    background-image: 
+    radial-gradient(rgba(63, 142, 191, 0.24) 30%, rgba(15, 14, 14, 0.315) 100%),
+    linear-gradient(to bottom,#3586D2, #3b668c 60%);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 main {
     flex: 1; 
     width: 100%;
-    background-color: #3f8ebf;
+    background-image: 
+    radial-gradient(rgba(63, 142, 191, 0.24) 30%, rgba(15, 14, 14, 0.315) 100%),
+    linear-gradient(to bottom,#3586D2, #3b668c 60%);
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 20px;
 }
+.main-content-container{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
 
+}
 /* Estilos para as postagens */
 .posts-container {
     margin: 20px auto; 
@@ -62,10 +59,11 @@ main {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    
 }
 
 .post {
-    background-color: #f4f4f9;
+    background-color: #DCE9EF;
     border: 1px solid #ddd;
     padding: 15px;
     margin-bottom: 20px;
@@ -317,10 +315,9 @@ footer {
 /* Container da busca com caixa branca */
 /* Container da busca refinado */
 .search-container {
-    position: absolute;
-    right: 40px;
-    top: 280px;
+    margin: 4%;
     display: flex;
+    width: auto;
     gap: 0;
     background-color: white;
     border-radius: 30px;
@@ -331,9 +328,10 @@ footer {
 
 /* Campo de input refinado */
 #search-input {
+   width: 100%;
     padding: 12px 20px;
     border: none;
-    width: 220px;
+ 
     font-size: 0.95rem;
     outline: none;
     background: transparent;
@@ -366,19 +364,48 @@ footer {
 
 
 /* Estilos para o cabeçalho do feed */
-.feed-header {
+.feed-aside{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    align-items: start;
+    
+    grid-column: 1/2;
+
+}
+.feed-content{
+       grid-column: 2/5;
+        border: #3586D2 solid 2px;
+        border-bottom: none;
+        border-top: none;
+}
+.search-sidebar{
+       grid-column: 5/6;
+       display: flex;
+       align-items: start;
+       justify-content: center;
+       
+}
+.feed-header {
+   display: flex;
+   flex-direction: column;
+    height: auto;
+    height: 20vh;
     margin-bottom: 20px;
-    position: relative; /* Para posicionamento absoluto do botão */
+     /* Para posicionamento absoluto do botão */
 }
 
 /* Estilo do título (centralizado) */
 .feed-title {
     text-align: center;
+    color: #DCE9EF;
     flex-grow: 1; /* Ocupa todo o espaço disponível */
-    margin: 0 100px; /* Dá espaço para o botão */
+    display: flex;
+    align-items: center;
+    border: #3586D2 solid 2px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    
 }
 
 /* Estilo do botão Criar Post (à esquerda e maior) */
@@ -386,14 +413,16 @@ footer {
     padding: 10px 25px;
     font-size: 1.1rem;
     font-weight: bold;
+    width: auto;
+    align-self:center;
     background-color: #3f8ebf;
     border: none;
     border-radius: 8px;
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
-    position: absolute; /* Posicionamento absoluto */
-    left: 20px; /* Distância da esquerda */
+
+ 
     white-space: nowrap; /* Evita quebra de linha */
 }
 
@@ -404,4 +433,50 @@ footer {
 
 #createPostBtn:active {
     transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  /* Grid vira coluna única */
+  .main-content-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Ordem dos blocos */
+  .search-sidebar {
+    order: -1; /* Vai para o topo */
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .feed-aside {
+    order: 0;
+  }
+
+  .feed-content {
+    order: 1;
+  }
+
+  /* A barra de pesquisa ocupa quase toda a largura */
+  .search-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  #search-input {
+    width: 100%;
+  }
+
+  /* Título menor */
+  .feed-title {
+    font-size: 1.8rem;
+  }
+
+  /* Botão Criar Post centralizado */
+  #createPostBtn {
+    align-self: center;
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
 }

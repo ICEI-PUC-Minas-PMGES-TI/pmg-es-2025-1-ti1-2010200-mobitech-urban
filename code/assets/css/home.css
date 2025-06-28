@@ -28,6 +28,9 @@ header {
     position: relative;
     top: -20px; 
 }
+main{
+    height: 100vh;
+}
 
 .navbar {
     background: none;

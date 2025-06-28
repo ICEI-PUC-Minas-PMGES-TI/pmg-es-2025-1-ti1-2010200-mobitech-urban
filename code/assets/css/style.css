@@ -7,7 +7,7 @@
 }
 /*cabecalho*/
 .navbar{
-    background-color: #3f8ebf;
+    background-color: none;
     color: aliceblue;
 }
 
@@ -19,6 +19,14 @@
 .navbar-brand img{
     width: 150px;
 }
+.navbar .d-flex .nav-link i {
+    font-size: 2.0rem;
+}
+.navbar .d-flex .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 2rem; /* Espaçamento vertical e horizontal */
+}
 
 /*corpo*/
 body{
@@ -26,7 +34,7 @@ body{
 }
 main{
     width: 100%;
-    height: 100vh;
+    height: auto;
     background-color: #3f8ebf;
 }
 
