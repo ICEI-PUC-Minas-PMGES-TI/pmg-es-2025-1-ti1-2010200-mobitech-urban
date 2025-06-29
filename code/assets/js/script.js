@@ -422,6 +422,7 @@ document.addEventListener("DOMContentLoaded", function () {
         e.preventDefault();
         const title = document.getElementById('postTitle').value.trim();
         const content = document.getElementById('postContent').value.trim();
+        const address = document.getElementById('postAddress').value.trim();
         
         // Capturar tipos de problema selecionados
         const selectedProblemTypes = [];
@@ -471,6 +472,7 @@ document.addEventListener("DOMContentLoaded", function () {
             id: Date.now(),
             title,
             content,
+            address,
             date: new Date().toISOString(),
             likes: 0,
             userCreated: true,
@@ -501,36 +503,33 @@ document.addEventListener("DOMContentLoaded", function () {
         addNewPost(post).then(result => {
             if (result) {
                 // Salvar estatísticas dos problemas para a prefeitura
-                saveProblemStatistics(post.problemTypes);
+                saveProblemStatistics(post);
                 postModal.hide();
             }
         });
     }
 
     // Função para salvar estatísticas dos problemas
-    async function saveProblemStatistics(problemTypes) {
+    async function saveProblemStatistics(post) {
         // Usar o sistema de estatísticas global se disponível
         if (typeof window.problemStatistics !== 'undefined') {
-            await window.problemStatistics.addProblems(problemTypes, post.author || 'Usuário', post.location || null);
+            await window.problemStatistics.addProblems(post.problemTypes, post.author || 'Usuário', post.location || null);
         } else {
             // Fallback para o sistema antigo
             let problemStats = JSON.parse(localStorage.getItem('problemStatistics')) || {};
-            
-            problemTypes.forEach(problemType => {
+            post.problemTypes.forEach(problemType => {
                 if (problemStats[problemType]) {
                     problemStats[problemType]++;
                 } else {
                     problemStats[problemType] = 1;
                 }
             });
-            
             localStorage.setItem('problemStatistics', JSON.stringify(problemStats));
-            
             let problemHistory = JSON.parse(localStorage.getItem('problemHistory')) || [];
             const problemRecord = {
                 id: Date.now(),
                 date: new Date().toISOString(),
-                problemTypes: problemTypes,
+                problemTypes: post.problemTypes,
                 author: post.author || 'Usuário',
                 location: post.location || null
             };

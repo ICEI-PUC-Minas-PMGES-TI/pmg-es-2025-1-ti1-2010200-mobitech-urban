@@ -2,6 +2,150 @@ document.addEventListener('DOMContentLoaded', async function() {
     let stats = {};
     let chartData = {};
     let timelineData = {};
+    let floodsChart;
+    let problemsChart;
+    let floodsCtx;
+    let problemsCtx;
+
+    // DADOS HISTÓRICOS EXTRAS (apenas para visualização na dashboard)
+    const extraHistory = [
+      {
+        title: "Bueiros Entupidos no Funcionários",
+        date: "2025-01-27",
+        address: "Funcionários",
+        problemTypes: ["Bueiros Entupidos"],
+        observacoes: "Alagamento na Av. Getúlio Vargas (EM)",
+        author: "Fonte: EM"
+      },
+      {
+        title: "Buracos e Asfalto Danificado na Sagrada Família",
+        date: "2025-01-03",
+        address: "Sagrada Família",
+        problemTypes: ["Buracos e Asfalto Danificado"],
+        observacoes: "Cratera na Rua Costa Monteiro, nº157 (EM)",
+        author: "Fonte: EM"
+      },
+      {
+        title: "Buracos e Asfalto Danificado em São Francisco",
+        date: "2025-01-04",
+        address: "São Francisco",
+        problemTypes: ["Buracos e Asfalto Danificado"],
+        observacoes: "Buraco causado por obras na Av. Antônio Carlos ([EM])",
+        author: "Fonte: EM"
+      },
+      {
+        title: "Buracos e Asfalto Danificado na Sagrada Família",
+        date: "2025-02-06",
+        address: "Sagrada Família",
+        problemTypes: ["Buracos e Asfalto Danificado"],
+        observacoes: "Vazamento causa buracos em duas esquinas ([EM])",
+        author: "Fonte: EM"
+      },
+      {
+        title: "Buracos e Asfalto Danificado em Independência / Ibirité",
+        date: "2025-06-11",
+        address: "Independência / Ibirité",
+        problemTypes: ["Buracos e Asfalto Danificado"],
+        observacoes: "Poço de visita danificado ([EM])",
+        author: "Fonte: EM"
+      },
+      {
+        title: "Lixo ou Entulho nas Ruas no Funcionários",
+        date: "2025-02-20",
+        address: "Funcionários",
+        problemTypes: ["Lixo ou Entulho nas Ruas"],
+        observacoes: "Acúmulo de lixo em calçadas próximas à Praça João Pessoa ([EM])",
+        author: "Fonte: EM"
+      },
+      {
+        title: "Falta de Limpeza Urbana na Vila Paquetá",
+        date: "2025-05-02",
+        address: "Vila Paquetá",
+        problemTypes: ["Falta de Limpeza Urbana"],
+        observacoes: "Resíduos deixados na calçada após coleta ([EM])",
+        author: "Fonte: EM"
+      },
+      {
+        title: "Lixo ou Entulho nas Ruas no Córrego Isidoro (Venda Nova)",
+        date: "2024-11-16",
+        address: "Córrego Isidoro (Venda Nova)",
+        problemTypes: ["Lixo ou Entulho nas Ruas"],
+        observacoes: "Lixo impede escoamento da água da chuva (EM)",
+        author: "Fonte: EM"
+      },
+      {
+        title: "Drenagem Insuficiente / Ausente no Betânia",
+        date: "2024-11-04",
+        address: "Betânia",
+        problemTypes: ["Drenagem Insuficiente / Ausente"],
+        observacoes: "Pedido de vistoria técnica por alagamentos (CMBH)",
+        author: "CMBH"
+      },
+      {
+        title: "Drenagem Insuficiente / Ausente no Alto Vera Cruz",
+        date: "2024-11-04",
+        address: "Alto Vera Cruz",
+        problemTypes: ["Drenagem Insuficiente / Ausente"],
+        observacoes: "Mesma vistoria da CMBH referente a alagamentos recorrentes ([CMBH])",
+        author: "CMBH"
+      },
+      {
+        title: "Drenagem Insuficiente / Ausente no Pompeia",
+        date: "2024-11-04",
+        address: "Pompeia",
+        problemTypes: ["Drenagem Insuficiente / Ausente"],
+        observacoes: "Reclamações sobre alagamentos por drenagem precária ([CMBH])",
+        author: "CMBH"
+      },
+      {
+        title: "Buracos e Asfalto Danificado na Aparecida",
+        date: "2025-01-04",
+        address: "Aparecida",
+        problemTypes: ["Buracos e Asfalto Danificado"],
+        observacoes: "Cratera danifica veículo na rua ([EM])",
+        author: "Fonte: EM"
+      },
+      {
+        title: "Bueiros Entupidos na Av. Cristiano Machado",
+        date: "2024-10-10",
+        address: "Av. Cristiano Machado",
+        problemTypes: ["Bueiros Entupidos"],
+        observacoes: "Poças causadas por entupimento de bueiros (Reddit BH)",
+        author: "Reddit BH"
+      },
+      {
+        title: "Lixo / Buracos na Silva Lobo",
+        date: "2024-10-27",
+        address: "Silva Lobo",
+        problemTypes: ["Lixo ou Entulho nas Ruas", "Buracos e Asfalto Danificado"],
+        observacoes: "Lixo e buracos após chuvas fortes (Reddit BH)",
+        author: "Reddit BH"
+      },
+      {
+        title: "Falta de Limpeza Urbana no Centro (Rodoviária)",
+        date: "2024-11-02",
+        address: "Centro (Rodoviária)",
+        problemTypes: ["Falta de Limpeza Urbana"],
+        observacoes: "Lixo, baratas e ratos em área central (Reddit BH)",
+        author: "Reddit BH"
+      },
+      {
+        title: "Poste Queimado / Semáforo Apagado no Barreiro",
+        date: "2025-03-18",
+        address: "Barreiro",
+        problemTypes: ["Poste Queimado / Semáforo Apagado"],
+        observacoes: "Apagão de postes e sinais após chuvas (Reddit BH)",
+        author: "Reddit BH"
+      },
+      {
+        title: "Enchentes / Bueiros Entupidos em Diversos bairros",
+        date: "2024-01-24",
+        address: "Diversos bairros",
+        problemTypes: ["Enchentes", "Bueiros Entupidos"],
+        observacoes: "Rastro de caos com alagamentos e carros ilhados (Folha)",
+        author: "Folha"
+      }
+    ];
 
     // Função para carregar dados do servidor
     async function loadDataFromServer() {
@@ -60,13 +204,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Função para obter dados para gráficos
     function getChartData(stats) {
         const topProblems = getTopProblems(stats, 10);
+        // Defina as cores padrão
+        const defaultColors = [
+            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+            '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF6384'
+        ];
+        // Troque a cor de 'Enchentes' para azul marinho escuro
+        const colors = topProblems.map(item =>
+            item.type === 'Enchentes' ? '#001f4d' : defaultColors[topProblems.indexOf(item) % defaultColors.length]
+        );
         return {
             labels: topProblems.map(item => item.type),
             data: topProblems.map(item => item.count),
-            backgroundColor: [
-                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
-                '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF6384'
-            ]
+            backgroundColor: colors
         };
     }
 
@@ -106,20 +256,33 @@ document.addEventListener('DOMContentLoaded', async function() {
         loadDataFromLocalStorage();
     }
 
-    // Verificar se o sistema de estatísticas está disponível (para compatibilidade)
-    if (typeof window.problemStatistics !== 'undefined') {
-        console.log('Sistema de estatísticas local também disponível');
-    }
+    // Combine os dados do backend com os extras
+    const allHistory = [...extraHistory, ...(stats.recentProblems || [])];
+
+    // Recalcule as estatísticas e gráficos usando allHistory
+    stats.total = allHistory.length;
+    stats.recentProblems = getRecentProblems(allHistory, 10);
+    stats.byType = allHistory.reduce((acc, item) => {
+        (item.problemTypes || []).forEach(type => {
+            acc[type] = (acc[type] || 0) + 1;
+        });
+        return acc;
+    }, {});
+    stats.topProblems = getTopProblems(stats.byType, 5);
+
+    chartData = getChartData(stats.byType);
+    timelineData = getTimelineData(allHistory, 30);
 
     // Atualizar métricas com dados carregados
     updateMetrics(stats);
 
     // Gráfico de enchentes por mês (barras) - usando dados temporais reais
-    const floodsCtx = document.getElementById('floodsChart').getContext('2d');
-    const floodsChart = new Chart(floodsCtx, {
+    floodsCtx = document.getElementById('floodsChart').getContext('2d');
+    if (floodsChart) floodsChart.destroy();
+    floodsChart = new Chart(floodsCtx, {
         type: 'bar',
         data: {
-            labels: timelineData.labels ? timelineData.labels.slice(-12) : [], // Últimos 12 dias
+            labels: timelineData.labels ? timelineData.labels.slice(-12) : [],
             datasets: [{
                 label: 'Problemas Reportados',
                 data: timelineData.data ? timelineData.data.slice(-12) : [],
@@ -162,8 +325,9 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     // Gráfico de distribuição de problemas (rosquinha) - usando dados reais
-    const problemsCtx = document.getElementById('problemsChart').getContext('2d');
-    const problemsChart = new Chart(problemsCtx, {
+    problemsCtx = document.getElementById('problemsChart').getContext('2d');
+    if (problemsChart) problemsChart.destroy();
+    problemsChart = new Chart(problemsCtx, {
         type: 'doughnut',
         data: {
             labels: chartData.labels || [],
@@ -204,39 +368,119 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     function updateCharts(neighborhood) {
-        // Para demonstração, vamos usar dados simulados por bairro
-        // Em um sistema real, você teria dados geográficos específicos
-        const floodsData = {
-            'Centro': [2, 4, 6, 8, 10, 12, 15, 12, 8, 5, 3, 1],
-            'Lagoinha': [1, 3, 5, 7, 9, 11, 14, 11, 7, 4, 2, 1],
-            'Caiçara': [4, 6, 8, 10, 13, 16, 19, 15, 11, 8, 5, 3],
-            'Barreiro': [3, 5, 7, 9, 11, 14, 17, 13, 9, 6, 3, 2],
-            'Venda Nova': [5, 7, 9, 11, 14, 17, 20, 16, 12, 9, 6, 4],
-            'Santa Efigênia': [2, 4, 6, 8, 10, 12, 15, 12, 8, 5, 3, 1],
-            'São Cristóvão': [1, 3, 5, 7, 9, 11, 14, 11, 7, 4, 2, 1],
-            'Padre Eustáquio': [4, 6, 8, 10, 13, 16, 19, 15, 11, 8, 5, 3],
-            'Carlos Prates': [3, 5, 7, 9, 11, 14, 17, 13, 9, 6, 3, 2],
-            'Gutierrez': [5, 7, 9, 11, 14, 17, 20, 16, 12, 9, 6, 4]
-        };
-
-        const problemsData = {
-            'Centro': [40, 30, 15, 10, 5],
-            'Lagoinha': [50, 20, 10, 15, 5],
-            'Caiçara': [35, 35, 20, 5, 5],
-            'Barreiro': [45, 25, 10, 15, 5],
-            'Venda Nova': [30, 40, 15, 10, 5],
-            'Santa Efigênia': [40, 30, 15, 10, 5],
-            'São Cristóvão': [50, 20, 10, 15, 5],
-            'Padre Eustáquio': [35, 35, 20, 5, 5],
-            'Carlos Prates': [45, 25, 10, 15, 5],
-            'Gutierrez': [30, 40, 15, 10, 5]
-        };
-
-        floodsChart.data.datasets[0].data = floodsData[neighborhood];
-        floodsChart.update();
-
-        problemsChart.data.datasets[0].data = problemsData[neighborhood];
-        problemsChart.update();
+        if (stats && stats.recentProblems && neighborhood) {
+            const filteredHistory = stats.recentProblems.filter(record => {
+                return (record.location && record.location.includes(neighborhood)) ||
+                       (record.address && record.address.includes(neighborhood));
+            });
+            const filteredTimeline = getTimelineData(filteredHistory, 12);
+            if (floodsChart) floodsChart.destroy();
+            floodsChart = new Chart(floodsCtx, {
+                type: 'bar',
+                data: {
+                    labels: filteredTimeline.labels,
+                    datasets: [{
+                        label: 'Problemas Reportados',
+                        data: filteredTimeline.data,
+                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Problemas Reportados (Últimos 12 dias)', font: { size: 16 } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Número de Problemas' } },
+                        x: { title: { display: true, text: 'Data' } }
+                    }
+                }
+            });
+            const filteredStats = {};
+            filteredHistory.forEach(record => {
+                if (Array.isArray(record.problemTypes)) {
+                    record.problemTypes.forEach(type => {
+                        filteredStats[type] = (filteredStats[type] || 0) + 1;
+                    });
+                }
+            });
+            const filteredChart = getChartData(filteredStats);
+            if (problemsChart) problemsChart.destroy();
+            problemsChart = new Chart(problemsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: filteredChart.labels,
+                    datasets: [{
+                        data: filteredChart.data,
+                        backgroundColor: filteredChart.backgroundColor || [],
+                        borderColor: (filteredChart.backgroundColor || []).map(color => color.replace('0.7', '1')),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right' },
+                        title: { display: true, text: 'Distribuição de Problemas', font: { size: 16 } }
+                    },
+                    cutout: '70%'
+                }
+            });
+        } else {
+            if (floodsChart) floodsChart.destroy();
+            floodsChart = new Chart(floodsCtx, {
+                type: 'bar',
+                data: {
+                    labels: timelineData.labels ? timelineData.labels.slice(-12) : [],
+                    datasets: [{
+                        label: 'Problemas Reportados',
+                        data: timelineData.data ? timelineData.data.slice(-12) : [],
+                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Problemas Reportados (Últimos 12 dias)', font: { size: 16 } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, title: { display: true, text: 'Número de Problemas' } },
+                        x: { title: { display: true, text: 'Data' } }
+                    }
+                }
+            });
+            if (problemsChart) problemsChart.destroy();
+            problemsChart = new Chart(problemsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: chartData.labels || [],
+                    datasets: [{
+                        data: chartData.data || [],
+                        backgroundColor: chartData.backgroundColor || [],
+                        borderColor: (chartData.backgroundColor || []).map(color => color.replace('0.7', '1')),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right' },
+                        title: { display: true, text: 'Distribuição de Problemas', font: { size: 16 } }
+                    },
+                    cutout: '70%'
+                }
+            });
+        }
     }
 
     // Função para atualizar métricas
@@ -285,7 +529,72 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (!serverLoaded) {
             loadDataFromLocalStorage();
         }
+        // Combine novamente os dados do backend com os extras
+        const allHistory = [...extraHistory, ...(stats.recentProblems || [])];
+        stats.total = allHistory.length;
+        stats.recentProblems = getRecentProblems(allHistory, 10);
+        stats.byType = allHistory.reduce((acc, item) => {
+            (item.problemTypes || []).forEach(type => {
+                acc[type] = (acc[type] || 0) + 1;
+            });
+            return acc;
+        }, {});
+        stats.topProblems = getTopProblems(stats.byType, 5);
+
+        chartData = getChartData(stats.byType);
+        timelineData = getTimelineData(allHistory, 30);
+
         updateMetrics(stats);
         updateProblemsList(stats.topProblems);
+        updateCharts(neighborhoodSelect.value);
+
+        if (floodsChart) floodsChart.destroy();
+        floodsChart = new Chart(floodsCtx, {
+            type: 'bar',
+            data: {
+                labels: timelineData.labels ? timelineData.labels.slice(-12) : [],
+                datasets: [{
+                    label: 'Problemas Reportados',
+                    data: timelineData.data ? timelineData.data.slice(-12) : [],
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                    borderColor: 'rgba(231, 76, 60, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Problemas Reportados (Últimos 12 dias)', font: { size: 16 } }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Número de Problemas' } },
+                    x: { title: { display: true, text: 'Data' } }
+                }
+            }
+        });
+        if (problemsChart) problemsChart.destroy();
+        problemsChart = new Chart(problemsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: chartData.labels || [],
+                datasets: [{
+                    data: chartData.data || [],
+                    backgroundColor: chartData.backgroundColor || [],
+                    borderColor: (chartData.backgroundColor || []).map(color => color.replace('0.7', '1')),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right' },
+                    title: { display: true, text: 'Distribuição de Problemas', font: { size: 16 } }
+                },
+                cutout: '70%'
+            }
+        });
     }, 30000);
 });
