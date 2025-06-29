@@ -72,6 +72,32 @@ header {
     stroke-width: 8px;     
     paint-order: stroke;  
 }
+.legenda-alerta {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: #010a2681 solid 2px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.circulo-azul {
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 0, 0, 0.623);
+    border-radius: 50%;
+    opacity: 0.7;
+    border: 2px solid #fa0808;
+}
+
 /*info-mapa*/
 .mapa-infos {
      max-height: 0;

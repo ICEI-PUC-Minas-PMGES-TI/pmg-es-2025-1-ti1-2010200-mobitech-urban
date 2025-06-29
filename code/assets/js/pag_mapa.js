@@ -260,7 +260,7 @@ async function marcarEnchentesAtivas() {
                 const coords = await coordsCep.getCord(post.address, 'Belo Horizonte', 'MG');
                 if (coords && coords[0]) {
                     const circle = L.circle([parseFloat(coords[0].lat), parseFloat(coords[0].lon)], {
-                        radius: 500,
+                        radius: 1000,
                         color: 'red',
                         fillColor: '#f03',
                         fillOpacity: 0.4
@@ -278,11 +278,27 @@ async function marcarEnchentesAtivas() {
         // Falha ao buscar posts
     }
 }
-
+function criarLegenda() {
+    const legenda = L.control({position: 'topleft'});
+    
+    legenda.onAdd = function(map) {
+        const div = L.DomUtil.create('div', 'legenda-alerta');
+        div.innerHTML = `
+            <div class="legenda-item">
+                <div class="circulo-azul"></div>
+                <span>Área de alerta</span>
+            </div>
+        `;
+        return div;
+    };
+    
+    legenda.addTo(map);
+}
 window.addEventListener('load', function(){
     mostrarInfo();
     localizacaoUsuario();
     marcarEnchentesAtivas();
+    criarLegenda();
 });
 document.querySelector('.popup').addEventListener('click', function(e) {
     e.stopPropagation();
