@@ -283,7 +283,63 @@ footer {
     }
 }
 
-/* Garante ícone de login grande na navbar, igual à home */
-.navbar .d-flex .nav-link i {
-    font-size: 2.0rem !important;
+/* Estilos para upload de arquivos */
+.file-upload-container {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.btn-upload {
+    background-color: #3471A6;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.btn-upload:hover {
+    background-color: #2a5d8a;
+}
+
+.btn-upload i {
+    font-size: 0.9rem;
+}
+
+.upload-status {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.report-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.report-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.report-actions a {
+    color: #3471A6;
+    font-size: 0.8rem;
+}
+
+.report-actions button {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0;
 }

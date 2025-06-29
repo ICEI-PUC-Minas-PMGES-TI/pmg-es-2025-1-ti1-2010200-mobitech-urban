@@ -28,7 +28,8 @@
                                 <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="comentarios.html">Mobitech Connect</a>
+                                <a class="nav-link active" aria-current="page" href="comentarios.html">Mobitech
+                                    Connect</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active" aria-current="page" href="pag_mapa.html">Mapa</a>
@@ -92,11 +93,17 @@
             <aside class="sidebar">
                 <div class="sidebar-card">
                     <h3>Relatórios Recentes</h3>
-                    <ul class="reports-list">
-                        <li>Relatório de maio/2025</li>
-                        <li>Análise de áreas de risco</li>
-                        <li>Plano de prevenção 2025-2026</li>
+                    <ul class="reports-list" id="reports-list">
+                        <!-- Itens serão adicionados dinamicamente -->
                     </ul>
+                    <div class="file-upload-container">
+                        <input type="file" id="file-upload" accept=".pdf,.doc,.docx,.xls,.xlsx" multiple
+                            style="display: none;">
+                        <button class="btn-upload" onclick="document.getElementById('file-upload').click()">
+                            <i class="fas fa-plus"></i> Anexar Arquivo
+                        </button>
+                        <div class="upload-status" id="upload-status"></div>
+                    </div>
                 </div>
                 <div class="sidebar-card">
                     <h3>Principais Problemas</h3>

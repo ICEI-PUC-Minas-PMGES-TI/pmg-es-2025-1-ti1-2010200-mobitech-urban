@@ -593,3 +593,112 @@ document.addEventListener('DOMContentLoaded', async function() {
         select.value = '';
     });
 });
+    // Elementos do DOM
+    const fileUpload = document.getElementById('file-upload');
+    const reportsList = document.getElementById('reports-list');
+    const uploadStatus = document.getElementById('upload-status');
+    
+    // Carrega relatórios salvos no localStorage
+    loadReports();
+
+    // Evento para upload de arquivos
+    fileUpload.addEventListener('change', function(e) {
+        const files = e.target.files;
+        if (files.length > 0) {
+            uploadStatus.textContent = `Enviando ${files.length} arquivo(s)...`;
+            
+            // Simulando upload (numa aplicação real, aqui seria uma chamada AJAX)
+            setTimeout(() => {
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    saveReport(file.name, file.type, new Date());
+                }
+                uploadStatus.textContent = "Upload concluído!";
+                setTimeout(() => uploadStatus.textContent = "", 3000);
+            }, 1000);
+        }
+    });
+
+    // Função para salvar relatório no localStorage
+    function saveReport(name, type, date) {
+        const reports = JSON.parse(localStorage.getItem('reports')) || [];
+        const newReport = {
+            id: Date.now(),
+            name: name,
+            type: type,
+            date: date.toISOString(),
+            url: URL.createObjectURL(fileUpload.files[0]) // Em produção, seria a URL do servidor
+        };
+        reports.unshift(newReport); // Adiciona no início do array
+        localStorage.setItem('reports', JSON.stringify(reports));
+        renderReport(newReport);
+    }
+
+    // Função para carregar relatórios do localStorage
+    function loadReports() {
+        const reports = JSON.parse(localStorage.getItem('reports')) || [];
+        reports.forEach(report => renderReport(report));
+    }
+
+    // Função para renderizar um relatório na lista
+    function renderReport(report) {
+        const reportItem = document.createElement('li');
+        reportItem.className = 'report-item';
+        
+        const iconClass = getFileIcon(report.type);
+        
+        reportItem.innerHTML = `
+            <div>
+                <i class="${iconClass}"></i>
+                <span>${report.name}</span>
+            </div>
+            <div class="report-actions">
+                <a href="${report.url}" download="${report.name}" title="Download">
+                    <i class="fas fa-download"></i>
+                </a>
+                <button onclick="deleteReport(${report.id})" title="Excluir">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
+        
+        reportsList.insertBefore(reportItem, reportsList.firstChild);
+    }
+
+    // Função para obter ícone baseado no tipo de arquivo
+    function getFileIcon(type) {
+        if (type.includes('pdf')) return 'fas fa-file-pdf';
+        if (type.includes('word') || type.includes('document')) return 'fas fa-file-word';
+        if (type.includes('excel') || type.includes('spreadsheet')) return 'fas fa-file-excel';
+        return 'fas fa-file';
+    }
+
+// Função global para deletar relatórios
+function deleteReport(id) {
+    const reports = JSON.parse(localStorage.getItem('reports')) || [];
+    const updatedReports = reports.filter(report => report.id !== id);
+    localStorage.setItem('reports', JSON.stringify(updatedReports));
+    
+    // Recarrega a lista
+    document.getElementById('reports-list').innerHTML = '';
+    updatedReports.forEach(report => {
+        const reportItem = document.createElement('li');
+        reportItem.className = 'report-item';
+        const iconClass = report.type.includes('pdf') ? 'fas fa-file-pdf' : 'fas fa-file';
+        reportItem.innerHTML = `
+            <div>
+                <i class="${iconClass}"></i>
+                <span>${report.name}</span>
+            </div>
+            <div class="report-actions">
+                <a href="${report.url}" download="${report.name}">
+                    <i class="fas fa-download"></i>
+                </a>
+                <button onclick="deleteReport(${report.id})">
+                    <i class="fas fa-trash"></i>
+                </a>
+            </div>
+        `;
+        document.getElementById('reports-list').appendChild(reportItem);
+    });
+}
