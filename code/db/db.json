@@ -269,11 +269,24 @@
         "Enchente"
       ],
       "floodNow": "Sim"
+    },
+    {
+      "id": 1751218590815,
+      "title": "teste4",
+      "content": "teste4",
+      "address": "rua Alpes, Nova suiça",
+      "date": "2025-06-29T17:36:30.815Z",
+      "likes": 0,
+      "userCreated": true,
+      "author": "Teste01",
+      "problemTypes": [
+        "Bueiros Entupidos"
+      ]
     }
   ],
   "problemas_urbanos": {
     "estatisticas": {
-      "Bueiros Entupidos": 1,
+      "Bueiros Entupidos": 2,
       "Enchente": 2
     },
     "historico": [
@@ -300,6 +313,15 @@
         "date": "2025-06-29T16:13:11.392Z",
         "problemTypes": [
           "Enchente"
+        ],
+        "author": "Teste01",
+        "location": null
+      },
+      {
+        "id": 1751218590973,
+        "date": "2025-06-29T17:36:30.973Z",
+        "problemTypes": [
+          "Bueiros Entupidos"
         ],
         "author": "Teste01",
         "location": null

@@ -282,3 +282,8 @@ footer {
         height: 250px;
     }
 }
+
+/* Garante ícone de login grande na navbar, igual à home */
+.navbar .d-flex .nav-link i {
+    font-size: 2.0rem !important;
+}

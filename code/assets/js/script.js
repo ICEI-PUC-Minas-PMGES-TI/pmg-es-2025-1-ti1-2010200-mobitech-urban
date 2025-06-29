@@ -510,6 +510,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Salvar estatísticas dos problemas para a prefeitura
                 saveProblemStatistics(post);
                 postModal.hide();
+                // Notificar outras abas sobre novo post
+                if (window.BroadcastChannel) {
+                    const bc = new BroadcastChannel('posts-updates');
+                    bc.postMessage({ type: 'new-post' });
+                    bc.close();
+                }
             }
         });
     }

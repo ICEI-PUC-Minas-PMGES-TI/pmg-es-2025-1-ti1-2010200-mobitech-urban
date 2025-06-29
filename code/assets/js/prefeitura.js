@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     let problemsChart;
     let floodsCtx;
     let problemsCtx;
+    let allHistory = [];
 
     // DADOS HISTÓRICOS EXTRAS (apenas para visualização na dashboard)
     const extraHistory = [
@@ -159,7 +160,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                     topProblems: getTopProblems(data.estatisticas || {}, 5),
                     recentProblems: getRecentProblems(data.historico || [], 10)
                 };
-                chartData = getChartData(stats.byType);
+                chartData = getChartData(stats.byType, data.historico || []);
                 timelineData = getTimelineData(data.historico || [], 30);
                 return true;
             } else {
@@ -182,7 +183,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             topProblems: getTopProblems(problemStats, 5),
             recentProblems: getRecentProblems(problemHistory, 10)
         };
-        chartData = getChartData(stats.byType);
+        chartData = getChartData(stats.byType, problemHistory);
         timelineData = getTimelineData(problemHistory, 30);
     }
 
@@ -202,8 +203,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // Função para obter dados para gráficos
-    function getChartData(stats) {
-        const topProblems = getTopProblems(stats, 10);
+    function getChartData(stats, history = null) {
+        // Se history for passado, calcula stats a partir dele
+        let statsToUse = stats;
+        if (history) {
+            statsToUse = history.reduce((acc, item) => {
+                (item.problemTypes || []).forEach(type => {
+                    acc[type] = (acc[type] || 0) + 1;
+                });
+                return acc;
+            }, {});
+        }
+        const topProblems = getTopProblems(statsToUse, 10);
         // Defina as cores padrão
         const defaultColors = [
             '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
@@ -257,7 +268,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // Combine os dados do backend com os extras
-    const allHistory = [...extraHistory, ...(stats.recentProblems || [])];
+    allHistory = [...extraHistory, ...(stats.recentProblems || [])];
+    console.log('allHistory:', allHistory);
 
     // Recalcule as estatísticas e gráficos usando allHistory
     stats.total = allHistory.length;
@@ -270,7 +282,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }, {});
     stats.topProblems = getTopProblems(stats.byType, 5);
 
-    chartData = getChartData(stats.byType);
+    chartData = getChartData(stats.byType, allHistory);
     timelineData = getTimelineData(allHistory, 30);
 
     // Atualizar métricas com dados carregados
@@ -368,119 +380,74 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     function updateCharts(neighborhood) {
-        if (stats && stats.recentProblems && neighborhood) {
-            const filteredHistory = stats.recentProblems.filter(record => {
+        let filteredHistory = allHistory;
+        if (neighborhood) {
+            filteredHistory = allHistory.filter(record => {
                 return (record.location && record.location.includes(neighborhood)) ||
                        (record.address && record.address.includes(neighborhood));
             });
-            const filteredTimeline = getTimelineData(filteredHistory, 12);
-            if (floodsChart) floodsChart.destroy();
-            floodsChart = new Chart(floodsCtx, {
-                type: 'bar',
-                data: {
-                    labels: filteredTimeline.labels,
-                    datasets: [{
-                        label: 'Problemas Reportados',
-                        data: filteredTimeline.data,
-                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
-                        borderColor: 'rgba(231, 76, 60, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        title: { display: true, text: 'Problemas Reportados (Últimos 12 dias)', font: { size: 16 } }
-                    },
-                    scales: {
-                        y: { beginAtZero: true, title: { display: true, text: 'Número de Problemas' } },
-                        x: { title: { display: true, text: 'Data' } }
-                    }
-                }
-            });
-            const filteredStats = {};
-            filteredHistory.forEach(record => {
-                if (Array.isArray(record.problemTypes)) {
-                    record.problemTypes.forEach(type => {
-                        filteredStats[type] = (filteredStats[type] || 0) + 1;
-                    });
-                }
-            });
-            const filteredChart = getChartData(filteredStats);
-            if (problemsChart) problemsChart.destroy();
-            problemsChart = new Chart(problemsCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: filteredChart.labels,
-                    datasets: [{
-                        data: filteredChart.data,
-                        backgroundColor: filteredChart.backgroundColor || [],
-                        borderColor: (filteredChart.backgroundColor || []).map(color => color.replace('0.7', '1')),
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'right' },
-                        title: { display: true, text: 'Distribuição de Problemas', font: { size: 16 } }
-                    },
-                    cutout: '70%'
-                }
-            });
-        } else {
-            if (floodsChart) floodsChart.destroy();
-            floodsChart = new Chart(floodsCtx, {
-                type: 'bar',
-                data: {
-                    labels: timelineData.labels ? timelineData.labels.slice(-12) : [],
-                    datasets: [{
-                        label: 'Problemas Reportados',
-                        data: timelineData.data ? timelineData.data.slice(-12) : [],
-                        backgroundColor: 'rgba(231, 76, 60, 0.7)',
-                        borderColor: 'rgba(231, 76, 60, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        title: { display: true, text: 'Problemas Reportados (Últimos 12 dias)', font: { size: 16 } }
-                    },
-                    scales: {
-                        y: { beginAtZero: true, title: { display: true, text: 'Número de Problemas' } },
-                        x: { title: { display: true, text: 'Data' } }
-                    }
-                }
-            });
-            if (problemsChart) problemsChart.destroy();
-            problemsChart = new Chart(problemsCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: chartData.labels || [],
-                    datasets: [{
-                        data: chartData.data || [],
-                        backgroundColor: chartData.backgroundColor || [],
-                        borderColor: (chartData.backgroundColor || []).map(color => color.replace('0.7', '1')),
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'right' },
-                        title: { display: true, text: 'Distribuição de Problemas', font: { size: 16 } }
-                    },
-                    cutout: '70%'
-                }
-            });
         }
+        const filteredTimeline = getTimelineData(filteredHistory, 12);
+        if (floodsChart) floodsChart.destroy();
+        floodsChart = new Chart(floodsCtx, {
+            type: 'bar',
+            data: {
+                labels: filteredTimeline.labels,
+                datasets: [{
+                    label: 'Problemas Reportados',
+                    data: filteredTimeline.data,
+                    backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                    borderColor: 'rgba(231, 76, 60, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Problemas Reportados (Últimos 12 dias)', font: { size: 16 } }
+                },
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Número de Problemas' } },
+                    x: { title: { display: true, text: 'Data' } }
+                }
+            }
+        });
+        const filteredStats = {};
+        filteredHistory.forEach(record => {
+            if (Array.isArray(record.problemTypes)) {
+                record.problemTypes.forEach(type => {
+                    filteredStats[type] = (filteredStats[type] || 0) + 1;
+                });
+            }
+        });
+        const filteredChart = getChartData(filteredStats, filteredHistory);
+        if (problemsChart) problemsChart.destroy();
+        problemsChart = new Chart(problemsCtx, {
+            type: 'doughnut',
+            data: {
+                labels: filteredChart.labels,
+                datasets: [{
+                    data: filteredChart.data,
+                    backgroundColor: filteredChart.backgroundColor || [],
+                    borderColor: (filteredChart.backgroundColor || []).map(color => color.replace('0.7', '1')),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right' },
+                    title: { display: true, text: 'Distribuição de Problemas', font: { size: 16 } }
+                },
+                cutout: '70%'
+            }
+        });
+        // Atualiza lista de principais problemas filtrada
+        const topProblems = getTopProblems(filteredStats, 5);
+        updateProblemsList(topProblems);
     }
 
     // Função para atualizar métricas
@@ -523,14 +490,26 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     updateCharts(neighborhoodSelect.value);
     
-    // Atualizar dados a cada 30 segundos
-    setInterval(async () => {
-        const serverLoaded = await loadDataFromServer();
-        if (!serverLoaded) {
-            loadDataFromLocalStorage();
-        }
-        // Combine novamente os dados do backend com os extras
-        const allHistory = [...extraHistory, ...(stats.recentProblems || [])];
+    // Adicionar listener para BroadcastChannel
+    if (window.BroadcastChannel) {
+        const bc = new BroadcastChannel('posts-updates');
+        bc.onmessage = async (event) => {
+            if (event.data && event.data.type === 'new-post') {
+                await atualizarDashboardCompleta();
+            }
+        };
+    }
+
+    async function atualizarDashboardCompleta() {
+        let postsFromAPI = [];
+        try {
+            const response = await fetch('http://localhost:3000/posts');
+            if (response.ok) {
+                postsFromAPI = await response.json();
+            }
+        } catch (e) {}
+        allHistory = [...extraHistory, ...postsFromAPI];
+        console.log('allHistory:', allHistory);
         stats.total = allHistory.length;
         stats.recentProblems = getRecentProblems(allHistory, 10);
         stats.byType = allHistory.reduce((acc, item) => {
@@ -540,14 +519,10 @@ document.addEventListener('DOMContentLoaded', async function() {
             return acc;
         }, {});
         stats.topProblems = getTopProblems(stats.byType, 5);
-
-        chartData = getChartData(stats.byType);
+        chartData = getChartData(stats.byType, allHistory);
         timelineData = getTimelineData(allHistory, 30);
-
         updateMetrics(stats);
-        updateProblemsList(stats.topProblems);
-        updateCharts(neighborhoodSelect.value);
-
+        floodsCtx = document.getElementById('floodsChart').getContext('2d');
         if (floodsChart) floodsChart.destroy();
         floodsChart = new Chart(floodsCtx, {
             type: 'bar',
@@ -574,6 +549,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 }
             }
         });
+        problemsCtx = document.getElementById('problemsChart').getContext('2d');
         if (problemsChart) problemsChart.destroy();
         problemsChart = new Chart(problemsCtx, {
             type: 'doughnut',
@@ -596,5 +572,24 @@ document.addEventListener('DOMContentLoaded', async function() {
                 cutout: '70%'
             }
         });
-    }, 30000);
+        updateProblemsList(stats.topProblems);
+        // Sempre mostra todos os dados ao atualizar
+        updateCharts('');
+    }
+
+    // No carregamento inicial, chame atualizarDashboardCompleta()
+    atualizarDashboardCompleta();
+
+    // Adicione a opção 'Todos' no select de bairros via JS (caso não exista)
+    document.addEventListener('DOMContentLoaded', function() {
+        const select = document.getElementById('neighborhoodSelect');
+        if (select && !select.querySelector('option[value=""]')) {
+            const option = document.createElement('option');
+            option.value = '';
+            option.textContent = 'Todos';
+            select.insertBefore(option, select.firstChild);
+        }
+        // Seleciona 'Todos' por padrão
+        select.value = '';
+    });
 });
