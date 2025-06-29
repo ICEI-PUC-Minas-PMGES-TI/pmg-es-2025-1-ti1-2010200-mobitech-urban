@@ -80,6 +80,7 @@ main.content {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    position: relative;
 }
 
 .post img {
@@ -663,4 +664,16 @@ footer {
 .problem-tag:hover {
     background-color: #2e6f99;
     transition: background-color 0.3s ease;
+}
+
+.problem-types.top-right {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    text-align: right;
+    background: transparent;
+    box-shadow: none;
+    margin: 0;
+    width: auto;
+    z-index: 2;
 }

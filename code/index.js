@@ -16,7 +16,15 @@
 const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router('./db/db.json')
-  
+
+// Middleware para liberar CORS
+server.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 // Para permitir que os dados sejam alterados, altere a linha abaixo
 // colocando o atributo readOnly como false.
 const middlewares = jsonServer.defaults({ noCors: true })

@@ -1,16 +1,117 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Verificar se o sistema de estatísticas está disponível
-    if (typeof window.problemStatistics === 'undefined') {
-        console.error('Sistema de estatísticas não encontrado');
-        return;
+document.addEventListener('DOMContentLoaded', async function() {
+    let stats = {};
+    let chartData = {};
+    let timelineData = {};
+
+    // Função para carregar dados do servidor
+    async function loadDataFromServer() {
+        try {
+            const response = await fetch('http://localhost:3000/problemas_urbanos');
+            if (response.ok) {
+                const data = await response.json();
+                stats = {
+                    total: data.historico ? data.historico.length : 0,
+                    byType: data.estatisticas || {},
+                    topProblems: getTopProblems(data.estatisticas || {}, 5),
+                    recentProblems: getRecentProblems(data.historico || [], 10)
+                };
+                chartData = getChartData(stats.byType);
+                timelineData = getTimelineData(data.historico || [], 30);
+                return true;
+            } else {
+                throw new Error('Servidor não disponível');
+            }
+        } catch (error) {
+            console.warn('Erro ao carregar do servidor, usando localStorage:', error);
+            return false;
+        }
     }
 
-    // Obter dados reais das estatísticas
-    const stats = window.problemStatistics.getStatistics();
-    const chartData = window.problemStatistics.getChartData();
-    const timelineData = window.problemStatistics.getTimelineData(30);
+    // Função para carregar dados do localStorage (fallback)
+    function loadDataFromLocalStorage() {
+        const problemStats = JSON.parse(localStorage.getItem('problemStatistics')) || {};
+        const problemHistory = JSON.parse(localStorage.getItem('problemHistory')) || [];
+        
+        stats = {
+            total: problemHistory.length,
+            byType: problemStats,
+            topProblems: getTopProblems(problemStats, 5),
+            recentProblems: getRecentProblems(problemHistory, 10)
+        };
+        chartData = getChartData(stats.byType);
+        timelineData = getTimelineData(problemHistory, 30);
+    }
 
-    // Atualizar métricas com dados reais
+    // Função para obter problemas mais frequentes
+    function getTopProblems(stats, limit = 5) {
+        return Object.entries(stats)
+            .sort(([,a], [,b]) => b - a)
+            .slice(0, limit)
+            .map(([type, count]) => ({ type, count }));
+    }
+
+    // Função para obter problemas recentes
+    function getRecentProblems(history, limit = 10) {
+        return history
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, limit);
+    }
+
+    // Função para obter dados para gráficos
+    function getChartData(stats) {
+        const topProblems = getTopProblems(stats, 10);
+        return {
+            labels: topProblems.map(item => item.type),
+            data: topProblems.map(item => item.count),
+            backgroundColor: [
+                '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+                '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF6384'
+            ]
+        };
+    }
+
+    // Função para obter dados para gráfico de linha temporal
+    function getTimelineData(history, days = 30) {
+        const endDate = new Date();
+        const startDate = new Date();
+        startDate.setDate(startDate.getDate() - days);
+
+        const problems = history.filter(record => {
+            const recordDate = new Date(record.date);
+            return recordDate >= startDate && recordDate <= endDate;
+        });
+        
+        const dailyStats = {};
+
+        // Inicializar todos os dias com 0
+        for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
+            dailyStats[d.toISOString().split('T')[0]] = 0;
+        }
+
+        // Contar problemas por dia
+        problems.forEach(record => {
+            const date = record.date.split('T')[0];
+            dailyStats[date]++;
+        });
+
+        return {
+            labels: Object.keys(dailyStats),
+            data: Object.values(dailyStats)
+        };
+    }
+
+    // Carregar dados (tenta servidor primeiro, depois localStorage)
+    const serverLoaded = await loadDataFromServer();
+    if (!serverLoaded) {
+        loadDataFromLocalStorage();
+    }
+
+    // Verificar se o sistema de estatísticas está disponível (para compatibilidade)
+    if (typeof window.problemStatistics !== 'undefined') {
+        console.log('Sistema de estatísticas local também disponível');
+    }
+
+    // Atualizar métricas com dados carregados
     updateMetrics(stats);
 
     // Gráfico de enchentes por mês (barras) - usando dados temporais reais
@@ -18,10 +119,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const floodsChart = new Chart(floodsCtx, {
         type: 'bar',
         data: {
-            labels: timelineData.labels.slice(-12), // Últimos 12 dias
+            labels: timelineData.labels ? timelineData.labels.slice(-12) : [], // Últimos 12 dias
             datasets: [{
                 label: 'Problemas Reportados',
-                data: timelineData.data.slice(-12),
+                data: timelineData.data ? timelineData.data.slice(-12) : [],
                 backgroundColor: 'rgba(231, 76, 60, 0.7)',
                 borderColor: 'rgba(231, 76, 60, 1)',
                 borderWidth: 1
@@ -65,11 +166,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const problemsChart = new Chart(problemsCtx, {
         type: 'doughnut',
         data: {
-            labels: chartData.labels,
+            labels: chartData.labels || [],
             datasets: [{
-                data: chartData.data,
-                backgroundColor: chartData.backgroundColor,
-                borderColor: chartData.backgroundColor.map(color => color.replace('0.7', '1')),
+                data: chartData.data || [],
+                backgroundColor: chartData.backgroundColor || [],
+                borderColor: (chartData.backgroundColor || []).map(color => color.replace('0.7', '1')),
                 borderWidth: 1
             }]
         },
@@ -179,9 +280,12 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCharts(neighborhoodSelect.value);
     
     // Atualizar dados a cada 30 segundos
-    setInterval(() => {
-        const updatedStats = window.problemStatistics.getStatistics();
-        updateMetrics(updatedStats);
-        updateProblemsList(updatedStats.topProblems);
+    setInterval(async () => {
+        const serverLoaded = await loadDataFromServer();
+        if (!serverLoaded) {
+            loadDataFromLocalStorage();
+        }
+        updateMetrics(stats);
+        updateProblemsList(stats.topProblems);
     }, 30000);
 });

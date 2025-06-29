@@ -1,32 +1,64 @@
 // Sistema de Estatísticas de Problemas para a Prefeitura
 class ProblemStatistics {
     constructor() {
-        this.stats = this.loadStatistics();
-        this.history = this.loadHistory();
+        this.stats = {};
+        this.history = [];
+        this.loadFromServer();
     }
 
-    // Carregar estatísticas do localStorage
-    loadStatistics() {
-        return JSON.parse(localStorage.getItem('problemStatistics')) || {};
+    // Carregar dados do servidor
+    async loadFromServer() {
+        try {
+            const response = await fetch('http://localhost:3000/problemas_urbanos');
+            if (response.ok) {
+                const data = await response.json();
+                this.stats = data.estatisticas || {};
+                this.history = data.historico || [];
+            } else {
+                // Fallback para localStorage se servidor não estiver disponível
+                this.loadFromLocalStorage();
+            }
+        } catch (error) {
+            console.warn('Servidor não disponível, usando localStorage:', error);
+            this.loadFromLocalStorage();
+        }
     }
 
-    // Carregar histórico do localStorage
-    loadHistory() {
-        return JSON.parse(localStorage.getItem('problemHistory')) || [];
+    // Carregar do localStorage (fallback)
+    loadFromLocalStorage() {
+        this.stats = JSON.parse(localStorage.getItem('problemStatistics')) || {};
+        this.history = JSON.parse(localStorage.getItem('problemHistory')) || [];
     }
 
-    // Salvar estatísticas no localStorage
-    saveStatistics() {
+    // Salvar no servidor
+    async saveToServer() {
+        try {
+            const data = {
+                estatisticas: this.stats,
+                historico: this.history
+            };
+            
+            await fetch('http://localhost:3000/problemas_urbanos', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+        } catch (error) {
+            console.warn('Erro ao salvar no servidor, salvando no localStorage:', error);
+            this.saveToLocalStorage();
+        }
+    }
+
+    // Salvar no localStorage (fallback)
+    saveToLocalStorage() {
         localStorage.setItem('problemStatistics', JSON.stringify(this.stats));
-    }
-
-    // Salvar histórico no localStorage
-    saveHistory() {
         localStorage.setItem('problemHistory', JSON.stringify(this.history));
     }
 
     // Adicionar novos problemas às estatísticas
-    addProblems(problemTypes, author = 'Usuário', location = null) {
+    async addProblems(problemTypes, author = 'Usuário', location = null) {
         const record = {
             id: Date.now(),
             date: new Date().toISOString(),
@@ -47,9 +79,8 @@ class ProblemStatistics {
         // Adicionar ao histórico
         this.history.push(record);
 
-        // Salvar dados
-        this.saveStatistics();
-        this.saveHistory();
+        // Salvar dados (tenta servidor primeiro, depois localStorage)
+        await this.saveToServer();
 
         return record;
     }
@@ -134,11 +165,10 @@ class ProblemStatistics {
     }
 
     // Limpar dados (cuidado!)
-    clearData() {
+    async clearData() {
         this.stats = {};
         this.history = [];
-        this.saveStatistics();
-        this.saveHistory();
+        await this.saveToServer();
     }
 
     // Obter dados para gráficos

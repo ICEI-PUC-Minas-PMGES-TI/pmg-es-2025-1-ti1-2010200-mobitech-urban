@@ -13,30 +13,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let posts = [];
     let currentLocation = null;
 
-    // Carrega posts do localStorage ou do JSON inicial
-    function loadPosts() {
-        const savedPosts = localStorage.getItem('userPosts');
-        if (savedPosts) {
-            posts = JSON.parse(savedPosts);
-            renderPosts();
-        } else {
-            fetch('../assets/js/posts.json')
-                .then(response => {
-                    if (!response.ok) throw new Error(`Erro HTTP! Status: ${response.status}`);
-                    return response.json();
-                })
-                .then(loadedPosts => {
-                    posts = loadedPosts.map(post => ({
-                        ...post,
-                        likes: Number(post.likes) || 0,
-                        userCreated: false
-                    }));
-                    renderPosts();
-                })
-                .catch(error => {
-                    console.error('Erro ao carregar posts:', error);
-                    postsContainer.innerHTML = `<p class="error">Erro ao carregar postagens. Tente recarregar a página ou verifique se o servidor está rodando.<br><small>${error.message}</small></p>`;
-                });
+    // Carrega posts apenas da API
+    async function loadPosts() {
+        try {
+            const response = await fetch('http://localhost:3000/posts');
+            if (response.ok) {
+                posts = await response.json();
+                renderPosts();
+            } else {
+                throw new Error('Servidor não disponível');
+            }
+        } catch (error) {
+            postsContainer.innerHTML = `<p class="error">Erro ao carregar postagens da API. Verifique se o servidor está rodando.<br><small>${error.message}</small></p>`;
         }
     }
 
@@ -64,6 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
             // HTML do post (com botão de exclusão para posts de usuário)
             postElement.innerHTML = `
                 ${post.image ? `<img src="${post.image}" alt="Imagem do post" class="post-image">` : ''}
+                ${post.problemTypes ? `
+                    <div class="problem-types top-right">
+                        <strong>Tipos de Problema:</strong>
+                        <div class="problem-tags">
+                            ${post.problemTypes.map(type => `<span class="problem-tag">${type}</span>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
                 <div class="post-header">
                     <h3>${post.title}</h3>
                     ${post.userCreated ? `<button class="delete-post-btn" data-id="${post.id}">🗑️</button>` : ''}
@@ -71,14 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     ${post.location ? `<span class="post-location">📍 ${post.location}</span>` : ''}
                 </div>
                 <p class="post-content">${post.content}</p>
-                ${post.problemTypes ? `
-                    <div class="problem-types">
-                        <strong>Tipos de Problema:</strong>
-                        <div class="problem-tags">
-                            ${post.problemTypes.map(type => `<span class="problem-tag">${type}</span>`).join('')}
-                        </div>
-                    </div>
-                ` : ''}
                 <p class="post-author">- ${post.author || 'Usuário'}</p>
                 <div class="reaction-buttons">
                     <button class="like-btn ${localStorage.getItem(`like_${post.id}`) ? 'liked' : ''}" 
@@ -129,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.classList.add('liked');
                 }
                 likeCountElement.textContent = post.likes;
-                savePosts();
+                updatePost(postId, { likes: post.likes });
             });
         });
 
@@ -314,9 +302,62 @@ document.addEventListener("DOMContentLoaded", function () {
         loadComments(postId, commentListElement);
     }
 
-    // Função para salvar posts no localStorage
-    function savePosts() {
-        localStorage.setItem('userPosts', JSON.stringify(posts));
+    // Função para salvar posts na API
+    async function savePosts() {
+        alert('Salvar posts em massa não é suportado. Use apenas a API para criar/editar posts individualmente.');
+    }
+
+    // Função para adicionar novo post na API
+    async function addNewPost(postData) {
+        try {
+            const response = await fetch('http://localhost:3000/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(postData)
+            });
+            if (response.ok) {
+                await loadPosts();
+                return await response.json();
+            } else {
+                throw new Error('Erro ao salvar no servidor');
+            }
+        } catch (error) {
+            alert('Erro ao salvar post na API. Verifique se o servidor está rodando.');
+            return null;
+        }
+    }
+
+    // Função para atualizar post (likes, etc.) na API
+    async function updatePost(postId, updates) {
+        try {
+            const postIndex = posts.findIndex(p => p.id == postId);
+            if (postIndex === -1) return;
+            const updatedPost = { ...posts[postIndex], ...updates };
+            await fetch(`http://localhost:3000/posts/${postId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedPost)
+            });
+            posts[postIndex] = updatedPost;
+        } catch (error) {
+            alert('Erro ao atualizar post na API. Verifique se o servidor está rodando.');
+        }
+    }
+
+    // Exclusão de posts na API
+    async function deletePost(postId) {
+        try {
+            await fetch(`http://localhost:3000/posts/${postId}`, {
+                method: 'DELETE'
+            });
+            await loadPosts();
+        } catch (error) {
+            alert('Erro ao deletar post na API. Verifique se o servidor está rodando.');
+        }
     }
 
     // Evento para abrir o modal de criação de post
@@ -456,21 +497,21 @@ document.addEventListener("DOMContentLoaded", function () {
             post.location = `${currentLocation.lat.toFixed(4)}, ${currentLocation.lng.toFixed(4)}`;
         }
 
-        posts.unshift(post); // Adiciona no início do array
-        savePosts();
-        
-        // Salvar estatísticas dos problemas para a prefeitura
-        saveProblemStatistics(post.problemTypes);
-        
-        renderPosts();
-        postModal.hide();
+        // Salvar post na API
+        addNewPost(post).then(result => {
+            if (result) {
+                // Salvar estatísticas dos problemas para a prefeitura
+                saveProblemStatistics(post.problemTypes);
+                postModal.hide();
+            }
+        });
     }
 
     // Função para salvar estatísticas dos problemas
-    function saveProblemStatistics(problemTypes) {
+    async function saveProblemStatistics(problemTypes) {
         // Usar o sistema de estatísticas global se disponível
         if (typeof window.problemStatistics !== 'undefined') {
-            window.problemStatistics.addProblems(problemTypes, post.author || 'Usuário', post.location || null);
+            await window.problemStatistics.addProblems(problemTypes, post.author || 'Usuário', post.location || null);
         } else {
             // Fallback para o sistema antigo
             let problemStats = JSON.parse(localStorage.getItem('problemStatistics')) || {};

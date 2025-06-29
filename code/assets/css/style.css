@@ -130,3 +130,16 @@ footer {
 .user-popup button.user-logout:hover {
   background: #c0392b;
 }
+
+.post-header {
+    position: relative;
+}
+
+.problem-types.top-right {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    text-align: right;
+    background: transparent;
+    box-shadow: none;
+}

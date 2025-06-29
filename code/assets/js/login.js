@@ -1,6 +1,6 @@
 // Página inicial de Login
 const LOGIN_URL = "/htmls/pag_login.html";
-let RETURN_URL = "/htmls/home.html";
+let RETURN_URL = "/htmls/index.html";
 const API_URL = '/usuarios';
 
 // Objeto para o banco de dados de usuários baseado em JSON

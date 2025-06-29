@@ -19,40 +19,72 @@ document.addEventListener('DOMContentLoaded', function () {
         return `post_${timestamp}.${extension}`;
     }
 
-// Função para geolocalização
-iconeLocalizacao.addEventListener('click', function () {
-
-    if (!navigator.geolocation) {
-        alert('Seu navegador não suporta geolocalização');
-        return;
+    // Função para obter nome do usuário logado
+    function getCurrentUserName() {
+        const userEmail = localStorage.getItem('userEmail');
+        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        if (userEmail) {
+            const user = usuarios.find(u => u.email === userEmail);
+            if (user && user.nome) return user.nome;
+        }
+        return 'Usuário';
     }
 
-
-    const permissao = confirm('Deseja ativar a localização? Isso nos ajuda a sugerir lugares próximos a você.');
-
-    if (permissao) {
-        // Recebe a localização
-        navigator.geolocation.getCurrentPosition(
-            function (posicao) {
-                const latitude = posicao.coords.latitude;
-                const longitude = posicao.coords.longitude;
-                alert(`Localização ativada com sucesso!`);
-                currentLocation = {
-                    latitude: posicao.coords.latitude,
-                    longitude: posicao.coords.longitude
-                };
-            },
-            function (erro) {
-                alert('Não foi possível obter sua localização: ' + erro.message);
-            },
-            {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 0
+    // Função para salvar post no servidor
+    async function savePostToServer(postData) {
+        try {
+            const response = await fetch('http://localhost:3000/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(postData)
+            });
+            if (response.ok) {
+                const savedPost = await response.json();
+                console.log('Post salvo no servidor:', savedPost);
+                return savedPost;
+            } else {
+                throw new Error('Erro ao salvar no servidor');
             }
-        );
+        } catch (error) {
+            alert('Erro ao salvar post na API. Verifique se o servidor está rodando.');
+            return null;
+        }
     }
-});
+
+    // Função para geolocalização
+    iconeLocalizacao.addEventListener('click', function () {
+        if (!navigator.geolocation) {
+            alert('Seu navegador não suporta geolocalização');
+            return;
+        }
+
+        const permissao = confirm('Deseja ativar a localização? Isso nos ajuda a sugerir lugares próximos a você.');
+
+        if (permissao) {
+            // Recebe a localização
+            navigator.geolocation.getCurrentPosition(
+                function (posicao) {
+                    const latitude = posicao.coords.latitude;
+                    const longitude = posicao.coords.longitude;
+                    alert(`Localização ativada com sucesso!`);
+                    currentLocation = {
+                        latitude: posicao.coords.latitude,
+                        longitude: posicao.coords.longitude
+                    };
+                },
+                function (erro) {
+                    alert('Não foi possível obter sua localização: ' + erro.message);
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+            );
+        }
+    });
 
     // Upload de imagem
     iconeImagem.addEventListener('click', function() {
@@ -105,7 +137,7 @@ iconeLocalizacao.addEventListener('click', function () {
     });
 
     // Postagem
-    botaoPostar.addEventListener('click', function() {
+    botaoPostar.addEventListener('click', async function() {
         const texto = textareaPost.value.trim();
         const imagemPendente = JSON.parse(localStorage.getItem('imagemPendente'));
         const temImagem = inputImagem.files.length > 0 || imagemPendente;
@@ -116,17 +148,29 @@ iconeLocalizacao.addEventListener('click', function () {
         }
 
         const novaPostagem = {
-            id: Date.now(),
-            texto: texto,
-            imagem: imagemPendente ? imagemPendente.caminhoRelativo : null,
-            localizacao: currentLocation,
-            data: new Date().toISOString()
+            title: texto.substring(0, 50) + (texto.length > 50 ? '...' : ''),
+            content: texto,
+            author: getCurrentUserName(),
+            date: new Date().toISOString().split('T')[0],
+            type: 'postagem',
+            likes: 0,
+            image: imagemPendente ? imagemPendente.caminhoRelativo : null,
+            location: currentLocation,
+            userCreated: true
         };
 
-        // Salva no localStorage
-        let postagens = JSON.parse(localStorage.getItem('postagens')) || [];
-        postagens.unshift(novaPostagem);
-        localStorage.setItem('postagens', JSON.stringify(postagens));
+        // Salva no servidor
+        const result = await savePostToServer(novaPostagem);
+        if (result) {
+            // Se estiver na página de comentários, recarrega os posts
+            if (window.location.pathname.includes('comentarios')) {
+                if (typeof loadPosts === 'function') {
+                    await loadPosts();
+                } else {
+                    window.location.reload();
+                }
+            }
+        }
 
         // Limpa o formulário
         textareaPost.value = '';
@@ -136,5 +180,10 @@ iconeLocalizacao.addEventListener('click', function () {
         currentLocation = null;
 
         alert('Post criado com sucesso!');
+        
+        // Redireciona para a página de posts se estiver em uma página separada
+        if (window.location.pathname.includes('criarpost')) {
+            window.location.href = 'comentarios.html';
+        }
     });
 });
