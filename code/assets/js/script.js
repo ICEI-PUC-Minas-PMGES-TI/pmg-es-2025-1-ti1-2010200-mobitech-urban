@@ -427,7 +427,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Capturar tipos de problema selecionados
         const selectedProblemTypes = [];
         const problemTypeCheckboxes = document.querySelectorAll('input[type="checkbox"][id^="problemType"]');
-        
+        let floodNowValue = null;
         problemTypeCheckboxes.forEach(checkbox => {
             if (checkbox.checked) {
                 let problemType = checkbox.value;
@@ -439,10 +439,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         problemType = otherInput.value.trim();
                     }
                 } else if (problemType === 'Enchente') {
-                    const floodAddress = document.getElementById('floodAddressInput');
-                    if (floodAddress && floodAddress.value.trim()) {
-                        problemType = `Enchente - ${floodAddress.value.trim()}`;
-                    }
+                    // Capturar resposta Sim/Não
+                    const floodNowYes = document.getElementById('floodNowYes');
+                    const floodNowNo = document.getElementById('floodNowNo');
+                    if (floodNowYes.checked) floodNowValue = 'Sim';
+                    else if (floodNowNo.checked) floodNowValue = 'Não';
                 }
                 
                 selectedProblemTypes.push(problemType);
@@ -479,6 +480,10 @@ document.addEventListener("DOMContentLoaded", function () {
             author: authorName,
             problemTypes: selectedProblemTypes
         };
+        
+        if (floodNowValue !== null) {
+            newPost.floodNow = floodNowValue;
+        }
         
         // Adicionar imagem se existir
         if (postImage.files[0]) {

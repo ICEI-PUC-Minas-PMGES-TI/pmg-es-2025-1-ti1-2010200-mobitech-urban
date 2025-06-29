@@ -240,10 +240,49 @@ map.on('click', function(ev){
     definirTrajeto(ev);
 });
 
+async function marcarEnchentesAtivas() {
+    try {
+        const response = await fetch('http://localhost:3000/posts');
+        if (!response.ok) return;
+        const posts = await response.json();
+        // Filtrar posts de enchente ativos
+        const enchentesAtivas = posts.filter(post =>
+            post.problemTypes && post.problemTypes.includes('Enchente') && post.floodNow === 'Sim' && post.address
+        );
+        for (const post of enchentesAtivas) {
+            // Verifica se o post tem menos de 2 horas
+            const postDate = new Date(post.date);
+            const now = new Date();
+            const diffMs = now - postDate;
+            const twoHoursMs = 2 * 60 * 60 * 1000;
+            if (diffMs > twoHoursMs) continue; // Não mostrar se já passou de 2h
+            try {
+                const coords = await coordsCep.getCord(post.address, 'Belo Horizonte', 'MG');
+                if (coords && coords[0]) {
+                    const circle = L.circle([parseFloat(coords[0].lat), parseFloat(coords[0].lon)], {
+                        radius: 500,
+                        color: 'red',
+                        fillColor: '#f03',
+                        fillOpacity: 0.4
+                    }).addTo(map).bindPopup('Enchente ativa nesta região!');
+                    // Remover o círculo após o tempo restante até completar 2h
+                    setTimeout(() => {
+                        map.removeLayer(circle);
+                    }, twoHoursMs - diffMs);
+                }
+            } catch (e) {
+                // Falha ao geocodificar, ignora
+            }
+        }
+    } catch (e) {
+        // Falha ao buscar posts
+    }
+}
 
 window.addEventListener('load', function(){
     mostrarInfo();
     localizacaoUsuario();
+    marcarEnchentesAtivas();
 });
 document.querySelector('.popup').addEventListener('click', function(e) {
     e.stopPropagation();

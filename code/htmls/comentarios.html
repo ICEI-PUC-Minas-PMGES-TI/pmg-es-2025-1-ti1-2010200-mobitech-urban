@@ -125,7 +125,11 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="problemType8" value="Enchente">
                                         <label class="form-check-label" for="problemType8">Enchente</label>
-                                        <input type="text" class="form-control" id="floodAddressInput" placeholder="Endereço da enchente" style="display:none; width: 60%; margin-left: 10px; display: inline-block; vertical-align: middle;">
+                                        <span id="floodNowContainer" style="display:none; margin-left: 10px;">
+                                            <label style="margin-right: 5px;">Está acontecendo neste exato momento?</label>
+                                            <input type="radio" name="floodNow" id="floodNowYes" value="Sim"> <label for="floodNowYes">Sim</label>
+                                            <input type="radio" name="floodNow" id="floodNowNo" value="Não" style="margin-left: 8px;"> <label for="floodNowNo">Não</label>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="mb-3" id="otherProblemContainer" style="display:none;">
@@ -189,13 +193,14 @@
             }
         });
         const floodCheckbox = document.getElementById('problemType8');
-        const floodAddressInput = document.getElementById('floodAddressInput');
+        const floodNowContainer = document.getElementById('floodNowContainer');
         floodCheckbox.addEventListener('change', function() {
             if (this.checked) {
-                floodAddressInput.style.display = 'inline-block';
+                floodNowContainer.style.display = 'inline-block';
             } else {
-                floodAddressInput.style.display = 'none';
-                floodAddressInput.value = '';
+                floodNowContainer.style.display = 'none';
+                document.getElementById('floodNowYes').checked = false;
+                document.getElementById('floodNowNo').checked = false;
             }
         });
     });
