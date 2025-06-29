@@ -124,7 +124,12 @@ main.content{
     padding: 4px 10px;
 }
 
-
+.botao:hover {
+    background: #2466BC;
+    cursor: pointer;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+} 
 
 .mensagem-erro {
     display: block;
@@ -175,8 +180,8 @@ main.content{
 /*organização-cadastro*/
 #cadastro-info{
     background: #2466BC;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    
+    
 }
 
 

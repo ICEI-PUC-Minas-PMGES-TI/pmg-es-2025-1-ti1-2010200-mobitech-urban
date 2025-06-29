@@ -1,21 +1,21 @@
 #btn-login {
-    padding: 6%;
-    width: 12rem;
+    padding: 8%;
+    width: 16rem;
     font-size: 1rem;
     border-radius: 2rem;
     color: aliceblue;
     background: #3F8EBF;
     border: #cbcedd solid 3px;
-    margin-right: 1rem;
+  
 }
 
 #btn-cadastro {
-    padding: 6%;
+    padding: 10%;
     width: 12rem;
     font-size: 1rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
     color: aliceblue;
-    background: #3F8EBF;
+    background: #0C223D;
     border: #cbcedd solid 3px;
 }
 
@@ -24,7 +24,11 @@
     gap: 1rem;
     margin-top: 2rem;
 }
-
+#cadastro-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* Efeito hover para os botões */
 #btn-login:hover, #btn-cadastro:hover {
     background: #2466BC;
@@ -32,3 +36,23 @@
     transform: scale(1.05);
     transition: all 0.3s ease;
 } 
+
+@media (max-width:1024px) {
+    #btn-login{
+        padding: 6%;
+        width: 10rem;
+    }
+    #btn-cadastro {
+        padding: 6%;
+        width: 8rem;
+    }
+    #cadastro-info{
+        border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 0;
+    }
+    .form-dado input{
+        width: 62vw;
+        border-radius: 2rem;
+        padding: 4px 10px;
+}
+}

@@ -170,6 +170,15 @@ footer {
     align-items:center;
     flex-direction:column;
 }
+    #cadastro-info{
+        border-top-right-radius: 1.5rem;
+        border-bottom-left-radius: 0;
+    }
+    .form-dado input{
+        width: 62vw;
+        border-radius: 2rem;
+        padding: 4px 10px;
+}
 }
 
 
@@ -179,4 +188,7 @@ footer {
     font-size: x-large;
     text-align: justify;
     
-}}
+}
+
+
+}
