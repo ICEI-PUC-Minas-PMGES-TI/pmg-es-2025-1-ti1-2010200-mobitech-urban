@@ -273,106 +273,141 @@ O vídeo a seguir traz uma apresentação do problema que a equipe está tratand
 
 ## Funcionalidades
 
-Esta seção apresenta as funcionalidades da solução.Info
+Funcionalidade 1 – Cadastro de Usuários
+Esta funcionalidade permite que novos usuários se registrem no sistema, bem como que usuários existentes possam ter seus dados atualizados ou removidos. O cadastro inclui informações básicas como nome, e-mail, senha e outros dados necessários para autenticação e personalização do perfil.
 
-##### Funcionalidade 1 - Cadastro de Contatos ⚠️ EXEMPLO ⚠️
+Estrutura de dados:
+Os usuários são armazenados com seus dados pessoais e credenciais para garantir segurança e gerenciamento adequado.
 
-Permite a inclusão, leitura, alteração e exclusão de contatos para o sistema
+Instruções de acesso:
 
-* **Estrutura de dados:** [Contatos](#ti_ed_contatos)
-* **Instruções de acesso:**
-  * Abra o site e efetue o login
-  * Acesse o menu principal e escolha a opção Cadastros
-  * Em seguida, escolha a opção Contatos
-* **Tela da funcionalidade**:
+Acesse o site Movewave e faça login ou escolha a opção de cadastro para novos usuários.
 
-![Tela de Funcionalidade](images/exemplo-funcionalidade.png)
+Preencha o formulário com as informações solicitadas.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente cada uma das funcionalidades que a aplicação fornece tanto para os usuários quanto aos administradores da solução.
->
-> Inclua, para cada funcionalidade, itens como: (1) titulos e descrição da funcionalidade; (2) Estrutura de dados associada; (3) o detalhe sobre as instruções de acesso e uso.
+Após o cadastro, o usuário poderá acessar suas funcionalidades personalizadas no sistema.
+
+![image](https://github.com/user-attachments/assets/b8633b05-3e2f-4b4c-b1dc-ddb5cecf6816)
+
+
+Funcionalidade 2 – Cadastro de Prefeituras
+Permite o registro das prefeituras dentro do sistema, possibilitando a inclusão de dados oficiais e informações relevantes de cada município para melhor gestão e transparência.
+
+Estrutura de dados:
+Cada prefeitura possui dados como nome, endereço, telefone, e-mail e outras informações institucionais importantes.
+
+Instruções de acesso:
+
+Acesse o site Movewave e faça login ou escolha a opção de cadastro para prefeitura
+
+Preencha o formulário com as informações solicitadas.
+
+Após o cadastro, o usuário poderá acessar suas funcionalidades personalizadas no sistema.
+
+![image](https://github.com/user-attachments/assets/68359fef-5f07-48a5-9831-ded561c641e7)
+
+
+Funcionalidade 3 – Cadastro de Postagens com Fotos e Texto
+Esta funcionalidade permite que usuários autorizados criem postagens contendo textos descritivos e imagens, facilitando a comunicação e o compartilhamento de informações relevantes no site.
+
+Estrutura de dados:
+As postagens armazenam título, texto, imagens associadas, data de publicação e autor da postagem.
+
+Instruções de acesso:
+
+Faça login no sistema com um usuário autorizado.
+
+No menu principal, acesse a opção Postagens.
+
+Clique em Nova Postagem, insira o texto, faça upload das fotos e salve a postagem.
+
+![image](https://github.com/user-attachments/assets/9c31bc9d-0169-4c20-9f34-a3202b005867)
+
+
+Funcionalidade 4 – Cadastro de Comentários nas Postagens
+Permite que os usuários interajam com as postagens através de comentários, promovendo maior engajamento e troca de informações.
+
+Estrutura de dados:
+Cada comentário está vinculado a uma postagem específica e contém o texto do comentário, autor e data de publicação.
+
+Instruções de acesso:
+
+Na página de uma postagem, os usuários poderão visualizar e adicionar comentários.
+
+Para comentar, basta digitar o texto no campo designado e enviar.
+
+Os comentários ficam disponíveis para visualização de todos os usuários da plataforma.
+
+![image](https://github.com/user-attachments/assets/3b90cae3-2b47-447b-9a28-c58bbd01c297)
+
 
 ## Estruturas de Dados
 
 Descrição das estruturas de dados utilizadas na solução com exemplos no formato JSON.Info
 
-##### Estrutura de Dados - Contatos   ⚠️ EXEMPLO ⚠️
+##### Estrutura de Dados - Cadastros  
 
-Contatos da aplicação
+"prefeituras": [
+    {
+      "prefeitura": "Prefeitura BH",
+      "site": "https://prefeitura.pbh.gov.br/",
+      "cep": "30535-610",
+      "bairro": "Coração Eucarístico",
+      "email": "adm3@gmail.com",
+      "responsavel": "teste adm 3",
+      "telefone": "(33) 33333-3333",
+      "emailResponsavel": "adm3@gmail.com",
+      "senha": "123456",
+      "dataCadastro": "2025-06-29T20:28:13.901Z",
+      "id": "1"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": "b9dc",
+      "nome": "teste5",
+      "email": "teste5@gmail.com",
+      "telefone": "(99) 99999-9999",
+      "cep": "30535-610",
+      "bairro": "Coração Eucarístico",
+      "senha": "123456",
+      "dataCadastro": "2025-06-29T22:04:58.583Z"
 
-```json
-  {
-    "id": 1,
-    "nome": "Leanne Graham",
-    "cidade": "Belo Horizonte",
-    "categoria": "amigos",
-    "email": "Sincere@april.biz",
-    "telefone": "1-770-736-8031",
-    "website": "hildegard.org"
-  }
-  
-```
+   ##### Estrutura de Dados - Postagens
 
-##### Estrutura de Dados - Usuários  ⚠️ EXEMPLO ⚠️
-
-Registro dos usuários do sistema utilizados para login e para o perfil do sistema
-
-```json
-  {
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    email: "admin@abc.com",
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    login: "admin",
-    nome: "Administrador do Sistema",
-    senha: "123"
-  }
-```
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente as estruturas de dados utilizadas na solução tanto para dados utilizados na essência da aplicação quanto outras estruturas que foram criadas para algum tipo de configuração
->
-> Nomeie a estrutura, coloque uma descrição sucinta e apresente um exemplo em formato JSON.
->
-> **Orientações:**
->
-> * [JSON Introduction](https://www.w3schools.com/js/js_json_intro.asp)
-> * [Trabalhando com JSON - Aprendendo desenvolvimento web | MDN](https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Objects/JSON)
+   "id": "1",
+      "title": "Reclamação sobre a falta de alerta de enchente",
+      "content": "Acho um absurdo que a prefeitura não tenha avisado a população sobre a enchente. Fui pego de surpresa e precisei evacuar minha casa. É urgente que a cidade tenha um sistema de alerta eficiente.",
+      "author": "Maria Souza",
+      "date": "2025-05-01",
+      "type": "reclamação",
+      "likes": 0,
+      "image": "../assets/img/post1.webp",
+      "userCreated": false
 
 ## Módulos e APIs
 
 Esta seção apresenta os módulos e APIs utilizados na solução
 
-**Images**:
+Frameworks e Bibliotecas
+Node.js
+Plataforma utilizada para o desenvolvimento do back-end da aplicação, responsável por executar código JavaScript no servidor.
 
-* Unsplash - [https://unsplash.com/](https://unsplash.com/) ⚠️ EXEMPLO ⚠️
+Express.js
+Framework web minimalista para Node.js, utilizado para estruturar as rotas e requisições da API de forma simples e eficiente.
 
-**Fonts:**
+React.js
+Biblioteca JavaScript para construção da interface do usuário (front-end), proporcionando uma experiência dinâmica e reativa ao usuário.
 
-* Icons Font Face - [https://fontawesome.com/](https://fontawesome.com/) ⚠️ EXEMPLO ⚠️
+Axios
+Cliente HTTP utilizado para fazer requisições assíncronas entre o front-end e o back-end, facilitando a comunicação com a API.
 
-**Scripts:**
+Mongoose (se estiver usando MongoDB)
+Biblioteca para modelar objetos da base de dados MongoDB, permitindo trabalhar com os dados por meio de modelos em JavaScript.
 
-* jQuery - [http://www.jquery.com/](http://www.jquery.com/) ⚠️ EXEMPLO ⚠️
-* Bootstrap 4 - [http://getbootstrap.com/](http://getbootstrap.com/) ⚠️ EXEMPLO ⚠️
+Bootstrap / Tailwind CSS (escolha o que usou)
+Frameworks de CSS utilizados para estilização da interface, oferecendo componentes prontos e responsivos.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente os módulos e APIs utilizados no desenvolvimento da solução. Inclua itens como: (1) Frameworks, bibliotecas, módulos, etc. utilizados no desenvolvimento da solução; (2) APIs utilizadas para acesso a dados, serviços, etc.
+Multer
+Middleware utilizado para o upload e manipulação de arquivos (imagens) enviados nas postagens.
 
-# Referências
-
-As referências utilizadas no trabalho foram:
-
-* SOBRENOME, Nome do autor. Título da obra. 8. ed. Cidade: Editora, 2000. 287 p ⚠️ EXEMPLO ⚠️
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
->
-> **Orientações**:
->
-> - [Formato ABNT](https://www.normastecnicas.com/abnt/trabalhos-academicos/referencias/)
-> - [Referências Bibliográficas da ABNT](https://comunidade.rockcontent.com/referencia-bibliografica-abnt/)
