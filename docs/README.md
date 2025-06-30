@@ -205,7 +205,7 @@ Relação de ferramentas empregadas pelo grupo durante o projeto.
 | --------------------------- | ---------- | -------------------------------------------------- |
 | Processo de Design Thinking | Miro       | (https://miro.com/app/board/uXjVIZ5HadY=/)     |
 | Repositório de código       | GitHub     | https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-1-ti1-2010200-mobitech-urban.git      |
-| Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️ |
+| Hospedagem do site          | Render     | |
 | Protótipo Interativo        | Figma      | https://www.figma.com/design/DPoDWFlNYK84nEhqEHVUfJ/Mobitech-Urban-interface?node-id=0-1&t=EmAaUGkfTv8bbX9t-0   |
 |                             |            |                                                    |
 
