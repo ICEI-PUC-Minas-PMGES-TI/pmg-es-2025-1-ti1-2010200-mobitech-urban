@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+/* Cabeçalho*/
+.navbar {
+    background-color: #3471A6;
+    color: aliceblue;
+}
+
+.navbar-nav {
+    font-size: 1.3rem;
+    gap: 36px;
+    width: auto;
+}
+
+.navbar-brand img {
+    width: 150px;
+}
+
+/* Footer */
+footer {
+    background-color: #DCE9EF;
+    color: #363F70;
+    padding: 2rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.copyright, .address, .contact {
+    margin-bottom: 0.5rem;
+}
+
+.social-media {
+    margin-top: 1rem;
+}
+
+.social-media span {
+    margin-right: 1rem;
+}
+
+.social-media a {
+    color: #363F70;
+    margin: 0 0.5rem;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.social-media a:hover {
+    color: #66b3ff;
+}
+
+/*Main*/
+:root {
+    --azul-prefeitura: #3471A6;
+    --azul-escuro: #3471A6;
+    --branco: #ffffff;
+    --cinza-claro: #f8f9fa;
+}
+
+/* Estrutura Principal */
+.prefeitura-main {
+    background: linear-gradient(135deg, var(--azul-prefeitura) 0%, var(--azul-escuro) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.acesso-container {
+    width: 100%;
+    max-width: 550px;
+}
+
+/* Card de Acesso */
+.acesso-box {
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.acesso-header {
+    margin-bottom: 2rem;
+}
+
+.acesso-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+.acesso-box h2 {
+    color: var(--azul-escuro);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.acesso-box p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Formulário */
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group-text {
+    background-color: var(--cinza-claro);
+    border-right: none;
+}
+
+.form-control {
+    border-left: none;
+    padding: 12px 15px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #ced4da;
+}
+
+/* Botão */
+.btn-acesso {
+    background: linear-gradient(to right, var(--azul-prefeitura), var(--azul-escuro));
+    color: var(--branco);
+    border: none;
+    padding: 12px 0;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.btn-acesso:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(44, 94, 146, 0.4);
+}
+
+/* Mensagem de Erro */
+.mensagem-erro {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 0.9rem;
+    display: none;
+}
+
+
+/* Responsivo */
+@media (max-width: 576px) {
+    .acesso-box {
+        padding: 1.5rem;
+    }
+    
+    .acesso-icon {
+        width: 60px;
+        height: 60px;
+    }
+}

@@ -1,171 +1,185 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/pag_mapa.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.awesome-markers@2.0.2/dist/leaflet.awesome-markers.css">
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.84.2/dist/L.Control.Locate.min.css" />
-    <title>Mapa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/pag_mapa.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/leaflet.awesome-markers@2.0.2/dist/leaflet.awesome-markers.css">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.84.2/dist/L.Control.Locate.min.css" />
+  <title>Mapa</title>
 </head>
+
 <body>
-    <div class="wrapper">
-        <header>
-            <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-                <div class="container-fluid">
-                  <a class="navbar-brand" href="index.html"><img src="../assets/img/movewave-logo.png" alt=""></a>
-                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="comentarios.html">Mobitech Connect</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="pag_mapa.html">Mapa</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="informações.html">Informações</a>
-                      </li>
-                    </ul>
-                    <!-- Ícone de login no canto direito -->
-                    <div class="d-flex">
-                        <a href="pag_login.html" class="nav-link text-light">
-                            <i class="fas fa-user"></i>
-                        </a>
-                        <a href="#" class="nav-link text-light" id="settings-icon-link" style="display:none;">
-                            <i class="fas fa-cog"></i>
-                        </a>
-                    </div>
-                  </div>
-                </div>
-              </nav>
-        </header>
-        <div id="user-popup" class="user-popup" style="display:none;">
-          <div class="user-popup-content">
-            <div class="user-popup-title">Configurações do Usuário</div>
-            <div class="user-email">usuário@exemplo.com</div>
-            <button class="user-change-password">Alterar Senha</button>
-            <button class="user-logout">Sair</button>
+  <div class="wrapper">
+    <header>
+      <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html"><img src="../assets/img/movewave-logo.png" alt=""></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="comentarios.html">Mobitech Connect</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="pag_mapa.html">Mapa</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="informações.html">Informações</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="acesso_prefeitura.html">Acesso da prefeitura</a>
+              </li>
+            </ul>
+            <!-- Ícone de login no canto direito -->
+            <div class="d-flex">
+              <a href="pag_login.html" class="nav-link text-light">
+                <i class="fas fa-user"></i>
+              </a>
+              <a href="#" class="nav-link text-light" id="settings-icon-link" style="display:none;">
+                <i class="fas fa-cog"></i>
+              </a>
+            </div>
           </div>
         </div>
-        <main class="content">
-           <section class="area-mapa">
-             <div id="mapa" class="mapa-container">
-               <div class="infoPopupOverlay overlay" id="infoOverlay">
-                    <div class="infoPopup" id="infoPopup">
-                        <h1>Bem Vindo à página do Mapa</h1>
-                        <p>Aqui é possivel visulizar as áreas possivelmentes afetadas e os trajetos desejados.</p>
-                        <h2>Como criar o trajeto</h2>
-                        <ol>
-                          <li><strong>Clique</strong> no mapa para marcar a partida</li>
-                          <li><strong>Confirme</strong> no pop-up</li>
-                          <li><strong>Clique</strong> novamente para marcar a <strong>chegada</strong></li>
-                        </ol>
-                        <p>Assim uma linha azul mostrará seu trajeto com a distância.</p>
-                        <p><i>Para recomeçar, clique em qualquer lugar</i>.</p>
-                        <div class="btnOK" id="okPopup">
-                            <button id="btnOk">Ok</button>
-                        </div>
-                    </div>
-               </div>
-               <div id="popupOverlay" class="popup-overlay overlay">
-                 <div class="popup">
-                   <p><strong>Pergunta: Deseja criar rota?</strong></p>
-                   <p id="popupCoords">Localzação: </p>
-                   <div class="botoes">
-                     <button id="criarRota">Criar</button>
-                     <button id="sairPopup">Sair</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <article class="mapa-infos">
-                  <div class="infos-container">
-                      <div id="info-01" class="info-wrapper">
-                        <div class="location">
-                          <i class="fa-solid fa-location-dot"></i>
-                          <p class="info-text" id="endInicial"></p>
-                        </div>
-                        <div class="location">
-                          <i class="fa-solid fa-location-dot"></i>
-                          <p class="info-text" id="endFinal"></p>
-                        </div>
-                      </div>
-                      <div id="info-02" class="info-wrapper">
-                          <div class="icon-info">
-                              <div class="icon-content">
-                                  <i class="fa-solid fa-motorcycle"></i>
-                                  <p class="info-text" id="infoMoto"></p>
-                              </div>
-                              <div class="icon-content">
-                                    <i class="fa-solid fa-car-side"></i>
-                                     <p class="info-text" id="infoCarro"></p>
-                              </div>
-                              <div class="icon-content">
-                                  <i class="fa-solid fa-bus"></i>
-                                   <p class="info-text" id="infoOnibus"></p>
-                              </div>
-                              <div class="icon-content">
-                                  <i class="fa-solid fa-person-walking"></i>
-                                   <p class="info-text" id="infoAndar"></p>
-                              </div>
-                          </div>
-                      </div>
-                      <div id="info-03" class="info-wrapper">
-                            <div class="estats">
-                               <p class="info-text"><strong>Risco de enchente: </strong> Baixo</p>
-                               <p class="info-text"><strong>Última atualização:</strong> há 2h – sem registros de alagamento no trajeto</p>
-                            </div>
-                            <div class="estats">
-                               <p class="info-text"><strong>Condições climáticas:</strong> nenhum sinal de chuva ou alertas de enchente nas próximas 3h</p>
-                            </div>
-                      </div>
-                  </div>
-              </article>
-            </section>
-          </main>
-          <footer>
-            <div class="footer-content">
-              <div class="copyright">
-                <p>© 2025 Mobitech Urban. Todos os direitos reservados.</p>
-              </div>
-              <div class="address">
-                <p>Avenida Dom José Gaspar, 500, Belo Horizonte – MG</p>
-                </div>
-                <div class="contact">
-                    <p>(31) 4556-2025 | atendimento@mobtechurban.com.br</p>
-                </div>
-                <div class="social-media">
-                    <span>Signore:</span>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-        </footer>
+      </nav>
+    </header>
+    <div id="user-popup" class="user-popup" style="display:none;">
+      <div class="user-popup-content">
+        <div class="user-popup-title">Configurações do Usuário</div>
+        <div class="user-email">usuário@exemplo.com</div>
+        <button class="user-change-password">Alterar Senha</button>
+        <button class="user-logout">Sair</button>
+      </div>
     </div>
-     
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous"></script>
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
-     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-     <script type="module" src="../assets/js/pag_mapa.js"></script>
-     <script src="https://kit.fontawesome.com/89e63f38c8.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet.awesome-markers@2.0.2/dist/leaflet.awesome-markers.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.84.2/dist/L.Control.Locate.min.js" charset="utf-8"></script>
-    <script src="../assets/js/script.js"></script>
+    <main class="content">
+      <section class="area-mapa">
+        <div id="mapa" class="mapa-container">
+          <div class="infoPopupOverlay overlay" id="infoOverlay">
+            <div class="infoPopup" id="infoPopup">
+              <h1>Bem Vindo à página do Mapa</h1>
+              <p>Aqui é possivel visulizar as áreas possivelmentes afetadas e os trajetos desejados.</p>
+              <h2>Como criar o trajeto</h2>
+              <ol>
+                <li><strong>Clique</strong> no mapa para marcar a partida</li>
+                <li><strong>Confirme</strong> no pop-up</li>
+                <li><strong>Clique</strong> novamente para marcar a <strong>chegada</strong></li>
+              </ol>
+              <p>Assim uma linha azul mostrará seu trajeto com a distância.</p>
+              <p><i>Para recomeçar, clique em qualquer lugar</i>.</p>
+              <div class="btnOK" id="okPopup">
+                <button id="btnOk">Ok</button>
+              </div>
+            </div>
+          </div>
+          <div id="popupOverlay" class="popup-overlay overlay">
+            <div class="popup">
+              <p><strong>Pergunta: Deseja criar rota?</strong></p>
+              <p id="popupCoords">Localzação: </p>
+              <div class="botoes">
+                <button id="criarRota">Criar</button>
+                <button id="sairPopup">Sair</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <article class="mapa-infos">
+          <div class="infos-container">
+            <div id="info-01" class="info-wrapper">
+              <div class="location">
+                <i class="fa-solid fa-location-dot"></i>
+                <p class="info-text" id="endInicial"></p>
+              </div>
+              <div class="location">
+                <i class="fa-solid fa-location-dot"></i>
+                <p class="info-text" id="endFinal"></p>
+              </div>
+            </div>
+            <div id="info-02" class="info-wrapper">
+              <div class="icon-info">
+                <div class="icon-content">
+                  <i class="fa-solid fa-motorcycle"></i>
+                  <p class="info-text" id="infoMoto"></p>
+                </div>
+                <div class="icon-content">
+                  <i class="fa-solid fa-car-side"></i>
+                  <p class="info-text" id="infoCarro"></p>
+                </div>
+                <div class="icon-content">
+                  <i class="fa-solid fa-bus"></i>
+                  <p class="info-text" id="infoOnibus"></p>
+                </div>
+                <div class="icon-content">
+                  <i class="fa-solid fa-person-walking"></i>
+                  <p class="info-text" id="infoAndar"></p>
+                </div>
+              </div>
+            </div>
+            <div id="info-03" class="info-wrapper">
+              <div class="estats">
+                <p class="info-text"><strong>Risco de enchente: </strong> Baixo</p>
+                <p class="info-text"><strong>Última atualização:</strong> há 2h – sem registros de alagamento no trajeto
+                </p>
+              </div>
+              <div class="estats">
+                <p class="info-text"><strong>Condições climáticas:</strong> nenhum sinal de chuva ou alertas de enchente
+                  nas próximas 3h</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer>
+      <div class="footer-content">
+        <div class="copyright">
+          <p>© 2025 Mobitech Urban. Todos os direitos reservados.</p>
+        </div>
+        <div class="address">
+          <p>Avenida Dom José Gaspar, 500, Belo Horizonte – MG</p>
+        </div>
+        <div class="contact">
+          <p>(31) 4556-2025 | atendimento@mobtechurban.com.br</p>
+        </div>
+        <div class="social-media">
+          <span>Signore:</span>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  <script type="module" src="../assets/js/pag_mapa.js"></script>
+  <script src="https://kit.fontawesome.com/89e63f38c8.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.awesome-markers@2.0.2/dist/leaflet.awesome-markers.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.84.2/dist/L.Control.Locate.min.js"
+    charset="utf-8"></script>
+  <script src="../assets/js/script.js"></script>
 </body>
+
 </html>
