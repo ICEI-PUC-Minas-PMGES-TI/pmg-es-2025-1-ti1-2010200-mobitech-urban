@@ -263,7 +263,7 @@ A aplicação foi desenvolvida com tecnologias modernas, priorizando a usabilida
 
 O vídeo a seguir traz uma apresentação do problema que a equipe está tratando e a proposta de solução.
 
-[[![Vídeo do projeto](images/video.png)](https://www.youtube.com/embed/70gGoFyGeqQ)](https://www.youtube.com/watch?v=YYJMhOyBKlM)
+https://www.youtube.com/watch?v=YYJMhOyBKlM
 
 ## Funcionalidades
 
