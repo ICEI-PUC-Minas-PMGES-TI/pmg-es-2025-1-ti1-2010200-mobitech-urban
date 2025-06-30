@@ -192,19 +192,10 @@ Estes são os protótipos de telas do sistema.
 ![image](https://github.com/user-attachments/assets/072d9960-85b1-4b64-b2fe-5d65296a0aa9)
 
 
-### Protótipo Interativo
-
-**✳️✳️✳️ COLOQUE AQUI UM IFRAME COM SEU PROTÓTIPO INTERATIVO ✳️✳️✳️**
-
-✅ [Protótipo Interativo (MarvelApp)](https://marvelapp.com/prototype/4hd6091?emb=1&iosapp=false&frameless=false)  ⚠️ EXEMPLO ⚠️
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Um protótipo interativo apresenta o projeto de interfaces e permite ao usuário navegar pelas funcionalidades como se estivesse lidando com o software pronto. Utilize as mesmas ferramentas de construção de wireframes para montagem do seu protótipo interativo. Inclua o link para o protótipo interativo do projeto.
 
 # Metodologia
 
-Detalhes sobre a organização do grupo e o ferramental empregado.
+A metodologia aplicada no desenvolvimento do projeto MoveWave teve como base abordagens ágeis, especialmente o Design Thinking e o Scrum, visando promover uma estrutura de trabalho colaborativa, iterativa e centrada no usuário.
 
 ## Ferramentas
 
@@ -218,13 +209,32 @@ Relação de ferramentas empregadas pelo grupo durante o projeto.
 | Protótipo Interativo        | Figma      | https://www.figma.com/design/DPoDWFlNYK84nEhqEHVUfJ/Mobitech-Urban-interface?node-id=0-1&t=EmAaUGkfTv8bbX9t-0   |
 |                             |            |                                                    |
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Liste as ferramentas empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível. Inclua itens como: (1) Editor de código, (2) )ferramentas de comunicação, (3) )ferramentas de diagramação, (4) )plataformas de hospedagem, entre outras.
+Ferramentas Utilizadas: 
+Durante o desenvolvimento do projeto MoveWave, a equipe utilizou diferentes ferramentas para garantir uma gestão eficiente, colaboração em tempo real e qualidade na entrega da solução. Abaixo estão listadas as principais ferramentas, agrupadas por finalidade:
+
+Visual Studio Code: Editor de código utilizado por sua leveza, ampla personalização e suporte a extensões. Possui integração direta com o GitHub, facilitando o versionamento de código.
+
+GitHub: Plataforma utilizada para armazenar e versionar o código-fonte, além de hospedar a documentação do projeto. Também foi usada para gerenciamento de tarefas por meio do recurso GitHub Projects, onde foi criado um quadro Kanban com colunas de tarefas (Backlog, To Do, Doing e Done).
+
+WhatsApp e Google Meet: Utilizados para comunicação ágil entre os membros e realização de reuniões para alinhamento das entregas.
+
+Miro: Ferramenta utilizada na etapa de Design Thinking para construção da Matriz CSD, Mapa de Stakeholders e organização das entrevistas com os usuários.
+
+Figma: Plataforma online utilizada para criação de wireframes, mockups e protótipos de alta fidelidade. Permitiu colaboração em tempo real no design das telas.
+
+Render (ou outra plataforma de hospedagem): Utilizada para disponibilizar a aplicação final online, com integração contínua ao repositório GitHub.
+
+Google Docs / Microsoft Word: Utilizados para elaboração da documentação textual do projeto, permitindo edição colaborativa entre os membros.
+
+OpenWeatherMap API (ou outra API meteorológica): Integrada à plataforma para obtenção de dados climáticos em tempo real, contribuindo para a emissão de alertas de enchentes.
 
 ## Gerenciamento do Projeto
 
-Divisão de papéis no grupo e apresentação da estrutura da ferramenta de controle de tarefas (Kanban).
+A equipe trabalhou de forma colaborativa durante o desenvolvimento do projeto MoveWave, com todos os integrantes contribuindo ativamente na criação do site, tanto na parte de design quanto na implementação do código. As decisões foram tomadas de maneira conjunta, priorizando o diálogo e o alinhamento de ideias para garantir a consistência do resultado final.
+
+Embora a divisão das tarefas tenha sido flexível, a liderança do grupo foi assumida por Larissa Silva, que organizou as atividades, distribuiu responsabilidades entre os membros, acompanhou o andamento das entregas e também participou do desenvolvimento técnico da aplicação.
+
+Para controle das tarefas e organização das entregas, foi utilizado um quadro Kanban no GitHub Projects, com colunas que permitiam acompanhar o status das atividades: Backlog, To Do, Doing, Review/Testes e Done. Essa abordagem ajudou a manter a equipe alinhada e permitiu uma visão clara da evolução do projeto.
 
 ![Exemplo de Kanban](images/exemplo-kanban.png)
 
