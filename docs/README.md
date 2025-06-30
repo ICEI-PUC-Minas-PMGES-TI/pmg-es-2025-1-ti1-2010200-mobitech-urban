@@ -236,25 +236,28 @@ Embora a divisão das tarefas tenha sido flexível, a liderança do grupo foi as
 
 Para controle das tarefas e organização das entregas, foi utilizado um quadro Kanban no GitHub Projects, com colunas que permitiam acompanhar o status das atividades: Backlog, To Do, Doing, Review/Testes e Done. Essa abordagem ajudou a manter a equipe alinhada e permitiu uma visão clara da evolução do projeto.
 
-![Exemplo de Kanban](images/exemplo-kanban.png)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesta parte do documento, você deve apresentar  o processo de trabalho baseado nas metodologias ágeis, a divisão de papéis e tarefas, as ferramentas empregadas e como foi realizada a gestão de configuração do projeto via GitHub.
->
-> Coloque detalhes sobre o processo de Design Thinking e a implementação do Framework Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
->
-> **Orientações**:
->
-> - [Sobre Projects - GitHub Docs](https://docs.github.com/pt/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
-> - [Gestão de projetos com GitHub | balta.io](https://balta.io/blog/gestao-de-projetos-com-github)
-> - [(460) GitHub Projects - YouTube](https://www.youtube.com/playlist?list=PLiO7XHcmTsldZR93nkTFmmWbCEVF_8F5H)
-> - [11 Passos Essenciais para Implantar Scrum no seu Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
+![image](https://github.com/user-attachments/assets/893f4c98-df0d-4302-9e4a-bb7a8f801934)
 
 # Solução Implementada
 
-Esta seção apresenta todos os detalhes da solução criada no projeto.
+O projeto MoveWave resultou em uma plataforma web colaborativa desenvolvida com o objetivo de facilitar a comunicação entre a população de Belo Horizonte e os órgãos públicos, especialmente em situações de emergência causadas por enchentes e outros problemas urbanos.
+
+A solução permite que cidadãos relatem ocorrências em tempo real, enviando fotos, vídeos, localização e comentários, que são imediatamente processados e exibidos em um mapa interativo. Isso permite que outros usuários visualizem áreas afetadas e evitem rotas bloqueadas, e que os órgãos públicos atuem com mais rapidez e precisão.
+
+Funcionalidades principais da plataforma:
+Envio de denúncias geolocalizadas com imagens, vídeos e descrição textual.
+
+Visualização de um mapa interativo com marcações em tempo real das áreas com problemas de infraestrutura.
+
+Sistema de alertas baseado em dados meteorológicos integrados por API.
+
+Fórum de discussões para que a população compartilhe informações, dúvidas e sugestões.
+
+Painel administrativo com dados organizados por gráficos e relatórios, voltado para a tomada de decisão por parte da prefeitura e demais órgãos responsáveis.
+
+Página de dicas e contatos úteis, com orientações de segurança e números emergenciais como Defesa Civil e Bombeiros.
+
+A aplicação foi desenvolvida com tecnologias modernas, priorizando a usabilidade, acessibilidade e atualização em tempo real das informações. O foco principal foi criar uma interface simples e intuitiva, capaz de ser usada por qualquer cidadão, mesmo com pouca familiaridade com tecnologia.
 
 ## Vídeo do Projeto
 
