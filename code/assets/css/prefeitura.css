@@ -21,6 +21,16 @@
     width: 150px;
 }
 
+.navbar .d-flex .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.navbar .d-flex .nav-link i {
+    font-size: 2.0rem !important;
+}
+
 /* Layout Principal */
 .wrapper {
     display: flex;
